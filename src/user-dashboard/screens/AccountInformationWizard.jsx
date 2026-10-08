@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { 
-  User, Users, Home, PhoneCall, ShieldCheck, CreditCard, Plus, Trash2, 
+import {
+  User, Users, Home, PhoneCall, ShieldCheck, CreditCard, Plus, Trash2,
   CheckCircle2, Save, Upload, Loader2, Sparkles
 } from "lucide-react";
 import {
@@ -12,6 +12,10 @@ import {
   saveBankDetails, getBankDetails,
   saveDependents, getDependents, deleteDependent
 } from "../../services/api";
+
+const isValidZip = (zip) => !zip || /^\d{5}(-\d{4})?$/.test(zip.trim());
+const isValidRouting = (routing) => !routing || /^\d{9}$/.test(routing.trim());
+const isValidAccountNumber = (acc) => !acc || /^\d{4,17}$/.test(acc.trim());
 
 export default function AccountInformationWizard({ user }) {
   const [activeSubTab, setActiveSubTab] = useState("taxpayer");
@@ -138,7 +142,19 @@ export default function AccountInformationWizard({ user }) {
       let res;
       if (tabKey === "taxpayer") res = await saveTaxpayerProfile(taxpayer);
       else if (tabKey === "spouse") res = await saveSpouseDetails(spouse);
-      else if (tabKey === "address") res = await saveAddressDetails(address);
+      else if (tabKey === "address") {
+        if (address.currentAddress?.zipCode && !isValidZip(address.currentAddress.zipCode)) {
+          setMsg({ type: "error", text: "Invalid ZIP code for Current Address. Please enter a valid 5-digit ZIP code (e.g. 12345 or 12345-6789)." });
+          setLoading(false);
+          return;
+        }
+        if (address.taxYearAddress?.zipCode && !isValidZip(address.taxYearAddress.zipCode)) {
+          setMsg({ type: "error", text: "Invalid ZIP code for Tax Year Address. Please enter a valid 5-digit ZIP code (e.g. 12345 or 12345-6789)." });
+          setLoading(false);
+          return;
+        }
+        res = await saveAddressDetails(address);
+      }
       else if (tabKey === "contact") res = await saveContactDetails(contact);
       else if (tabKey === "identity") {
         const fd = new FormData();
@@ -147,8 +163,29 @@ export default function AccountInformationWizard({ user }) {
         fd.append("expirationDate", identity.expirationDate);
         if (licenseFile) fd.append("licenseDocument", licenseFile);
         res = await saveIdentityVerification(fd);
-      } else if (tabKey === "bank") res = await saveBankDetails(bank);
-      else if (tabKey === "dependents") res = await saveDependents(dependents);
+      } else if (tabKey === "bank") {
+        if (!bank.bankName?.trim()) {
+          setMsg({ type: "error", text: "Please enter your Bank Name." });
+          setLoading(false);
+          return;
+        }
+        if (!bank.accountNumber?.trim() || !isValidAccountNumber(bank.accountNumber)) {
+          setMsg({ type: "error", text: "Please enter a valid Account Number (4 to 17 digits)." });
+          setLoading(false);
+          return;
+        }
+        if (!bank.routingNumber?.trim() || !/^\d{9}$/.test(bank.routingNumber.trim())) {
+          setMsg({ type: "error", text: "Please enter a valid 9-digit ABA Routing Number." });
+          setLoading(false);
+          return;
+        }
+        if (!bank.accountHolderName?.trim()) {
+          setMsg({ type: "error", text: "Please enter the Account Holder Name." });
+          setLoading(false);
+          return;
+        }
+        res = await saveBankDetails(bank);
+      } else if (tabKey === "dependents") res = await saveDependents(dependents);
 
       if (res && res.success) {
         setMsg({ type: "success", text: `${subTabs.find(t => t.id === tabKey)?.label} saved successfully!` });
@@ -198,11 +235,10 @@ export default function AccountInformationWizard({ user }) {
                   setActiveSubTab(tab.id);
                   setMsg({ type: "", text: "" });
                 }}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                  isActive
-                    ? "bg-white text-brand-purple shadow-sm border border-slate-200"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
-                }`}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${isActive
+                  ? "bg-white text-brand-purple shadow-sm border border-slate-200"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
+                  }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? "text-brand-orange" : "text-slate-400"}`} />
                 <span>{tab.label}</span>
@@ -212,9 +248,8 @@ export default function AccountInformationWizard({ user }) {
         </div>
 
         {msg.text && (
-          <div className={`p-4 rounded-2xl text-xs font-bold flex items-center gap-2 ${
-            msg.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-red-50 text-red-700 border border-red-200"
-          }`}>
+          <div className={`p-4 rounded-2xl text-xs font-bold flex items-center gap-2 ${msg.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-red-50 text-red-700 border border-red-200"
+            }`}>
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>{msg.text}</span>
           </div>
@@ -493,10 +528,23 @@ export default function AccountInformationWizard({ user }) {
                     <label className="text-xs font-bold text-slate-700">ZIP</label>
                     <input
                       type="text"
+                      maxLength={10}
+                      placeholder="12345"
                       value={address.currentAddress?.zipCode || ""}
-                      onChange={(e) => setAddress({ ...address, currentAddress: { ...address.currentAddress, zipCode: e.target.value } })}
-                      className="w-full mt-1 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^\d-]/g, "").slice(0, 10);
+                        setAddress({ ...address, currentAddress: { ...address.currentAddress, zipCode: val } });
+                      }}
+                      className={`w-full mt-1 px-3 py-2 rounded-xl border text-xs font-semibold transition-all ${address.currentAddress?.zipCode && !isValidZip(address.currentAddress.zipCode)
+                        ? "border-red-400 bg-red-50/40 text-red-900 focus:ring-2 focus:ring-red-200"
+                        : "border-slate-200 focus:ring-2 focus:ring-brand-purple/20"
+                        }`}
                     />
+                    {address.currentAddress?.zipCode && !isValidZip(address.currentAddress.zipCode) && (
+                      <p className="text-[10px] text-red-500 font-semibold mt-1">
+                        5 digits required (e.g. 12345)
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -535,10 +583,23 @@ export default function AccountInformationWizard({ user }) {
                     <label className="text-xs font-bold text-slate-700">ZIP</label>
                     <input
                       type="text"
+                      maxLength={10}
+                      placeholder="12345"
                       value={address.taxYearAddress?.zipCode || ""}
-                      onChange={(e) => setAddress({ ...address, taxYearAddress: { ...address.taxYearAddress, zipCode: e.target.value } })}
-                      className="w-full mt-1 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^\d-]/g, "").slice(0, 10);
+                        setAddress({ ...address, taxYearAddress: { ...address.taxYearAddress, zipCode: val } });
+                      }}
+                      className={`w-full mt-1 px-3 py-2 rounded-xl border text-xs font-semibold transition-all ${address.taxYearAddress?.zipCode && !isValidZip(address.taxYearAddress.zipCode)
+                        ? "border-red-400 bg-red-50/40 text-red-900 focus:ring-2 focus:ring-red-200"
+                        : "border-slate-200 focus:ring-2 focus:ring-brand-purple/20"
+                        }`}
                     />
+                    {address.taxYearAddress?.zipCode && !isValidZip(address.taxYearAddress.zipCode) && (
+                      <p className="text-[10px] text-red-500 font-semibold mt-1">
+                        5 digits required (e.g. 12345)
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -650,56 +711,100 @@ export default function AccountInformationWizard({ user }) {
         {/* TAB 7: BANK DETAILS */}
         {activeSubTab === "bank" && (
           <div className="space-y-6">
-            <h3 className="text-sm font-bold text-slate-900 border-b pb-2">Bank Account Details (IRS Direct Deposit)</h3>
+            <div className="border-b pb-2">
+              <h3 className="text-sm font-bold text-slate-900">Bank Account Details (IRS Direct Deposit)</h3>
+              <p className="text-[11px] text-slate-500 mt-0.5">Provide verified banking details so your refund or payment can be processed accurately by the IRS.</p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-700">Bank Name</label>
+                <label className="text-xs font-bold text-slate-700">Bank Name <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={bank.bankName}
                   onChange={(e) => setBank({ ...bank, bankName: e.target.value })}
-                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold"
-                  placeholder="Chase, Bank of America, Wells Fargo"
+                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-brand-purple/20"
+                  placeholder="e.g. JPMorgan Chase, Bank of America, Wells Fargo"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-slate-700">Account Type</label>
+                <label className="text-xs font-bold text-slate-700">Account Type <span className="text-red-500">*</span></label>
                 <select
                   value={bank.accountType}
                   onChange={(e) => setBank({ ...bank, accountType: e.target.value })}
-                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold"
+                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-brand-purple/20"
                 >
                   <option value="Checking">Checking</option>
                   <option value="Savings">Savings</option>
                 </select>
               </div>
               <div>
-                <label className="text-xs font-bold text-slate-700">Account Number</label>
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-slate-700">Account Number <span className="text-red-500">*</span></label>
+                  {bank.accountNumber && (
+                    <span className="text-[10px] text-slate-400 font-mono">{bank.accountNumber.length} digits</span>
+                  )}
+                </div>
                 <input
                   type="text"
+                  inputMode="numeric"
+                  maxLength={17}
                   value={bank.accountNumber}
-                  onChange={(e) => setBank({ ...bank, accountNumber: e.target.value })}
-                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-mono font-bold"
-                  placeholder="XXXXXXXXX"
+                  onChange={(e) => {
+                    const clean = e.target.value.replace(/\D/g, "").slice(0, 17);
+                    setBank({ ...bank, accountNumber: clean });
+                  }}
+                  className={`w-full mt-1 px-4 py-2.5 rounded-xl border text-xs font-mono font-bold transition-all ${
+                    bank.accountNumber && !isValidAccountNumber(bank.accountNumber)
+                      ? "border-red-400 bg-red-50/40 text-red-900 focus:ring-2 focus:ring-red-200"
+                      : "border-slate-200 focus:ring-2 focus:ring-brand-purple/20 text-slate-900"
+                  }`}
+                  placeholder="4 to 17 digits"
                 />
+                {bank.accountNumber && !isValidAccountNumber(bank.accountNumber) && (
+                  <p className="text-[10px] text-red-500 font-semibold mt-1">
+                    Account number must be 4 to 17 digits
+                  </p>
+                )}
               </div>
               <div>
-                <label className="text-xs font-bold text-slate-700">Routing Number (ABA)</label>
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-slate-700">Routing Number (ABA) <span className="text-red-500">*</span></label>
+                  {bank.routingNumber && (
+                    <span className={`text-[10px] font-mono ${bank.routingNumber.length === 9 ? "text-emerald-600 font-bold" : "text-slate-400"}`}>
+                      {bank.routingNumber.length}/9 digits
+                    </span>
+                  )}
+                </div>
                 <input
                   type="text"
+                  inputMode="numeric"
+                  maxLength={9}
                   value={bank.routingNumber}
-                  onChange={(e) => setBank({ ...bank, routingNumber: e.target.value })}
-                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-mono font-bold"
+                  onChange={(e) => {
+                    const clean = e.target.value.replace(/\D/g, "").slice(0, 9);
+                    setBank({ ...bank, routingNumber: clean });
+                  }}
+                  className={`w-full mt-1 px-4 py-2.5 rounded-xl border text-xs font-mono font-bold transition-all ${
+                    bank.routingNumber && !isValidRouting(bank.routingNumber)
+                      ? "border-red-400 bg-red-50/40 text-red-900 focus:ring-2 focus:ring-red-200"
+                      : "border-slate-200 focus:ring-2 focus:ring-brand-purple/20 text-slate-900"
+                  }`}
                   placeholder="9-digit routing code"
                 />
+                {bank.routingNumber && !isValidRouting(bank.routingNumber) && (
+                  <p className="text-[10px] text-red-500 font-semibold mt-1">
+                    Routing number must be exactly 9 digits
+                  </p>
+                )}
               </div>
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold text-slate-700">Account Holder Name</label>
+                <label className="text-xs font-bold text-slate-700">Account Holder Name <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={bank.accountHolderName}
                   onChange={(e) => setBank({ ...bank, accountHolderName: e.target.value })}
-                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold"
+                  className="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:ring-2 focus:ring-brand-purple/20"
+                  placeholder="Full name as printed on bank statement"
                 />
               </div>
             </div>
