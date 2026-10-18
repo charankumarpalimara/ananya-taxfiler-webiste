@@ -84,7 +84,7 @@ export default function Deliverables() {
           </h2>
 
           <p className="text-text-mid text-base sm:text-lg font-sans leading-relaxed">
-            Staying compliant means staying on top of complex forms. Our certified team handles every detail with precision.
+            We handle the numbers, you focus on growing your business. Our certified team handles every compliance detail with precision.
           </p>
         </motion.div>
 

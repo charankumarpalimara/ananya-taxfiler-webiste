@@ -33,7 +33,7 @@ export default function SideBar() {
 
         {/* Contact info tools */}
         <a
-          href="tel:+13348404241"
+          href="tel:+13318404241"
           className="w-10 h-10 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white transition-all hover:scale-105"
           title="Call Us"
         >
@@ -43,7 +43,7 @@ export default function SideBar() {
         </a>
 
         <a
-          href="mailto:info@nexgenaccountinggroup.com"
+          href="mailto:annachi.pradeep@ananytaxco.com"
           className="w-10 h-10 rounded-xl bg-brand-purple/10 flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all hover:scale-105"
           title="Email Us"
         >

@@ -15,6 +15,8 @@ import {
 import { servicesData } from "../data/servicesData";
 import { useRegisterModal } from "../context/RegisterModalContext";
 
+import CoreServicesShowcase from "../components/CoreServicesShowcase";
+
 export default function Services() {
   const { openRegisterModal } = useRegisterModal();
   const router = useRouter();
@@ -59,10 +61,13 @@ export default function Services() {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-white/85 leading-relaxed font-sans"
           >
-            Explore our full suite of 12 specialized accounting, tax, bookkeeping, and business formation services tailored for individuals and businesses across the US.
+            Explore our core US tax & business solutions and specialized practice areas tailored for individuals and businesses across the US.
           </motion.p>
         </div>
       </section>
+
+      {/* ── CORE 6 SERVICES & FLYER SHOWCASE ───────────────────── */}
+      <CoreServicesShowcase />
 
       {/* ── SERVICE LISTING CATALOG ───────────────── */}
       <section id="service-catalog" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-30">
@@ -285,11 +290,11 @@ export default function Services() {
               <ArrowRight className="w-5 h-5" />
             </button>
             <a
-              href="tel:+13348404241"
+              href="tel:+13318404241"
               className="bg-white/95 text-brand-primary font-bold px-9 py-4 rounded-2xl shadow-lg hover:bg-white transition-all font-heading text-base flex items-center gap-2"
             >
               <Phone className="w-4 h-4 text-brand-accent" />
-              Call +1 (334) 840-4241
+              Call +1 (331) 840-4241
             </a>
           </div>
         </div>

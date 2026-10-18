@@ -514,7 +514,7 @@ export default function Contact() {
                           Book Another Appointment
                         </button>
                         <a
-                          href="tel:+13348404241"
+                          href="tel:+13318404241"
                           className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition-all text-center"
                         >
                           Call Us Directly
@@ -1099,7 +1099,7 @@ export default function Contact() {
                 {/* Direct Contact Links */}
                 <div className="grid sm:grid-cols-2 gap-2.5 pt-3.5 border-t border-slate-100">
                   <a
-                    href="tel:+13348404241"
+                    href="tel:+13318404241"
                     className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-brand-primary/5 hover:border-brand-primary/30 border border-slate-200/80 transition-all group/call"
                   >
                     <div className="w-8 h-8 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover/call:bg-brand-primary group-hover/call:text-white transition-colors">
@@ -1107,21 +1107,21 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Direct Phone</p>
-                      <p className="text-xs font-bold text-brand-purple">+1 (334) 840-4241</p>
+                      <p className="text-xs font-bold text-brand-purple">+1 (331) 840-4241</p>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:info@nexgenaccountinggroup.com"
+                    href="mailto:annachi.pradeep@ananytaxco.com"
                     className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-brand-secondary/5 hover:border-brand-secondary/30 border border-slate-200/80 transition-all group/mail"
                   >
                     <div className="w-8 h-8 rounded-lg bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0 group-hover/mail:bg-brand-secondary group-hover/mail:text-white transition-colors">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Support Email</p>
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Advisor Email</p>
                       <p className="text-xs font-bold text-brand-purple truncate max-w-[160px] sm:max-w-none">
-                        info@nexgenaccountinggroup.com
+                        annachi.pradeep@ananytaxco.com
                       </p>
                     </div>
                   </a>

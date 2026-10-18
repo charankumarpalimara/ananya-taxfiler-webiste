@@ -9,15 +9,15 @@ import Link from "next/link";
 const contactInfo = [
   {
     icon: <Phone className="w-5 h-5" />,
-    label: "Phone Number",
-    value: "+1 (334) 840-4241",
-    href: "tel:+13348404241",
+    label: "Direct Phone",
+    value: "+1 (331) 840-4241",
+    href: "tel:+13318404241",
   },
   {
     icon: <Mail className="w-5 h-5" />,
-    label: "Email Address",
-    value: "info@nexgenaccountinggroup.com",
-    href: "mailto:info@nexgenaccountinggroup.com",
+    label: "Advisor Email",
+    value: "annachi.pradeep@ananytaxco.com",
+    href: "mailto:annachi.pradeep@ananytaxco.com",
   },
   {
     icon: <Clock className="w-5 h-5" />,

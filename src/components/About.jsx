@@ -99,7 +99,7 @@ export default function About() {
             </h2>
 
             <p className="text-text-mid leading-relaxed mb-6 text-sm sm:text-base font-sans">
-              At Ananya Tax Co, we specialize in simplifying complex tax structures, bookkeeping, and payroll workflows for individuals, startups, and enterprises across North America.
+              At Ananya Tax Co, we specialize in simplifying complex tax structures, bookkeeping, and payroll workflows for individuals, startups, and enterprises across North America. We handle the numbers, you focus on growing your business.
             </p>
 
             {/* Stats Row */}

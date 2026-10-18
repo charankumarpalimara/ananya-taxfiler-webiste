@@ -463,11 +463,11 @@ export default function Bookkeeping() {
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
-                  href="tel:+13348404241"
+                  href="tel:+13318404241"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl backdrop-blur-md transition-all shadow-sm active:scale-95"
                 >
                   <Phone className="w-4 h-4 mr-2 text-brand-accent" />
-                  Call: +1 (334) 840-4241
+                  Call: +1 (331) 840-4241
                 </a>
               </div>
 

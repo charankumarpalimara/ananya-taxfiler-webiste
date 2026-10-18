@@ -133,11 +133,11 @@ export default function ServiceDetail() {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
-                href="tel:+13348404241"
+                href="tel:+13318404241"
                 className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
               >
                 <Phone className="w-4 h-4 text-brand-accent" />
-                Call +1 (334) 840-4241
+                Call +1 (331) 840-4241
               </a>
             </div>
           </div>
@@ -363,11 +363,11 @@ export default function ServiceDetail() {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
-                href="tel:+13348404241"
+                href="tel:+13318404241"
                 className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
               >
                 <Phone className="w-4 h-4 text-brand-accent" />
-                Call +1 (334) 840-4241
+                Call +1 (331) 840-4241
               </a>
             </div>
           </div>

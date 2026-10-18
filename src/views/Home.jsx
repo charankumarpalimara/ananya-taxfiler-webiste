@@ -2,6 +2,7 @@
 
 import Hero from "../components/Hero";
 import About from "../components/About";
+import CoreServicesShowcase from "../components/CoreServicesShowcase";
 import Features from "../components/Features";
 import WhyChoose from "../components/WhyChoose";
 import Process from "../components/Process";
@@ -21,6 +22,7 @@ export default function Home() {
       />
       <Hero />
       <About />
+      <CoreServicesShowcase />
       <Features />
       <WhyChoose />
       <Process />
