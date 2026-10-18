@@ -3,17 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Mail, Phone, ChevronDown, ChevronRight, ChevronLeft, User, Lock, LogOut } from "lucide-react";
+import { Menu, X, ArrowRight, Mail, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRegisterModal } from "../context/RegisterModalContext";
-import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const { openRegisterModal } = useRegisterModal();
-  const { isAuthenticated, user, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -198,36 +194,15 @@ export default function Navbar() {
               )}
             </nav>
 
-            {/* CTA Buttons */}
-            <div className="hidden lg:flex items-center gap-2 xl:gap-3 font-sans shrink-0">
-              {isAuthenticated ? (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => router.push("/dashboard")}
-                    className="px-4 py-2 bg-brand-purple text-white font-bold rounded-xl text-xs sm:text-sm shadow-md hover:bg-brand-purple-light transition-all flex items-center gap-2 cursor-pointer"
-                  >
-                    <User className="w-4 h-4 text-brand-orange" />
-                    <span>My Dashboard</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => logout()}
-                    className="p-2.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all cursor-pointer"
-                    title="Sign Out"
-                  >
-                    <LogOut className="w-4 h-4" />
-                  </button>
-                </>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => openRegisterModal(1)}
-                  className="btn-orange text-xs xl:text-sm !px-4 xl:!px-5 !py-2.5 cursor-pointer shrink-0 select-none relative z-10"
-                >
-                  Login / Register
-                </button>
-              )}
+            {/* CTA Consultation Button */}
+            <div className="hidden lg:flex items-center font-sans shrink-0">
+              <Link
+                href="/contact"
+                className="btn-orange text-xs xl:text-sm !px-5 xl:!px-6 !py-2.5 cursor-pointer shrink-0 select-none relative z-10 flex items-center gap-1.5 font-heading"
+              >
+                <span>Book Consultation</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
 
             {/* Mobile Toggle */}
@@ -294,42 +269,14 @@ export default function Navbar() {
               ))}
 
               <div className="pt-6 border-t border-black/10 flex flex-col gap-4">
-                {isAuthenticated ? (
-                  <>
-                    <button
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        router.push("/dashboard");
-                      }}
-                      className="w-full bg-brand-purple text-white font-bold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-md cursor-pointer"
-                    >
-                      <User className="w-4 h-4 text-brand-orange" />
-                      My Client Dashboard
-                    </button>
-                    <button
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        logout();
-                      }}
-                      className="w-full bg-slate-100 text-slate-700 font-bold py-3 rounded-2xl flex items-center justify-center gap-2 text-sm cursor-pointer"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Sign Out
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      openRegisterModal(1);
-                    }}
-                    className="w-full btn-orange font-bold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-base cursor-pointer"
-                  >
-                    Login / Register
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                )}
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full btn-orange font-bold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-base cursor-pointer"
+                >
+                  <span>Book Free Consultation</span>
+                  <ChevronRight className="w-5 h-5" />
+                </Link>
               </div>
             </div>
           </motion.div>

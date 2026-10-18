@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import SEO from "../components/SEO";
 import {
   Sparkles,
@@ -220,13 +221,13 @@ export default function Industries() {
 
                 {/* Compact Card Action Footer */}
                 <div className="px-6 py-4 bg-[#F8FAFC] border-t border-slate-200/60 flex items-center justify-between gap-3">
-                  <button
-                    onClick={() => openRegisterModal(1)}
+                  <Link
+                    href="/contact"
                     className="w-full btn-orange text-xs font-bold py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-2 font-heading shadow-xs tracking-wide"
                   >
                     Consult Industry CPA
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             );
@@ -246,13 +247,13 @@ export default function Industries() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 relative z-10">
-            <button
-              onClick={() => openRegisterModal(1)}
+            <Link
+              href="/contact"
               className="btn-orange text-xs font-bold !px-6 !py-3 rounded-xl shadow-lg flex items-center gap-2 font-heading cursor-pointer tracking-wide"
             >
               Get Custom Consultation
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
             <a
               href="tel:+13318404241"
               className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs transition-all flex items-center gap-2 font-heading tracking-wide"

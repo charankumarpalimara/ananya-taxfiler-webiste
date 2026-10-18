@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, useMemo } from "react";
-import RegisterModal from "../components/RegisterModal";
+import { createContext, useContext, useCallback, useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 const defaultValue = {
   isOpen: false,
@@ -14,30 +14,25 @@ const defaultValue = {
 const RegisterModalContext = createContext(defaultValue);
 
 export function RegisterModalProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalStep, setModalStep] = useState(1);
+  const router = useRouter();
 
-  const openRegisterModal = useCallback((step = 1) => {
-    setModalStep(step);
-    setIsOpen(true);
-  }, []);
+  const openRegisterModal = useCallback(() => {
+    router.push("/contact");
+  }, [router]);
 
-  const closeRegisterModal = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const closeRegisterModal = useCallback(() => {}, []);
 
   const contextValue = useMemo(() => ({
-    isOpen,
-    modalStep,
-    setModalStep,
+    isOpen: false,
+    modalStep: 1,
+    setModalStep: () => {},
     openRegisterModal,
     closeRegisterModal,
-  }), [isOpen, modalStep, openRegisterModal, closeRegisterModal]);
+  }), [openRegisterModal, closeRegisterModal]);
 
   return (
     <RegisterModalContext.Provider value={contextValue}>
       {children}
-      <RegisterModal />
     </RegisterModalContext.Provider>
   );
 }

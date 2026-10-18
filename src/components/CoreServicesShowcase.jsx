@@ -328,12 +328,12 @@ export default function CoreServicesShowcase() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-800">
-                <button
-                  onClick={() => openRegisterModal(1)}
+                <Link
+                  href="/contact"
                   className="btn-orange !py-3.5 !px-8 text-sm font-bold rounded-2xl shadow-xl shadow-brand-orange/20 cursor-pointer"
                 >
                   Book Your Free Consultation Today
-                </button>
+                </Link>
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-bold font-heading transition-colors"

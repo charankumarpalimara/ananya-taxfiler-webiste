@@ -125,13 +125,13 @@ export default function ServiceDetail() {
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => openRegisterModal(1)}
+              <Link
+                href="/contact"
                 className="btn-orange text-sm font-bold !px-8 !py-4 rounded-2xl shadow-xl shadow-brand-accent/25 flex items-center gap-2.5 cursor-pointer font-heading tracking-wide"
               >
                 Get Started With This Service
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
               <a
                 href="tel:+13318404241"
                 className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
@@ -247,13 +247,13 @@ export default function ServiceDetail() {
                     </div>
 
                     {/* Action Button */}
-                    <button
-                      onClick={() => openRegisterModal(1)}
+                    <Link
+                      href="/contact"
                       className="w-full btn-orange text-xs sm:text-sm font-bold py-3 rounded-xl cursor-pointer flex items-center justify-center gap-2 font-heading shadow-sm tracking-wide"
                     >
                       Start {sub.title}
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -355,13 +355,13 @@ export default function ServiceDetail() {
               Our licensed CPAs and tax specialists are standing by to prepare your filings with 100% precision and maximum tax savings.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={() => openRegisterModal(1)}
+              <Link
+                href="/contact"
                 className="btn-orange text-sm font-bold !px-8 !py-4 rounded-2xl shadow-xl flex items-center gap-2.5 font-heading cursor-pointer tracking-wide"
               >
                 Get Started Now
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
               <a
                 href="tel:+13318404241"
                 className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"

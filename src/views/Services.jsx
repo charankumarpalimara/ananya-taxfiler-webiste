@@ -144,12 +144,12 @@ export default function Services() {
                     View Details
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
-                  <button
-                    onClick={() => openRegisterModal(1)}
+                  <Link
+                    href="/contact"
                     className="btn-orange text-xs !px-4 !py-2 font-bold cursor-pointer shadow-md font-heading"
                   >
                     Get Started
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             );
@@ -282,13 +282,13 @@ export default function Services() {
             Get started today with Ananya Tax Co. Register now to speak with a CPA or get your tax and bookkeeping filed on time.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => openRegisterModal(1)}
+            <Link
+              href="/contact"
               className="bg-brand-primary text-white font-bold px-9 py-4 rounded-2xl shadow-xl hover:bg-brand-secondary transition-all cursor-pointer font-heading text-base flex items-center gap-2"
             >
               Get Started Now
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </Link>
             <a
               href="tel:+13318404241"
               className="bg-white/95 text-brand-primary font-bold px-9 py-4 rounded-2xl shadow-lg hover:bg-white transition-all font-heading text-base flex items-center gap-2"
