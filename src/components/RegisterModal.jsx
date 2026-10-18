@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, User, Mail, Phone, Lock, Eye, EyeOff, CheckCircle2, LogIn } from "lucide-react";
 import { createRegistration, loginUser } from "../services/api";
@@ -9,7 +11,7 @@ import { useAuth } from "../context/AuthContext";
 export default function RegisterModal() {
   const { isOpen, closeRegisterModal, modalStep, setModalStep } = useRegisterModal();
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [authMode, setAuthMode] = useState("register"); // 'register' | 'login'
 
@@ -89,7 +91,7 @@ export default function RegisterModal() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `New NEXGEN Client Portal Registration: ${trimmedFullName}`,
+          _subject: `New Ananya Tax Co Portal Registration: ${trimmedFullName}`,
           "Client Name": trimmedFullName,
           "Email Address": email,
           "Phone Number": phone,
@@ -141,7 +143,7 @@ export default function RegisterModal() {
           closeRegisterModal();
           setLoginSuccess(false);
           setModalStep(1);
-          navigate("/dashboard");
+          router.push("/dashboard");
         }, 1200);
       } else {
         setLoginError(res.message || "Invalid email or password.");
@@ -201,7 +203,7 @@ export default function RegisterModal() {
                   Exclusive Portal Access
                 </h3>
                 <p className="text-white/80 text-xs leading-relaxed mb-4 sm:mb-6 font-sans">
-                  Join thousands of businesses and individuals who trust NEXGEN Accounting Group for their financial compliance and growth.
+                  Join thousands of businesses and individuals who trust Ananya Tax Co for their financial compliance and growth.
                 </p>
 
                 <div className="space-y-2 sm:space-y-3">
@@ -253,7 +255,7 @@ export default function RegisterModal() {
                     <span className="section-tag mb-2 sm:mb-3">Portal Access</span>
                     <h2 className="text-2xl sm:text-3xl font-black text-brand-purple mb-2 sm:mb-3 font-heading leading-[1.15]">
                       Welcome to <br />
-                      <span className="text-brand-orange">NEXGEN Portal</span>
+                      <span className="text-brand-orange">Ananya Tax Portal</span>
                     </h2>
 
                     <p className="text-text-mid font-sans mb-5 sm:mb-6 leading-relaxed text-xs sm:text-sm">
@@ -462,7 +464,7 @@ export default function RegisterModal() {
                               <CheckCircle2 className="w-6 h-6" />
                             </div>
                             <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1">Login Successful!</h3>
-                            <p className="text-xs text-slate-500">Connecting to your NEXGEN portal...</p>
+                            <p className="text-xs text-slate-500">Connecting to your Ananya Tax portal...</p>
                           </div>
                         ) : (
                           <form className="space-y-3 sm:space-y-4" onSubmit={handleLoginSubmit}>

@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Features from "../components/Features";
@@ -13,7 +15,7 @@ export default function Home() {
   return (
     <div className="bg-white">
       <SEO 
-        title="NexGen Accounting Group | Trusted CPA Tax & Accounting Services"
+        title="Ananya Tax Co | Trusted CPA Tax, Bookkeeping & Payroll Services"
         description="Expert CPA tax preparation, tax filing, bookkeeping, payroll, and strategic financial consulting for individuals & businesses nationwide. Schedule a free consultation today!"
         keywords="CPA tax filing, tax preparation services, online tax return, small business accounting, personal tax preparation, CPA firm near me, IRS tax relief, business tax returns, tax refund optimization, licensed Texas CPA, bookkeeping services"
       />

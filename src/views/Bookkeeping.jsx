@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
 import {
@@ -20,7 +22,7 @@ import {
   Calendar,
   Star
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const features = [
   {
@@ -85,7 +87,7 @@ export default function Bookkeeping() {
   return (
     <div className="min-h-screen bg-white pt-24">
       <SEO
-        title="Professional Bookkeeping & Financial Reporting | NexGen Accounting Group"
+        title="Professional Bookkeeping & Financial Reporting | Ananya Tax Co"
         description="Keep your business finances accurate and audit-ready with monthly bookkeeping, QuickBooks setup, financial statements, and bank reconciliation by CPAs."
         keywords="small business bookkeeping, QuickBooks accounting services, monthly financial statements, bank reconciliation, ledger cleanup, CPA bookkeeping firm, chart of accounts, P&L reporting"
       />
@@ -128,7 +130,7 @@ export default function Bookkeeping() {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
                 >
                   Schedule Free Bookkeeping Review
@@ -453,7 +455,7 @@ export default function Bookkeeping() {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/30 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
                 >
                   <Calendar className="w-5 h-5 mr-2" />

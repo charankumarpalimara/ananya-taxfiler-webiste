@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import {
   FileText, CheckCircle2, Clock, FileCheck, ArrowRight, ShieldCheck,

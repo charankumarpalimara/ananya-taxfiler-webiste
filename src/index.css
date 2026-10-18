@@ -1,51 +1,51 @@
 @import "tailwindcss";
 
-@source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
+@source "../**/*.{js,jsx,ts,tsx}";
 
 @theme {
-  /* ── Brand Color Palette (Derived from dark-logo.jpeg) ─────────────────── */
-  --color-brand-primary: #0B2238;
-  --color-brand-secondary: #14385C;
-  --color-brand-accent: #C5A059;
+  /* ── Ananya Tax Co Brand Color Palette (Derived from new-logo.jpeg) ─────────────────── */
+  --color-brand-primary: #0A0D14;
+  --color-brand-secondary: #141A29;
+  --color-brand-accent: #FF7A00;
 
-  /* Deep professional navy blue */
-  --color-brand-blue: #0B2238;
-  --color-brand-blue-light: #14385C;
-  --color-brand-blue-dark: #061524;
+  /* Jet Black & Deep Charcoal Palette */
+  --color-brand-blue: #0A0D14;
+  --color-brand-blue-light: #161E31;
+  --color-brand-blue-dark: #05070B;
 
-  /* Metallic Gold accent palette */
-  --color-brand-gold: #C5A059;
-  --color-brand-gold-light: #DFBF7A;
-  --color-brand-gold-dark: #9E7B33;
+  /* Radiant Fire Amber & Gold Palette from "A" emblem */
+  --color-brand-gold: #FFA000;
+  --color-brand-gold-light: #FFBA38;
+  --color-brand-gold-dark: #E66A00;
 
-  /* Growth / Accent Gold mappings */
-  --color-brand-green: #C5A059;
-  --color-brand-green-light: #DFBF7A;
-  --color-brand-green-dark: #9E7B33;
+  --color-brand-green: #FF7A00;
+  --color-brand-green-light: #FFA033;
+  --color-brand-green-dark: #E65500;
 
   /* Theme mappings for existing classes */
-  --color-brand-purple: #0B2238;
-  --color-brand-purple-light: #14385C;
-  --color-brand-purple-dark: #061524;
+  --color-brand-purple: #0A0D14;
+  --color-brand-purple-light: #161E31;
+  --color-brand-purple-dark: #05070B;
 
-  --color-brand-orange: #C5A059;
-  --color-brand-orange-light: #DFBF7A;
-  --color-brand-orange-dark: #9E7B33;
+  /* Vibrant Fiery Orange */
+  --color-brand-orange: #FF7A00;
+  --color-brand-orange-light: #FFA033;
+  --color-brand-orange-dark: #E65100;
 
-  --color-brand-light: #F4F7FA;
-  --color-brand-dark: #071728;
+  --color-brand-light: #F8FAFC;
+  --color-brand-dark: #07090E;
 
   /* Typography & Neutrals */
-  --color-text-dark: #0A192F;
-  --color-text-mid: #334E68;
-  --color-text-light: #627D98;
+  --color-text-dark: #0A0E1A;
+  --color-text-mid: #334155;
+  --color-text-light: #64748B;
 
   /* Backgrounds & Borders */
   --color-bg-white: #FFFFFF;
-  --color-bg-light: #F4F7FA;
-  --color-bg-subtle: #EBF1F6;
-  --color-border-subtle: #D0DFE8;
+  --color-bg-light: #F8FAFC;
+  --color-bg-subtle: #F1F5F9;
+  --color-border-subtle: #E2E8F0;
 
   --font-sans: "Plus Jakarta Sans", "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
@@ -54,8 +54,8 @@
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
 
-  --shadow-premium: 0 8px 30px rgba(11, 34, 56, 0.08);
-  --shadow-premium-hover: 0 20px 50px rgba(11, 34, 56, 0.16);
+  --shadow-premium: 0 8px 30px rgba(10, 13, 20, 0.08);
+  --shadow-premium-hover: 0 20px 50px rgba(255, 122, 0, 0.15);
 }
 
 /* ── KEYFRAMES ────────────────────────────── */
@@ -136,7 +136,11 @@
   }
 
   .section-tag {
-    @apply inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-accent/15 border border-brand-accent/30 mb-6;
+    @apply inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/25 mb-6;
+  }
+
+  .section-tag-orange {
+    @apply inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/25 mb-4;
   }
 
   .gradient-text {

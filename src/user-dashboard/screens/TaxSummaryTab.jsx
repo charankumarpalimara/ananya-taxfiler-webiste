@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Download } from "lucide-react";
 import GlobalTable from "../../components/common/GlobalTable";

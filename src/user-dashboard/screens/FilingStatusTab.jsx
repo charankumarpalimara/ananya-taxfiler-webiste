@@ -1,3 +1,5 @@
+"use client";
+
 import { Clock, CheckCircle2, AlertCircle, FileCheck, ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function FilingStatusTab() {

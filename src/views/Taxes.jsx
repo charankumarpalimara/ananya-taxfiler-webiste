@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, FileText, Calculator, ShieldCheck, Lightbulb, Clock, BookOpen, Users, Star, CheckCircle2, Sparkles, Check, Filter } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import SEO from "../components/SEO";
 
 const categories = ["All Solutions", "Preparation & Filing", "Strategy & Planning", "Resolution & Defense"];
@@ -106,7 +108,7 @@ export default function Taxes() {
   return (
     <div className="min-h-screen bg-white pt-24">
       <SEO 
-        title="Professional Tax Preparation & CPA Filing | NexGen Accounting Group"
+        title="Professional Tax Preparation & CPA Filing | Ananya Tax Co"
         description="Maximize tax savings and ensure 100% IRS compliance with our CPA tax preparation services for individuals, LLCs, S-Corps, and Corporations."
         keywords="CPA tax preparation, individual tax returns, 1120S S-Corp filing, 1065 partnership tax, LLC tax filing, federal state tax return, IRS audit representation, ITIN W-7 application, tax planning"
       />
@@ -145,7 +147,7 @@ export default function Taxes() {
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent hover:shadow-xl hover:shadow-brand-secondary/25 hover:scale-105 active:scale-95 transition-all group shadow-md"
                 >
                   <span>Book Free Consultation</span>
@@ -382,7 +384,7 @@ export default function Taxes() {
             </p>
             <div className="relative z-10 flex items-center justify-center">
               <Link
-                to="/contact"
+                href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-brand-purple bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 group text-sm sm:text-base"
               >
                 <span>Get a Free Consultation Today</span>

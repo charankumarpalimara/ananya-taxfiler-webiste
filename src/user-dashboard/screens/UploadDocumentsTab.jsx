@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { UploadCloud, FileText, Trash2, CheckCircle2, User, Users, FileCheck, Loader2 } from "lucide-react";
 import { uploadDocument, getDocuments, deleteDocument } from "../../services/api";

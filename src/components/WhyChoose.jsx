@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import {
   Award,
@@ -73,7 +75,7 @@ const advantages = [
     number: "08",
     title: "Your Growth Partner",
     tag: "Future Ready",
-    description: "Whether you're a startup, small business, or growing enterprise, NexGen Accounting Group is committed to helping you build a stronger financial future.",
+    description: "Whether you're a startup, small business, or growing enterprise, Ananya Tax Co is committed to helping you build a stronger financial future.",
     icon: <TrendingUp className="w-6 h-6" />,
     highlight: "Scalable Growth Focus",
   },
@@ -96,13 +98,13 @@ export default function WhyChoose() {
         >
           <div className="section-tag inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-brand-accent" />
-            <span>Why Businesses Choose NexGen</span>
+            <span>Why Businesses Choose Ananya</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading leading-[1.15] mb-4">
             <span className="text-brand-primary">Why Businesses Choose</span> <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary">
-              NexGen Accounting Group
+              Ananya Tax Co
             </span>
           </h2>
 

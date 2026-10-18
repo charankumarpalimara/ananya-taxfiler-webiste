@@ -1,6 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { CheckCircle2, ShieldCheck, Award, Users, Sparkles, ArrowRight, TrendingUp } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function About() {
   const pillars = [
@@ -40,7 +42,7 @@ export default function About() {
             <div className="relative rounded-3xl bg-white p-2 border border-[#DCE6F2] shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop"
-                alt="NexGen CPA Advisory Team"
+                alt="Ananya Tax Co Advisory Team"
                 className="rounded-2xl w-full h-[460px] sm:h-[500px] object-cover"
               />
             </div>
@@ -86,7 +88,7 @@ export default function About() {
           >
             <div className="section-tag flex items-center gap-2 w-fit mb-4">
               <Sparkles className="w-4 h-4 text-brand-accent" />
-              <span>About NexGen Accounting</span>
+              <span>About Ananya Tax Co</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-brand-primary tracking-tight mb-5 leading-[1.15] font-heading">
@@ -97,7 +99,7 @@ export default function About() {
             </h2>
 
             <p className="text-text-mid leading-relaxed mb-6 text-sm sm:text-base font-sans">
-              At NexGen Accounting Group, we specialize in simplifying complex tax structures and accounting workflows for individuals, startups, and enterprises across North America.
+              At Ananya Tax Co, we specialize in simplifying complex tax structures, bookkeeping, and payroll workflows for individuals, startups, and enterprises across North America.
             </p>
 
             {/* Stats Row */}
@@ -135,7 +137,7 @@ export default function About() {
             {/* Dynamic CTA Button */}
             <div>
               <Link
-                to="/contact"
+                href="/contact"
                 className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary bg-[length:200%_auto] hover:bg-right transition-all duration-500 rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-brand-secondary/35 hover:scale-[1.02] active:scale-[0.98] group cursor-pointer"
               >
                 <span>Schedule a Consultation</span>

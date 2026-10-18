@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, Mail, Phone, ChevronDown, ChevronRight, ChevronLeft, User, Lock, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRegisterModal } from "../context/RegisterModalContext";
@@ -11,8 +14,8 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const { openRegisterModal } = useRegisterModal();
   const { isAuthenticated, user, logout } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -23,9 +26,9 @@ export default function Navbar() {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
-  }, [location]);
+  }, [pathname]);
 
-  if (location.pathname.startsWith("/dashboard")) {
+  if (pathname?.startsWith("/dashboard")) {
     return null;
   }
 
@@ -34,19 +37,16 @@ export default function Navbar() {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     if (path.startsWith("#")) {
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => {
-          document.querySelector(path)?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+      if (pathname !== "/") {
+        router.push("/" + path);
       } else {
         document.querySelector(path)?.scrollIntoView({ behavior: "smooth" });
       }
     } else if (path.includes("#")) {
       const [basePath, hash] = path.split("#");
       const targetPath = basePath || "/";
-      if (location.pathname !== targetPath) {
-        navigate(path);
+      if (pathname !== targetPath) {
+        router.push(path);
       } else {
         const elem = document.getElementById(hash);
         if (elem) {
@@ -56,7 +56,7 @@ export default function Navbar() {
         }
       }
     } else {
-      navigate(path);
+      router.push(path);
       window.scrollTo(0, 0);
     }
   };
@@ -99,13 +99,13 @@ export default function Navbar() {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2 text-[12px] font-medium text-white/80">
               <div className="flex items-center gap-6">
-                <a href="mailto:info@nexgenaccountinggroup.com" className="flex items-center gap-1.5 hover:text-brand-orange transition-colors">
+                <a href="mailto:annachi.pradeep@ananytaxco.com" className="flex items-center gap-1.5 hover:text-brand-orange transition-colors">
                   <Mail className="w-3 h-3 text-brand-orange" />
-                  info@nexgenaccountinggroup.com
+                  annachi.pradeep@ananytaxco.com
                 </a>
-                <a href="tel:+13348404241" className="flex items-center gap-1.5 hover:text-brand-orange transition-colors">
+                <a href="tel:+13318404241" className="flex items-center gap-1.5 hover:text-brand-orange transition-colors">
                   <Phone className="w-3 h-3 text-brand-orange" />
-                  +1 (334) 840-4241
+                  +1 (331) 840-4241
                 </a>
               </div>
               <div className="flex items-center gap-4">
@@ -130,12 +130,20 @@ export default function Navbar() {
           <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? "py-3" : "py-4"}`}>
 
             {/* Logo */}
-            <a href="/" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center group shrink-0">
+            <a href="/" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
               <img
-                src="/dark-logo.jpeg"
-                alt="NexGen Accounting Group Logo"
-                className="h-10 sm:h-12 lg:h-14 w-auto object-contain rounded-lg group-hover:scale-105 transition-transform duration-300"
+                src="/new-logo.jpeg"
+                alt="Ananya Tax Co Logo"
+                className="h-10 sm:h-12 w-auto object-contain rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
               />
+              <div className="flex flex-col">
+                <span className="font-extrabold text-base sm:text-lg font-heading tracking-tight text-brand-primary leading-tight">
+                  ANANYA <span className="text-brand-orange">TAX CO</span>
+                </span>
+                <span className="text-[9px] sm:text-[10px] font-semibold text-text-light uppercase tracking-wider leading-none">
+                  Bookkeeping • Payroll • Taxes
+                </span>
+              </div>
             </a>
 
             {/* Desktop Nav */}
@@ -196,7 +204,7 @@ export default function Navbar() {
                 <>
                   <button
                     type="button"
-                    onClick={() => navigate("/dashboard")}
+                    onClick={() => router.push("/dashboard")}
                     className="px-4 py-2 bg-brand-purple text-white font-bold rounded-xl text-xs sm:text-sm shadow-md hover:bg-brand-purple-light transition-all flex items-center gap-2 cursor-pointer"
                   >
                     <User className="w-4 h-4 text-brand-orange" />
@@ -291,7 +299,7 @@ export default function Navbar() {
                     <button
                       onClick={() => {
                         setIsMobileMenuOpen(false);
-                        navigate("/dashboard");
+                        router.push("/dashboard");
                       }}
                       className="w-full bg-brand-purple text-white font-bold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-md cursor-pointer"
                     >

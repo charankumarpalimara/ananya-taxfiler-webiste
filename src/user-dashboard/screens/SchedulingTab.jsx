@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Calendar, Clock, PhoneCall, Mail, CheckCircle2, AlertCircle, Plus, Loader2 } from "lucide-react";
 import { getAvailableSchedules, getMyAppointments, bookSchedule, requestSchedule } from "../../services/api";

@@ -1,4 +1,7 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Mail,
   Phone,
@@ -17,10 +20,10 @@ import {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  if (location.pathname.startsWith("/dashboard")) {
+  if (pathname?.startsWith("/dashboard")) {
     return null;
   }
 
@@ -28,8 +31,8 @@ export default function Footer() {
     if (path.startsWith("/#") || path.startsWith("#")) {
       e.preventDefault();
       const targetId = path.replace("/", "");
-      if (location.pathname !== "/") {
-        navigate("/");
+      if (pathname !== "/") {
+        router.push("/" + targetId);
         setTimeout(() => {
           document.querySelector(targetId)?.scrollIntoView({ behavior: "smooth" });
         }, 100);
@@ -94,13 +97,19 @@ export default function Footer() {
 
           {/* Brand Col (5 cols on lg) */}
           <div className="lg:col-span-4">
-            <Link to="/" className="inline-flex mb-5 group">
-              <div className="bg-white rounded-2xl p-2 shadow-lg inline-flex items-center justify-center group-hover:scale-105 transition-all duration-300">
-                <img
-                  src="/dark-logo.jpeg"
-                  alt="NexGen Accounting Group Logo"
-                  className="h-12 w-auto object-contain rounded-xl"
-                />
+            <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
+              <img
+                src="/new-logo.jpeg"
+                alt="Ananya Tax Co Logo"
+                className="h-14 w-auto object-contain rounded-2xl shadow-lg border border-white/10 group-hover:scale-105 transition-all duration-300"
+              />
+              <div className="flex flex-col">
+                <span className="font-extrabold text-xl font-heading tracking-tight text-white leading-tight">
+                  ANANYA <span className="text-brand-orange">TAX CO</span>
+                </span>
+                <span className="text-[11px] font-medium text-white/70 uppercase tracking-widest leading-none mt-1">
+                  Bookkeeping • Payroll • Taxes
+                </span>
               </div>
             </Link>
             <p className="text-white/75 text-sm leading-relaxed mb-6 font-sans max-w-sm">
@@ -144,7 +153,7 @@ export default function Footer() {
                 return (
                   <li key={link.name}>
                     <Link
-                      to={link.path}
+                      href={link.path}
                       className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-white/10 transition-all text-white/75 hover:text-white text-sm font-sans"
                     >
                       <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
@@ -183,7 +192,7 @@ export default function Footer() {
                       </a>
                     ) : (
                       <Link
-                        to={link.path}
+                        href={link.path}
                         className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-white/10 transition-all text-white/75 hover:text-white text-sm font-sans"
                       >
                         <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
@@ -228,22 +237,22 @@ export default function Footer() {
 
               <li>
                 <a
-                  href="tel:+13348404241"
+                  href="tel:+13318404241"
                   className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
                 >
                   <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-sm">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="text-sm font-sans">
-                    <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Call Toll-Free</span>
-                    <span className="text-white font-medium">+1 (334) 840-4241</span>
+                    <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Call Us Directly</span>
+                    <span className="text-white font-medium">+1 (331) 840-4241</span>
                   </div>
                 </a>
               </li>
 
               <li>
                 <a
-                  href="mailto:info@nexgenaccountinggroup.com"
+                  href="mailto:annachi.pradeep@ananytaxco.com"
                   className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
                 >
                   <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-sm">
@@ -251,7 +260,7 @@ export default function Footer() {
                   </div>
                   <div className="text-sm font-sans">
                     <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Email Us</span>
-                    <span className="text-white font-medium">info@nexgenaccountinggroup.com</span>
+                    <span className="text-white font-medium">annachi.pradeep@ananytaxco.com</span>
                   </div>
                 </a>
               </li>
@@ -263,7 +272,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/60 text-xs font-sans text-center md:text-left">
-            © {currentYear} <span className="text-white font-semibold">NexGen Accounting Group</span>. All rights reserved.
+            © {currentYear} <span className="text-white font-semibold">Ananya Tax Co</span>. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs text-white/60 font-sans">
             <a href="#" className="hover:text-brand-accent transition-colors">Privacy Policy</a>

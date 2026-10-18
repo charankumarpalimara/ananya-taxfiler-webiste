@@ -1,4 +1,7 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
 import {
@@ -34,8 +37,9 @@ const serviceKeywordsMap = {
 };
 
 export default function ServiceDetail() {
-  const { serviceId } = useParams();
-  const navigate = useNavigate();
+  const params = useParams();
+  const serviceId = params?.serviceId;
+  const router = useRouter();
   const { openRegisterModal } = useRegisterModal();
 
   const service = servicesData.find((s) => s.id === serviceId);
@@ -45,12 +49,12 @@ export default function ServiceDetail() {
   }, [serviceId]);
 
   const seoTitle = service 
-    ? `${service.title} | NexGen Accounting Group` 
-    : "Service Details | NexGen Accounting Group";
+    ? `${service.title} | Ananya Tax Co` 
+    : "Service Details | Ananya Tax Co";
   
   const seoDescription = service 
     ? service.shortDesc || service.longDesc?.slice(0, 160) 
-    : "Professional tax & accounting services by licensed CPAs at NexGen Accounting Group.";
+    : "Professional tax, bookkeeping & payroll services by licensed CPAs at Ananya Tax Co.";
 
   const seoKeywords = (serviceId && serviceKeywordsMap[serviceId]) 
     ? serviceKeywordsMap[serviceId] 
@@ -59,14 +63,14 @@ export default function ServiceDetail() {
   if (!service) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20 font-sans flex items-center justify-center">
-        <SEO title="Service Not Found | NexGen Accounting Group" />
+        <SEO title="Service Not Found | Ananya Tax Co" />
         <div className="max-w-md mx-auto text-center px-4 bg-white p-10 rounded-3xl border border-black/5 shadow-xl">
           <HelpCircle className="w-16 h-16 text-brand-accent mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-brand-primary mb-2 font-heading">Service Not Found</h2>
           <p className="text-text-mid text-sm mb-6">
             The service page you are looking for does not exist or has been moved.
           </p>
-          <Link to="/services" className="btn-primary">
+          <Link href="/services" className="btn-primary">
             Back to All Services
           </Link>
         </div>
@@ -92,7 +96,7 @@ export default function ServiceDetail() {
           <div className="max-w-3xl">
             {/* Back Button */}
             <button
-              onClick={() => navigate("/services")}
+              onClick={() => router.push("/services")}
               className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold transition-all mb-6 cursor-pointer font-heading backdrop-blur-md tracking-wide"
             >
               <ArrowLeft className="w-4 h-4 text-brand-accent" />

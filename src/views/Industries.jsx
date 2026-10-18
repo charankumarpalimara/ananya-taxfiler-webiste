@@ -1,6 +1,7 @@
+"use client";
+
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
 import {
   Sparkles,
@@ -105,7 +106,7 @@ export default function Industries() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] pt-24 pb-20 font-sans">
       <SEO 
-        title="Industry-Specific Accounting & Tax Solutions | NexGen Accounting Group"
+        title="Industry-Specific Accounting & Tax Solutions | Ananya Tax Co"
         description="Specialized accounting, tax strategy, and bookkeeping tailored for real estate, healthcare, e-commerce, technology, and retail industries."
         keywords="industry specific accounting, real estate CPA tax, healthcare accounting firm, e-commerce tax services, tech startup tax advisory, retail bookkeeping, specialized tax strategy"
       />

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import GlobalPagination from './GlobalPagination';

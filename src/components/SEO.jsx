@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from 'react';
 
 /**
@@ -36,7 +38,7 @@ export default function SEO({ title, description, keywords, image, url }) {
     };
 
     const currentUrl = url || window.location.href;
-    const defaultImage = image || 'https://nexgenaccountinggroup.com/dark-logo.jpeg';
+    const defaultImage = image || 'https://ananyataxco.com/new-logo.jpeg';
 
     // 2. Standard Meta Tags
     setMetaTag('meta[name="description"]', 'name', 'description', description);

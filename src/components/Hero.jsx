@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 
 export default function Hero() {
@@ -41,14 +43,14 @@ export default function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
               <Link
-                to="/contact"
+                href="/contact"
                 className="btn-primary"
               >
                 Schedule Appointment
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
-                to="/taxes"
+                href="/taxes"
                 className="btn-secondary"
               >
                 Explore Services
@@ -76,7 +78,7 @@ export default function Hero() {
             <div className="relative rounded-[2rem] bg-white p-2 ">
               <img
                 src="/images/nexgen_tax_business_growth.png"
-                alt="NexGen Tax & Business Growth"
+                alt="Ananya Tax & Business Growth"
                 className="rounded-[1.5rem] w-full h-[500px] object-cover"
               />
             </div>

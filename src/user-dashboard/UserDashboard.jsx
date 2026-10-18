@@ -1,5 +1,6 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   User, Mail, Phone, ShieldCheck, Lock, ArrowRight, Menu, LogOut, Bell
@@ -27,7 +28,6 @@ import SupportTab from "./screens/SupportTab";
 export default function UserDashboard() {
   const { token, user, isAuthenticated, logout, isJwtExpired } = useAuth();
   const { openRegisterModal } = useRegisterModal();
-  const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("dashboard-home");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -94,7 +94,7 @@ export default function UserDashboard() {
               Access Restricted
             </h2>
             <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-              {errorMsg || "Please log in to your NEXGEN Client Portal to view your personal dashboard and tax records."}
+              {errorMsg || "Please log in to your Ananya Tax Co Client Portal to view your personal dashboard and tax records."}
             </p>
             <div className="flex flex-col gap-3">
               <button

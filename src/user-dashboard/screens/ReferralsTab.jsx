@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Share2, Copy, Mail, CheckCircle2, Gift, Plus, Loader2 } from "lucide-react";
 import { getReferrals, createReferral } from "../../services/api";
@@ -62,7 +64,7 @@ export default function ReferralsTab({ user }) {
     }
   };
 
-  const mailtoUrl = `mailto:${inviteEmail || ''}?subject=Tax Filing Special Offer&body=Use my NexGen Tax Filer referral code ${referralCode} to get $50 reward on your tax filing!`;
+  const mailtoUrl = `mailto:${inviteEmail || ''}?subject=Tax Filing Special Offer&body=Use my Ananya Tax Co referral code ${referralCode} to get $50 reward on your tax filing!`;
 
   const totalEarned = referrals.filter(r => r.rewardStatus === 'paid' || r.referralStatus === 'completed').length * 50;
   const completedCount = referrals.filter(r => r.referralStatus === 'completed').length;

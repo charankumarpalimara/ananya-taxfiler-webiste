@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
@@ -23,38 +25,51 @@ export const isJwtExpired = (token) => {
 };
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => sessionStorage.getItem("user_token"));
-  const [user, setUser] = useState(() => {
-    const storedUser = sessionStorage.getItem("user_data");
-    if (!storedUser) return null;
-    try {
-      return JSON.parse(storedUser);
-    } catch {
-      return null;
+  const [token, setToken] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("user_token");
     }
+    return null;
+  });
+
+  const [user, setUser] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = sessionStorage.getItem("user_data");
+      if (!storedUser) return null;
+      try {
+        return JSON.parse(storedUser);
+      } catch {
+        return null;
+      }
+    }
+    return null;
   });
 
   const isAuthenticated = Boolean(token && !isJwtExpired(token));
+
+  const logout = () => {
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("user_token");
+      sessionStorage.removeItem("user_data");
+    }
+    setToken(null);
+    setUser(null);
+  };
+
+  const login = (newToken, userData) => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("user_token", newToken);
+      sessionStorage.setItem("user_data", JSON.stringify(userData));
+    }
+    setToken(newToken);
+    setUser(userData);
+  };
 
   useEffect(() => {
     if (token && isJwtExpired(token)) {
       logout();
     }
   }, [token]);
-
-  const login = (newToken, userData) => {
-    sessionStorage.setItem("user_token", newToken);
-    sessionStorage.setItem("user_data", JSON.stringify(userData));
-    setToken(newToken);
-    setUser(userData);
-  };
-
-  const logout = () => {
-    sessionStorage.removeItem("user_token");
-    sessionStorage.removeItem("user_data");
-    setToken(null);
-    setUser(null);
-  };
 
   return (
     <AuthContext.Provider

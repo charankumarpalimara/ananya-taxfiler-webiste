@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Send, MessageSquare, PhoneCall, Mail, CheckCircle2, Loader2 } from "lucide-react";
 import GlobalTable from "../../components/common/GlobalTable";

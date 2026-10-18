@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, Cpu, CreditCard, FileCheck, UserCheck, ShieldCheck, BarChart2, HeartHandshake, Zap, Users, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import SEO from "../components/SEO";
 
 const categories = [
@@ -37,7 +39,7 @@ export default function Payroll() {
   return (
     <div className="min-h-screen bg-white pt-24">
       <SEO 
-        title="Full-Service Payroll Processing & Tax Compliance | NexGen Accounting Group"
+        title="Full-Service Payroll Processing & Tax Compliance | Ananya Tax Co"
         description="Hassle-free payroll processing, automated tax withholdings, direct deposit, and year-end W-2/1099 reporting for growing small and medium businesses."
         keywords="small business payroll processing, direct deposit payroll, W-2 1099 filing, payroll tax calculation, employee payroll compliance, payroll accounting, automated payroll"
       />
@@ -76,7 +78,7 @@ export default function Payroll() {
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent hover:shadow-xl hover:shadow-brand-secondary/25 hover:scale-105 active:scale-95 transition-all group shadow-md"
                 >
                   <span>Get Started</span>
@@ -270,7 +272,7 @@ export default function Payroll() {
             </p>
             <div className="relative z-10 flex items-center justify-center">
               <Link
-                to="/contact"
+                href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-brand-purple bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 group text-sm sm:text-base"
               >
                 <span>Contact Us Today</span>

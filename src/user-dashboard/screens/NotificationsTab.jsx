@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Bell, CheckCircle2, AlertTriangle, Info, Clock, Trash2 } from "lucide-react";
 

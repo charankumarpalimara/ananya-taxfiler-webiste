@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { User, Phone, MapPin, Share2, Upload, Save, CheckCircle2, ShieldCheck, Mail } from "lucide-react";
 import { updateUserProfile } from "../../services/api";

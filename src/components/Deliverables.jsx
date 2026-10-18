@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { FileText, Building2, BadgePercent, CheckCircle, HelpCircle, Sparkles, ChevronRight } from "lucide-react";
 import { useState } from "react";

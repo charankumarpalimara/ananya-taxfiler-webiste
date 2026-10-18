@@ -1,3 +1,5 @@
+"use client";
+
 import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
@@ -174,6 +176,7 @@ export default function Contact() {
   // Configuration for Google Sheets & Email Notification
   const FORMSUBMIT_HASH = "c876639a3fb27700cfc0a781a8d4ec5d";
   const NOTIFICATION_EMAIL = "nexgengroup2026@gmail.com";
+  const GOOGLE_SHEET_WEBHOOK_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_WEBHOOK_URL || "";
 
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
@@ -229,7 +232,7 @@ export default function Contact() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `New NEXGEN Appointment: ${formData.firstName} ${formData.lastName}`,
+          _subject: `New Ananya Tax Co Appointment: ${formData.firstName} ${formData.lastName}`,
           "Client Name": bookingPayload.clientName,
           "Client Email": bookingPayload.email,
           "Client Phone": bookingPayload.phone,
@@ -316,8 +319,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-[#FBFDFF] pt-24 pb-20 overflow-x-hidden">
       <SEO
-        title="Contact Us & Book a Free CPA Consultation | NexGen Accounting Group"
-        description="Get in touch with licensed CPAs at NexGen Accounting Group. Schedule a free consultation for tax filing, bookkeeping, or payroll services."
+        title="Contact Us & Book a Free CPA Consultation | Ananya Tax Co"
+        description="Get in touch with licensed CPAs at Ananya Tax Co. Schedule a free consultation for tax filing, bookkeeping, or payroll services."
         keywords="contact CPA firm, free tax consultation, book accounting appointment, CPA near me, tax advisor contact, tax preparation quote, CPA phone number"
       />
       {/* ── Hero ─────────────────────────────────────── */}

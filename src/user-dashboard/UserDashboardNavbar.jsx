@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { 
   ShieldCheck, LogOut, User, FileText, Phone, Home, 
   ChevronDown, LayoutDashboard, Lock
@@ -8,12 +11,12 @@ import { useAuth } from "../context/AuthContext";
 
 export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const handleSignOut = () => {
     logout();
-    navigate("/");
+    router.push("/");
   };
 
   const displayName = user?.fullName || user?.name || "Client Portal";
@@ -25,12 +28,20 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
 
           {/* Logo & Portal Branding */}
           <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center group">
+            <Link href="/" className="flex items-center gap-2.5 group">
               <img
-                src="/dark-logo.jpeg"
-                alt="NexGen Accounting Group Logo"
-                className="h-10 sm:h-12 w-auto object-contain rounded-lg group-hover:scale-105 transition-transform duration-300"
+                src="/new-logo.jpeg"
+                alt="Ananya Tax Co Logo"
+                className="h-10 sm:h-11 w-auto object-contain rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
               />
+              <div className="hidden xs:flex flex-col">
+                <span className="font-extrabold text-sm sm:text-base font-heading tracking-tight text-brand-primary leading-tight">
+                  ANANYA <span className="text-brand-orange">TAX CO</span>
+                </span>
+                <span className="text-[9px] font-semibold text-text-light uppercase tracking-widest leading-none">
+                  Client Portal
+                </span>
+              </div>
             </Link>
             <div className="h-6 w-[1px] bg-slate-200 hidden sm:block" />
             <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-bold font-heading">
@@ -66,7 +77,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
             </button>
 
             <Link
-              to="/contact"
+              href="/contact"
               className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />

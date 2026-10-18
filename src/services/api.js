@@ -1,6 +1,7 @@
 import { API_BASE_URL } from '../config/api';
 
 const getAuthHeaders = () => {
+  if (typeof window === 'undefined') return {};
   const token = sessionStorage.getItem('user_token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
@@ -46,6 +47,7 @@ export const userConsultation = async (payload) => {
 
 // 2. User Profile
 export const fetchUserProfile = async () => {
+  if (typeof window === 'undefined') return null;
   const token = sessionStorage.getItem('user_token');
   if (!token) return null;
 
@@ -317,7 +319,7 @@ export const createRegistration = async (payload) => {
 };
 
 export const fetchUserSubmissions = async () => {
-  const token = sessionStorage.getItem('user_token');
+  const token = typeof window !== 'undefined' ? sessionStorage.getItem('user_token') : null;
   const res = await fetch(`${API_BASE_URL}/submissions`, {
     headers: {
       'Content-Type': 'application/json',

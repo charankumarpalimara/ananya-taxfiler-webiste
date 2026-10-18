@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
@@ -18,7 +20,7 @@ import {
   ChevronDown,
   ChevronUp
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const formsList = [
   {
@@ -292,7 +294,7 @@ export default function Forms() {
   return (
     <div className="min-h-screen bg-white pt-24">
       <SEO
-        title="Tax Forms & LLC Resource Hub | NexGen Accounting Group"
+        title="Tax Forms & LLC Resource Hub | Ananya Tax Co"
         description="Access official tax forms and business formation resources including Form W-4, W-2, 1099-NEC, Certificate of Formation LLC, Details Required to File BOIR, Certificate of Termination, Payroll Agreement, ITIN, SS-5, LLC Closure, Reactivation, and LLC Registration."
         keywords="Form W4, W2 filing, 1099-NEC filing, Certificate of Formation LLC, Details Required to File BOIR, Certificate of Termination of a Domestic Entity, Payroll Agreement, ITIN, SS5, LLC closure, LLC reactivation, LLC registration"
       />
@@ -439,7 +441,7 @@ export default function Forms() {
             </div>
             <div className="relative z-10 shrink-0">
               <Link
-                to="/contact"
+                href="/contact"
                 className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-brand-dark bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:scale-105 active:scale-95 group text-sm font-heading"
               >
                 <span>Consult Our Specialists</span>

@@ -1,3 +1,5 @@
+"use client";
+
 import { ShieldCheck, Lock } from "lucide-react";
 
 export default function UserDashboardFooter() {
@@ -8,7 +10,7 @@ export default function UserDashboardFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-brand-orange" />
-          <span>© {currentYear} NEXGEN Accounting Group • Client Portal</span>
+          <span>© {currentYear} Ananya Tax Co • Client Portal</span>
         </div>
 
         <div className="flex items-center gap-4 text-[11px]">

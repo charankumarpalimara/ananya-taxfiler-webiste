@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import {
   User, Users, Home, PhoneCall, ShieldCheck, CreditCard, Plus, Trash2,

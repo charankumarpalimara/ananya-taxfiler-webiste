@@ -1,4 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { 
   LayoutDashboard, User, ShieldCheck, FileText, UploadCloud, Calendar, 
   Share2, Clock, DollarSign, FileCheck, Bell, Headset, LogOut, X, ChevronRight, Briefcase
@@ -12,11 +15,11 @@ export default function UserDashboardSidebar({
   setIsMobileOpen 
 }) {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSignOut = () => {
     logout();
-    navigate("/");
+    router.push("/");
   };
 
   const navGroups = [
@@ -70,16 +73,14 @@ export default function UserDashboardSidebar({
         {/* Top Header & Branding */}
         <div>
           <div className="p-5 border-b border-slate-800 flex items-center justify-between sticky top-0 bg-slate-900 z-10">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="bg-white p-1.5 rounded-xl shadow-md group-hover:scale-105 transition-transform">
-                <img
-                  src="/dark-logo.jpeg"
-                  alt="NexGen Logo"
-                  className="h-7 w-auto object-contain rounded-lg"
-                />
-              </div>
+            <Link href="/" className="flex items-center gap-3 group">
+              <img
+                src="/new-logo.jpeg"
+                alt="Ananya Tax Co Logo"
+                className="h-9 w-auto object-contain rounded-xl shadow-md border border-white/10 group-hover:scale-105 transition-transform"
+              />
               <div>
-                <span className="font-black text-white text-sm font-heading block tracking-wide">NEXGEN</span>
+                <span className="font-black text-white text-sm font-heading block tracking-wide">ANANYA TAX CO</span>
                 <span className="text-[10px] text-brand-orange font-bold uppercase tracking-widest block">Client Portal</span>
               </div>
             </Link>

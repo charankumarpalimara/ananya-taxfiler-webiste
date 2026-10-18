@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Package, UserPlus, UploadCloud, Coffee, Sparkles, CheckCircle2 } from "lucide-react";
 
@@ -53,7 +55,7 @@ export default function Process() {
         >
           <div className="section-tag inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-brand-accent" />
-            <span>THE NEXGEN PROCESS</span>
+            <span>THE ANANYA PROCESS</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading leading-[1.15] mb-4">

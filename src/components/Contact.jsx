@@ -1,8 +1,10 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Send, Clock, ArrowRight, Sparkles, CheckCircle2, MessageSquare } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const contactInfo = [
   {
@@ -181,7 +183,7 @@ export default function Contact() {
 
             {/* Direct Consultation Link Banner */}
             <Link
-              to="/contact"
+              href="/contact"
               className="group flex items-center justify-between bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl p-4 sm:p-5 text-white hover:shadow-lg hover:scale-[1.01] transition-all duration-300 border border-white/10 shrink-0"
             >
               <div>

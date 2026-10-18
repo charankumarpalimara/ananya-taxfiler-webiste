@@ -1,6 +1,9 @@
+"use client";
+
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import SEO from "../components/SEO";
 import {
   Sparkles,
@@ -14,7 +17,7 @@ import { useRegisterModal } from "../context/RegisterModalContext";
 
 export default function Services() {
   const { openRegisterModal } = useRegisterModal();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,7 +26,7 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] pt-24 pb-20 font-sans">
       <SEO 
-        title="Accounting & Tax Services | NexGen Accounting Group"
+        title="Accounting & Tax Services | Ananya Tax Co"
         description="Comprehensive financial solutions including individual & business tax preparation, bookkeeping, payroll management, IRS audit defense, and strategic tax planning."
         keywords="CPA accounting services, professional tax services, tax filing packages, business accounting solutions, payroll services, bookkeeping options, CPA consultation, tax relief"
       />
@@ -90,7 +93,7 @@ export default function Services() {
                 className="bg-white rounded-3xl border border-[#D0DFE8] shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col justify-between group overflow-hidden hover:-translate-y-1.5 relative"
               >
                 <div
-                  onClick={() => navigate(`/services/${service.id}`)}
+                  onClick={() => router.push(`/services/${service.id}`)}
                   className="cursor-pointer"
                 >
                   {/* Image Header with Badge Overlay */}
@@ -130,7 +133,7 @@ export default function Services() {
                 {/* Card Action Footer */}
                 <div className="px-5 sm:px-6 py-4 bg-[#F8FAFC] border-t border-black/5 flex items-center justify-between gap-3">
                   <Link
-                    to={`/services/${service.id}`}
+                    href={`/services/${service.id}`}
                     className="text-xs font-bold text-brand-primary hover:text-brand-accent flex items-center gap-1.5 transition-colors font-heading"
                   >
                     View Details
@@ -183,7 +186,7 @@ export default function Services() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <Link
-                  to="/services/llc-registration"
+                  href="/services/llc-registration"
                   className="btn-orange text-sm font-bold !px-8 !py-4 rounded-xl shadow-lg font-heading"
                 >
                   View LLC Registration Details
@@ -271,7 +274,7 @@ export default function Services() {
             Ready to Accelerate Your Financial Success?
           </h2>
           <p className="text-brand-primary/90 text-base max-w-2xl mx-auto mb-8 font-sans font-semibold">
-            Get started today with NexGen Accounting Group. Register now to speak with a CPA or get your tax and bookkeeping filed on time.
+            Get started today with Ananya Tax Co. Register now to speak with a CPA or get your tax and bookkeeping filed on time.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button

@@ -1,3 +1,5 @@
+"use client";
+
 import { DollarSign, ExternalLink } from "lucide-react";
 import GlobalTable from "../../components/common/GlobalTable";
 
