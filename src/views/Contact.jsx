@@ -1112,16 +1112,16 @@ export default function Contact() {
                   </a>
 
                   <a
-                    href="mailto:annachi.pradeep@ananytaxco.com"
+                    href="mailto:info@ananyataxco.com"
                     className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-brand-secondary/5 hover:border-brand-secondary/30 border border-slate-200/80 transition-all group/mail"
                   >
                     <div className="w-8 h-8 rounded-lg bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0 group-hover/mail:bg-brand-secondary group-hover/mail:text-white transition-colors">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Advisor Email</p>
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Official Email</p>
                       <p className="text-xs font-bold text-brand-purple truncate max-w-[160px] sm:max-w-none">
-                        annachi.pradeep@ananytaxco.com
+                        info@ananyataxco.com
                       </p>
                     </div>
                   </a>

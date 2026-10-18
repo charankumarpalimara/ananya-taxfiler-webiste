@@ -252,7 +252,7 @@ export default function Footer() {
 
               <li>
                 <a
-                  href="mailto:annachi.pradeep@ananytaxco.com"
+                  href="mailto:info@ananyataxco.com"
                   className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
                 >
                   <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-sm">
@@ -260,7 +260,7 @@ export default function Footer() {
                   </div>
                   <div className="text-sm font-sans">
                     <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Email Us</span>
-                    <span className="text-white font-medium">annachi.pradeep@ananytaxco.com</span>
+                    <span className="text-white font-medium">info@ananyataxco.com</span>
                   </div>
                 </a>
               </li>

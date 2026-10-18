@@ -15,9 +15,9 @@ const contactInfo = [
   },
   {
     icon: <Mail className="w-5 h-5" />,
-    label: "Advisor Email",
-    value: "annachi.pradeep@ananytaxco.com",
-    href: "mailto:annachi.pradeep@ananytaxco.com",
+    label: "Official Email",
+    value: "info@ananyataxco.com",
+    href: "mailto:info@ananyataxco.com",
   },
   {
     icon: <Clock className="w-5 h-5" />,

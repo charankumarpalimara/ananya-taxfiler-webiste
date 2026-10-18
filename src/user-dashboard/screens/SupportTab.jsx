@@ -110,7 +110,7 @@ export default function SupportTab() {
             </div>
             <div>
               <div className="text-xs font-bold text-slate-900">Dedicated Email Representative</div>
-              <div className="text-xs font-bold text-slate-600 mt-0.5">info@nexgenaccountinggroup.com</div>
+              <div className="text-xs font-bold text-slate-600 mt-0.5">info@ananyataxco.com</div>
             </div>
           </div>
         </div>

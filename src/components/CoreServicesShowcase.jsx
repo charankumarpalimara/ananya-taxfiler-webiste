@@ -310,16 +310,16 @@ export default function CoreServicesShowcase() {
                   </a>
 
                   <a
-                    href="mailto:annachi.pradeep@ananytaxco.com"
+                    href="mailto:info@ananyataxco.com"
                     className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-orange/50 transition-all group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Direct Email</div>
+                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Official Email</div>
                       <div className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate max-w-[170px] sm:max-w-none">
-                        annachi.pradeep@ananytaxco.com
+                        info@ananyataxco.com
                       </div>
                     </div>
                   </a>
