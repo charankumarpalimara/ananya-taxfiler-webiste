@@ -241,18 +241,18 @@ export default function CoreServicesShowcase() {
         </div>
 
         {/* Featured Ananya Flyer & Advisor Showcase Card */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-black border border-brand-orange/30 p-8 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden"
         >
-          {/* Subtle Ambient Ring */}
+        
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            
-            {/* Left Column: Official Poster Preview */}
+
+           
             <div className="lg:col-span-5 relative group cursor-pointer" onClick={() => setShowFlyerModal(true)}>
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
                 <img
@@ -273,8 +273,8 @@ export default function CoreServicesShowcase() {
               </div>
             </div>
 
-            {/* Right Column: Advisor Details & Direct Booking */}
-            <div className="lg:col-span-7 flex flex-col justify-between">
+     
+             <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3 font-heading">
                   <ShieldCheck className="w-3.5 h-3.5" />
@@ -292,7 +292,7 @@ export default function CoreServicesShowcase() {
                   "We handle the numbers, you focus on growing your business. Whether you need individual 1040 filing, corporate bookkeeping, ITIN issuance without mailing your passport, or FBAR/FATCA offshore compliance, our certified team is ready to assist you."
                 </p>
 
-                {/* Direct Contact Pills */}
+             
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   <a
                     href="tel:+13318404241"
@@ -326,7 +326,7 @@ export default function CoreServicesShowcase() {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+          
               <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-800">
                 <Link
                   href="/contact"
@@ -343,10 +343,10 @@ export default function CoreServicesShowcase() {
                 </Link>
               </div>
 
-            </div>
+            </div> 
 
           </div>
-        </motion.div>
+        </motion.div> */}
 
       </div>
 

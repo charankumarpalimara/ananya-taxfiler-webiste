@@ -132,14 +132,14 @@ export default function Navbar() {
                 alt="Ananya Tax Co Logo"
                 className="h-10 sm:h-12 w-auto object-contain rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <span className="font-extrabold text-base sm:text-lg font-heading tracking-tight text-brand-primary leading-tight">
                   ANANYA <span className="text-brand-orange">TAX CO</span>
                 </span>
                 <span className="text-[9px] sm:text-[10px] font-semibold text-text-light uppercase tracking-wider leading-none">
                   Bookkeeping • Payroll • Taxes
                 </span>
-              </div>
+              </div> */}
             </a>
 
             {/* Desktop Nav */}

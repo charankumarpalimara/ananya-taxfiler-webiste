@@ -39,12 +39,12 @@ export const allServicesList = [
     icon: FileText,
     badge: "Most Requested",
     route: "/taxes",
-    detailRoute: "/services/individual-tax",
+    detailRoute: "/taxes",
     points: [
       "Individual Form 1040 (W-2, 1099, Investments, Rentals)",
       "Business Tax (LLC, S-Corp 1120-S, C-Corp 1120, Partnerships)",
       "Multi-State Apportionment & State Return Filings",
-      "100% Accuracy Guarantee & IRS Audit Support"
+      "100% Accuracy Guarantee & Complete IRS E-Filing Support"
     ]
   },
   {
@@ -52,16 +52,16 @@ export const allServicesList = [
     category: "accounting",
     isCore: true,
     number: "02",
-    title: "Bookkeeping & Accounting",
+    title: "Bookkeeping",
     subtitle: "Accurate & Affordable Bookkeeping Services",
     desc: "Dependable monthly ledger reconciliation, QuickBooks setup & cleanup, real-time expense categorization, and executive financial statements.",
     icon: BookOpen,
-    badge: "Core Service",
+    badge: "Accurate & Affordable",
     route: "/bookkeeping",
-    detailRoute: "/services/accounting-bookkeeping",
+    detailRoute: "/bookkeeping",
     points: [
       "Monthly Bank & Credit Card Reconciliations",
-      "QuickBooks Online & Desktop Setup / Clean-up",
+      "QuickBooks Online & Desktop Setup / Clean-Up",
       "P&L, Balance Sheet & Cash Flow Reporting",
       "Audit-Ready Financials & Year-End Tax Prep"
     ]
@@ -71,18 +71,18 @@ export const allServicesList = [
     category: "compliance",
     isCore: true,
     number: "03",
-    title: "ITIN Application & Renewal",
-    subtitle: "IRS Form W-7 & In-House ID Verification",
-    desc: "Fast-track IRS Form W-7 processing with complete document verification. Secure your Individual Taxpayer Identification Number smoothly and without mailing original passports.",
+    title: "ITIN Application",
+    subtitle: "Start Your ITIN, and Documentation Step Support",
+    desc: "Fast-track IRS Form W-7 processing with full documentation step support. Secure your Individual Taxpayer Identification Number smoothly without mailing original passports.",
     icon: CreditCard,
-    badge: "Fast Approval",
-    route: "/services/individual-specialized",
-    detailRoute: "/services/individual-specialized",
+    badge: "Form W-7",
+    route: "/contact",
+    detailRoute: "/contact",
     points: [
-      "Official IRS Form W-7 Preparation & Document Review",
-      "In-House ID & Passport Verification (No Original Mailing)",
-      "ITIN for Dependents, Non-Resident Spouses & Investors",
-      "Fast Turnaround & Synchronized Tax Filing"
+      "Official IRS Form W-7 Preparation & Review",
+      "Step-by-Step Documentation & ID Verification Support",
+      "In-House Passport Verification (No Original Mailing)",
+      "ITIN for Dependents, Non-Resident Spouses & Investors"
     ]
   },
   {
@@ -90,18 +90,18 @@ export const allServicesList = [
     category: "compliance",
     isCore: true,
     number: "04",
-    title: "FBAR & FATCA Compliance",
-    subtitle: "Foreign Bank Account & Offshore Asset Reporting",
-    desc: "Mandatory annual reporting for U.S. taxpayers holding foreign bank accounts, offshore investments, or foreign financial assets exceeding statutory limits.",
+    title: "FBAR & FATCA",
+    subtitle: "Tax Filing Assistance & Compliance Support",
+    desc: "Mandatory annual reporting and tax filing assistance for U.S. taxpayers holding foreign bank accounts, offshore investments, or foreign financial assets exceeding statutory limits.",
     icon: Globe,
-    badge: "Global Tax",
-    route: "/services/individual-specialized",
-    detailRoute: "/services/individual-specialized",
+    badge: "Global Compliance",
+    route: "/taxes",
+    detailRoute: "/taxes",
     points: [
       "FinCEN Form 114 (FBAR) Electronic Filing ($10k+ aggregate)",
       "IRS Form 8938 (FATCA) Foreign Assets Disclosure",
       "Peak Balance Calculations & Currency Conversion",
-      "Streamlined Compliance for Delinquent Filers"
+      "Streamlined Compliance & Penalty Relief Guidance"
     ]
   },
   {
@@ -109,85 +109,27 @@ export const allServicesList = [
     category: "tax",
     isCore: true,
     number: "05",
-    title: "Tax Planning & Strategy",
-    subtitle: "Proactive Strategies for Maximum Tax Savings",
-    desc: "Proactive, forward-looking tax strategies tailored to reduce your effective tax rate legally before year-end through tax credits, deductions, and entity structure optimization.",
+    title: "Tax Planning",
+    subtitle: "Strategic Planning for Maximum Savings",
+    desc: "Proactive, customized tax strategies designed to reduce your effective tax rate legally, maximize deductions and credits, and keep more money in your business.",
     icon: TrendingUp,
-    badge: "High ROI",
-    route: "/services/tax-strategy",
-    detailRoute: "/services/tax-strategy",
+    badge: "Maximum Savings",
+    route: "/contact",
+    detailRoute: "/contact",
     points: [
       "Proactive Pre-Year-End Tax Minimization Plans",
       "S-Corp Salary & Reasonable Compensation Audits",
       "Section 179 & Bonus Depreciation Planning",
-      "Retirement & Wealth Preservation Advisory"
-    ]
-  },
-  {
-    id: "business-compliance",
-    category: "compliance",
-    isCore: true,
-    number: "06",
-    title: "Business Formation & Compliance",
-    subtitle: "Entity Formation, FinCEN BOIR & Corporate Standing",
-    desc: "End-to-end business formation, FinCEN BOIR beneficial ownership reporting, franchise tax filings, and annual corporate renewals to keep your business in good standing.",
-    icon: Building2,
-    badge: "All 50 States",
-    route: "/services/llc-registration",
-    detailRoute: "/services/llc-registration",
-    points: [
-      "LLC, S-Corp & C-Corp Formation with EIN Issuance",
-      "FinCEN BOIR Mandatory Reporting & Compliance",
-      "Annual Reports & State Franchise Tax Filings",
-      "Operating Agreements & Good Standing Renewals"
-    ]
-  },
-  {
-    id: "payroll-services",
-    category: "accounting",
-    isCore: false,
-    number: "07",
-    title: "Payroll Management",
-    subtitle: "Automated Paychecks & Tax Withholding",
-    desc: "Complete payroll processing, direct deposits, federal and state payroll tax withholdings, and year-end Form W-2 and 1099-NEC distribution.",
-    icon: Briefcase,
-    badge: "Automated",
-    route: "/services/payroll-services",
-    detailRoute: "/services/payroll-services",
-    points: [
-      "Direct Deposit & Scheduled Employee Payroll Runs",
-      "Federal Form 941 Quarterly & 940 Annual Filings",
-      "State Unemployment & Withholding Tax Reports",
-      "Year-End Form W-2 and 1099-NEC Compliance"
-    ]
-  },
-  {
-    id: "irs-audits",
-    category: "compliance",
-    isCore: false,
-    number: "08",
-    title: "IRS Audit Defense & Notice Relief",
-    subtitle: "Notice Representation & Penalty Abatement",
-    desc: "Experienced CPA representation for IRS letters, CP2000 discrepancy notices, desk audits, penalty abatement petitions, and delinquent tax negotiations.",
-    icon: ShieldCheck,
-    badge: "Audit Defense",
-    route: "/services/irs-audits",
-    detailRoute: "/services/irs-audits",
-    points: [
-      "Direct Representation Before IRS & State Agencies",
-      "Notice CP2000 & Audit Response Documentation",
-      "Penalty Abatement Requests & Interest Relief",
-      "Installment Agreements & Offer in Compromise Support"
+      "Retirement & Long-Term Wealth Preservation Advisory"
     ]
   }
 ];
 
 const categoryTabs = [
-  { id: "all", label: "All Practice Areas" },
-  { id: "core", label: "Core Pillars (6)" },
-  { id: "tax", label: "Tax Preparation & Planning" },
-  { id: "accounting", label: "Accounting & Bookkeeping" },
-  { id: "compliance", label: "Corporate & Global Compliance" }
+  { id: "all", label: "All Services (5)" },
+  { id: "tax", label: "US Tax Filing & Planning" },
+  { id: "accounting", label: "Bookkeeping Services" },
+  { id: "compliance", label: "ITIN & FBAR/FATCA" }
 ];
 
 export default function Services() {
@@ -200,7 +142,6 @@ export default function Services() {
 
   const filteredServices = allServicesList.filter((service) => {
     if (activeTab === "all") return true;
-    if (activeTab === "core") return service.isCore;
     return service.category === activeTab;
   });
 
@@ -214,7 +155,7 @@ export default function Services() {
 
       {/* ── SINGLE UNIFIED HERO SECTION ──────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0D14] via-[#121722] to-[#0A0D14] text-white pt-32 pb-20 lg:pt-36 lg:pb-24">
-        {/* Ambient Radial Lighting & Subtle Grid */}
+
         <div className="absolute inset-0 pointer-events-none opacity-25">
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-orange rounded-full blur-[160px]" />
           <div className="absolute bottom-0 left-1/4 w-[450px] h-[450px] bg-amber-500 rounded-full blur-[160px]" />
@@ -229,7 +170,7 @@ export default function Services() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-widest mb-6 font-heading"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>ANANYA TAX CO • PROFESSIONAL SERVICES</span>
+            <span>ANANYA TAX CO • OUR SERVICES</span>
           </motion.div>
 
           <motion.h1
@@ -238,9 +179,9 @@ export default function Services() {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 font-heading leading-tight max-w-4xl mx-auto"
           >
-            Comprehensive US Tax, Accounting &{" "}
+            Your Trusted Partner For{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-400 to-brand-gold">
-              Business Solutions
+              US Tax & Business Solutions
             </span>
           </motion.h1>
 
@@ -250,10 +191,10 @@ export default function Services() {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed font-sans mb-10"
           >
-            Certified CPA preparation, proactive tax strategies, precision bookkeeping, and entity compliance tailored for individuals, families, and businesses across all 50 states.
+            "We handle the numbers, you focus on growing your business." Explore our dedicated service offerings: US Tax Filing, Bookkeeping, ITIN Application, FBAR & FATCA Compliance, and Strategic Tax Planning.
           </motion.p>
 
-          {/* Trust Highlights Strip */}
+
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -282,7 +223,7 @@ export default function Services() {
 
       {/* ── SINGLE UNIFIED SERVICES CATALOG SECTION ─────────────── */}
       <section id="services-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 relative z-20">
-        
+
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
           {categoryTabs.map((tab) => {
@@ -291,11 +232,10 @@ export default function Services() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold font-heading transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? "bg-brand-primary text-white shadow-lg border border-brand-accent/40 ring-2 ring-brand-accent/20"
-                    : "bg-white text-text-mid hover:text-brand-primary border border-slate-200 hover:border-slate-300 shadow-sm"
-                }`}
+                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold font-heading transition-all duration-200 cursor-pointer ${isActive
+                  ? "bg-brand-primary text-white shadow-lg border border-brand-accent/40 ring-2 ring-brand-accent/20"
+                  : "bg-white text-text-mid hover:text-brand-primary border border-slate-200 hover:border-slate-300 shadow-sm"
+                  }`}
               >
                 {tab.label}
               </button>
@@ -384,11 +324,9 @@ export default function Services() {
       {/* ── OFFICIAL PRACTICE FLYER & SENIOR ADVISOR SHOWCASE ─────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-black border border-brand-orange/30 p-8 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
-          {/* Subtle Ambient Glow */}
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            
             {/* Left Column: Official Poster Preview */}
             <div
               className="lg:col-span-5 relative group cursor-pointer"
@@ -450,16 +388,16 @@ export default function Services() {
                   </a>
 
                   <a
-                    href="mailto:info@ananyataxco.com"
+                    href="mailto:annachi.pradeep@ananyataxco.com"
                     className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-orange/50 transition-all group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Official Email</div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate max-w-[170px] sm:max-w-none">
-                        info@ananyataxco.com
+                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Advisor Email</div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate max-w-[200px] sm:max-w-none">
+                        annachi.pradeep@ananyataxco.com
                       </div>
                     </div>
                   </a>
@@ -472,19 +410,17 @@ export default function Services() {
                   href="/contact"
                   className="btn-orange !py-3.5 !px-8 text-sm font-bold rounded-2xl shadow-xl shadow-brand-orange/20 cursor-pointer"
                 >
-                  Book Free Consultation
+                  Book Free Consultation Today
                 </Link>
                 <a
                   href="tel:+13318404241"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-bold font-heading transition-colors"
                 >
                   <Phone className="w-4 h-4 text-brand-orange" />
-                  <span>Call Us Directly</span>
+                  <span>Call +1 (331) 840-4241</span>
                 </a>
               </div>
-
             </div>
-
           </div>
         </div>
       </section>
@@ -601,6 +537,6 @@ export default function Services() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+    </div >
   );
 }

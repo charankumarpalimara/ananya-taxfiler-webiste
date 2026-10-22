@@ -227,7 +227,7 @@ export default function Bookkeeping() {
                       className="flex items-center justify-between p-2.5 bg-white border border-[#DCE6F2] hover:border-brand-secondary/40 rounded-xl transition-colors text-xs"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${tx.positive ? "bg-emerald-50 text-emerald-600 border border-emerald-200/60" : "bg-blue-50 text-brand-primary border border-blue-200/60"
+                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${tx.positive ? "bg-emerald-50 text-emerald-600 border border-emerald-200/60" : "bg-orange-50 text-brand-accent border border-orange-200/60"
                           }`}>
                           {tx.positive ? <DollarSign className="w-3.5 h-3.5" /> : <CreditCard className="w-3.5 h-3.5" />}
                         </div>
@@ -409,7 +409,7 @@ export default function Bookkeeping() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative bg-gradient-to-br from-[#0C3474] via-[#1455B8] to-[#08224D] rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 lg:p-16 overflow-hidden shadow-2xl border border-white/15 text-white"
+            className="relative bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 lg:p-16 overflow-hidden shadow-2xl border border-white/15 text-white"
           >
             {/* Ambient Multi-layer Glows */}
             <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-brand-accent/20 rounded-full blur-[120px] pointer-events-none" />

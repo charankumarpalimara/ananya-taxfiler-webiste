@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Send, Clock, ArrowRight, Sparkles, CheckCircle2, MessageSquare } from "lucide-react";
 import Link from "next/link";
@@ -85,23 +84,34 @@ export default function Contact() {
         clientName: `${inputs[0]?.value || ''} ${inputs[1]?.value || ''}`.trim() || 'Website Visitor',
         email: inputs[2]?.value || '',
         phone: inputs[3]?.value || '',
-        services: [serviceName],
-        notes: inputs[5]?.value || 'Submitted via homepage quick contact form',
-        scheduledDate: 'Not Scheduled',
-        scheduledTime: 'Direct Message',
-        leadSource: 'Homepage Contact Form',
-        type: 'quick_contact',
+        service: serviceName,
+        message: inputs[5]?.value || 'Submitted via homepage quick contact form',
       };
 
-      await createSubmission(payload);
-    } catch {
-      // Silent fallback
-    }
-
-    setTimeout(() => {
+      await fetch('https://formsubmit.co/ajax/Info@ananyataxco.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `Homepage Quick Inquiry: ${payload.clientName}`,
+          "Client Name": payload.clientName,
+          "Client Email": payload.email,
+          "Client Phone": payload.phone,
+          "Service Requested": payload.service,
+          "Message": payload.message,
+          _replyto: payload.email,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+    } catch (err) {
+      console.error('Frontend contact submission error:', err);
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 1000);
+    }
   };
 
   return (

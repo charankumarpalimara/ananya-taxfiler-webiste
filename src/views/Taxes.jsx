@@ -191,7 +191,7 @@ export default function Taxes() {
               <div className="relative rounded-[2.5rem] overflow-hidden bg-white p-3 sm:p-5 group transition-all duration-500">
                 <div className="relative rounded-[2rem] overflow-hidden bg-white flex items-center justify-center">
                   <img
-                    src="/images/nexgen_tax_preparation_irs_3d.png"
+                    src="/images/ananya_tax_preparation_irs_3d.png"
                     alt="Expert Tax Solutions & IRS Filing"
                     className="w-full h-auto max-h-[460px] object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
                   />

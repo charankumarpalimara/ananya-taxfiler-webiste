@@ -42,7 +42,12 @@ export default function ServiceDetail() {
   const router = useRouter();
   const { openRegisterModal } = useRegisterModal();
 
-  const service = servicesData.find((s) => s.id === serviceId);
+  const service = servicesData.find((s) => s.id === serviceId) ||
+    (serviceId === "us-tax-filing" ? servicesData.find(s => s.id === "individual-tax") : null) ||
+    (serviceId === "bookkeeping" ? servicesData.find(s => s.id === "accounting-bookkeeping") : null) ||
+    (serviceId === "itin-application" ? servicesData.find(s => s.id === "individual-specialized") : null) ||
+    (serviceId === "fbar-fatca" ? servicesData.find(s => s.id === "individual-specialized") : null) ||
+    (serviceId === "tax-planning" ? servicesData.find(s => s.id === "tax-strategy") : null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -89,56 +94,110 @@ export default function ServiceDetail() {
       />
 
       {/* ── HERO BANNER ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#061524] via-[#0B2238] to-[#14385C] text-white pt-28 sm:pt-36 pb-16 sm:pb-20">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/15 rounded-full blur-[160px] pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0D14] via-[#121722] to-[#0A0D14] text-white pt-28 sm:pt-36 pb-16 sm:pb-24">
+        {/* Subtle Ambient Brand Glow Backdrops */}
+        <div className="absolute inset-0 pointer-events-none opacity-25">
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-orange rounded-full blur-[160px]" />
+          <div className="absolute bottom-0 left-1/4 w-[450px] h-[450px] bg-amber-500 rounded-full blur-[160px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            {/* Back Button */}
-            <button
-              onClick={() => router.push("/services")}
-              className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold transition-all mb-6 cursor-pointer font-heading backdrop-blur-md tracking-wide"
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6 font-heading">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-1.5 hover:text-brand-orange transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 text-brand-accent" />
-              <span>Back to Services</span>
-            </button>
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Services</span>
+            </Link>
+            <span>/</span>
+            <span className="text-white truncate max-w-[200px] sm:max-w-none">{service.title}</span>
+          </div>
 
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <span className="px-3.5 py-1 rounded-full bg-brand-accent text-brand-primary text-xs font-bold uppercase tracking-wider font-heading">
-                {service.category.toUpperCase()}
-              </span>
-              <span className="px-3.5 py-1 rounded-full bg-white/10 text-white text-xs font-medium border border-white/20 backdrop-blur-md">
-                {service.badge}
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left Column: Details */}
+            <div className="lg:col-span-7">
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                <span className="px-3.5 py-1 rounded-full bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-wider font-heading">
+                  {service.category.toUpperCase()}
+                </span>
+                <span className="px-3.5 py-1 rounded-full bg-white/10 text-white text-xs font-medium border border-white/20 backdrop-blur-md">
+                  {service.badge}
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-orange" />
+                  <span>CPA Verified</span>
+                </span>
+              </div>
+
+              {/* Title */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 font-heading leading-tight tracking-tight">
+                {service.title}
+              </h1>
+
+              {/* Short Intro */}
+              <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 font-sans font-normal max-w-2xl">
+                {service.shortDesc}
+              </p>
+
+              {/* Value Highlights */}
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300 font-medium mb-8">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-orange" />
+                  All 50 US States Covered
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-orange" />
+                  100% CPA Accuracy Guarantee
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-orange" />
+                  Direct Senior Advisor Access
+                </span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="btn-orange text-sm font-bold !px-8 !py-4 rounded-2xl shadow-xl shadow-brand-orange/25 flex items-center gap-2.5 cursor-pointer font-heading tracking-wide"
+                >
+                  Book Free Consultation
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="tel:+13318404241"
+                  className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
+                >
+                  <Phone className="w-4 h-4 text-brand-orange" />
+                  Call +1 (331) 840-4241
+                </a>
+              </div>
             </div>
 
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 font-heading leading-tight tracking-tight">
-              {service.title}
-            </h1>
-
-            {/* Short Intro */}
-            <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-8 font-sans font-normal">
-              {service.shortDesc}
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
-                className="btn-orange text-sm font-bold !px-8 !py-4 rounded-2xl shadow-xl shadow-brand-accent/25 flex items-center gap-2.5 cursor-pointer font-heading tracking-wide"
-              >
-                Get Started With This Service
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="tel:+13318404241"
-                className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
-              >
-                <Phone className="w-4 h-4 text-brand-accent" />
-                Call +1 (331) 840-4241
-              </a>
+            {/* Right Column: Service Visual Card */}
+            <div className="lg:col-span-5 relative mt-6 lg:mt-0">
+              <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-slate-900 group">
+                <img
+                  src={service.image || "/services.jpeg"}
+                  alt={service.title}
+                  className="w-full h-[320px] sm:h-[380px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-xs text-white backdrop-blur-md bg-black/50 border border-white/15 rounded-2xl p-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse" />
+                    <div>
+                      <div className="font-bold font-heading text-white">IRS & State Compliant</div>
+                      <div className="text-[10px] text-slate-300 font-sans">Licensed Texas CPAs</div>
+                    </div>
+                  </div>
+                  <span className="text-brand-orange font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-brand-orange/15 border border-brand-orange/30">Tax Year 2026</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -347,28 +406,33 @@ export default function ServiceDetail() {
           )}
 
           {/* 7. Bottom Call To Action Banner */}
-          <div className="bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary rounded-3xl p-8 sm:p-12 text-white text-center relative overflow-hidden shadow-2xl">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4 font-heading tracking-tight">
-              Ready to Get Started with {service.title}?
-            </h2>
-            <p className="text-white/85 text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans font-normal leading-relaxed">
-              Our licensed CPAs and tax specialists are standing by to prepare your filings with 100% precision and maximum tax savings.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="btn-orange text-sm font-bold !px-8 !py-4 rounded-2xl shadow-xl flex items-center gap-2.5 font-heading cursor-pointer tracking-wide"
-              >
-                Get Started Now
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="tel:+13318404241"
-                className="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2.5 font-heading tracking-wide"
-              >
-                <Phone className="w-4 h-4 text-brand-accent" />
-                Call +1 (331) 840-4241
-              </a>
+          <div className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl p-8 sm:p-14 text-white text-center relative overflow-hidden shadow-2xl border border-white/15">
+            <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-black/20 rounded-full blur-[80px] pointer-events-none" />
+
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 font-heading tracking-tight">
+                Ready to Get Started with {service.title}?
+              </h2>
+              <p className="text-white/90 text-sm sm:text-base mb-8 font-sans font-medium leading-relaxed">
+                Connect directly with our licensed Texas CPAs and tax specialists to prepare your filings with 100% precision, guaranteed compliance, and maximum tax savings.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="bg-brand-primary text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:bg-brand-secondary transition-all cursor-pointer font-heading text-sm sm:text-base flex items-center gap-2"
+                >
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 text-brand-accent" />
+                </Link>
+                <a
+                  href="tel:+13318404241"
+                  className="bg-white text-brand-primary font-bold px-8 py-4 rounded-2xl shadow-lg hover:bg-slate-50 transition-all font-heading text-sm sm:text-base flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-brand-accent" />
+                  Call +1 (331) 840-4241
+                </a>
+              </div>
             </div>
           </div>
 

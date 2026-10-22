@@ -1,6 +1,5 @@
 "use client";
 
-import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 import {
@@ -173,9 +172,8 @@ export default function Contact() {
     setCurrentStep(1);
   };
 
-  // Configuration for Google Sheets & Email Notification
-  const FORMSUBMIT_HASH = "c876639a3fb27700cfc0a781a8d4ec5d";
-  const NOTIFICATION_EMAIL = "nexgengroup2026@gmail.com";
+  // Direct Frontend Dispatch to Official Mail
+  const NOTIFICATION_EMAIL = "Info@ananyataxco.com";
   const GOOGLE_SHEET_WEBHOOK_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_WEBHOOK_URL || "";
 
   const handleFinalSubmit = async (e) => {
@@ -205,15 +203,7 @@ export default function Contact() {
       type: "consultation",
     };
 
-    // 1. Save directly to Express Backend API & MongoDB Atlas
-    try {
-      const res = await createSubmission(bookingPayload);
-      console.log("MongoDB Atlas Submission Saved:", res);
-    } catch (apiErr) {
-      console.error("Express Backend API Error:", apiErr);
-    }
-
-    // 2. External Webhooks & Email Notifications
+    // Direct Frontend Email Notification to Info@ananyataxco.com
     try {
       if (GOOGLE_SHEET_WEBHOOK_URL) {
         fetch(GOOGLE_SHEET_WEBHOOK_URL, {
@@ -224,8 +214,7 @@ export default function Contact() {
         }).catch((e) => console.warn("Google Sheet Webhook error:", e));
       }
 
-      const formSubmitTarget = FORMSUBMIT_HASH || NOTIFICATION_EMAIL;
-      const emailRes = await fetch(`https://formsubmit.co/ajax/${formSubmitTarget}`, {
+      const emailRes = await fetch(`https://formsubmit.co/ajax/${NOTIFICATION_EMAIL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

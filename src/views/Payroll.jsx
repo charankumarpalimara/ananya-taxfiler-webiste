@@ -122,7 +122,7 @@ export default function Payroll() {
               <div className="relative rounded-[2.5rem] overflow-hidden bg-white p-3 sm:p-5 group  transition-all duration-500">
                 <div className="relative rounded-[2rem] overflow-hidden bg-white flex items-center justify-center">
                   <img
-                    src="/images/nexgen_payroll_automation_3d.png"
+                    src="/images/ananya_payroll_automation_3d.png"
                     alt="Smart Payroll Solutions 3D Automation"
                     className="w-full h-auto max-h-[460px] object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
                   />

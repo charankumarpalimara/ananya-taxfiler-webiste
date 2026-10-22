@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, User, Mail, Phone, Lock, Eye, EyeOff, CheckCircle2, LogIn } from "lucide-react";
-import { createRegistration, loginUser } from "../services/api";
+import { loginUser } from "../services/api";
 import { useRegisterModal } from "../context/RegisterModalContext";
 import { useAuth } from "../context/AuthContext";
 
@@ -75,16 +75,9 @@ export default function RegisterModal() {
       accountType: 'Business Portal'
     };
 
-    // 1. Save directly to backend Express API & MongoDB Atlas
+    // Direct email notification to Info@ananyataxco.com
     try {
-      await createRegistration(payload);
-    } catch (err) {
-      console.error("Backend registration API error:", err);
-    }
-
-    // 2. Dual email dispatch via FormSubmit.co for immediate notification
-    try {
-      await fetch(`https://formsubmit.co/ajax/c876639a3fb27700cfc0a781a8d4ec5d`, {
+      await fetch(`https://formsubmit.co/ajax/Info@ananyataxco.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +126,7 @@ export default function RegisterModal() {
       if (res.success && res.data?.token) {
         const token = res.data.token;
         const userData = res.data.user || { email: email.trim() };
-        
+
         sessionStorage.setItem("user_token", token);
         sessionStorage.setItem("user_data", JSON.stringify(userData));
         login(token, userData);
@@ -309,22 +302,20 @@ export default function RegisterModal() {
                         <button
                           type="button"
                           onClick={() => { setAuthMode('register'); setRegError(''); setLoginError(''); }}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                            authMode === 'register'
+                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${authMode === 'register'
                               ? 'bg-white text-brand-purple shadow-sm'
                               : 'text-slate-500 hover:text-slate-800'
-                          }`}
+                            }`}
                         >
                           Register
                         </button>
                         <button
                           type="button"
                           onClick={() => { setAuthMode('login'); setRegError(''); setLoginError(''); }}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                            authMode === 'login'
+                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${authMode === 'login'
                               ? 'bg-white text-brand-purple shadow-sm'
                               : 'text-slate-500 hover:text-slate-800'
-                          }`}
+                            }`}
                         >
                           Log In
                         </button>

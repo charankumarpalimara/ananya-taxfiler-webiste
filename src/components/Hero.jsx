@@ -77,7 +77,7 @@ export default function Hero() {
           >
             <div className="relative rounded-[2rem] bg-white p-2 ">
               <img
-                src="/images/nexgen_tax_business_growth.png"
+                src="/images/ananya_tax_business_growth.png"
                 alt="Ananya Tax & Business Growth"
                 className="rounded-[1.5rem] w-full h-[500px] object-cover"
               />
