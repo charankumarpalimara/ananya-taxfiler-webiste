@@ -92,10 +92,10 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading leading-[1.15] mb-4"
+            className="text-4xl sm:text-5xl font-medium tracking-tight font-heading leading-[1.15] mb-4"
           >
             <span className="text-brand-primary">The Key Advantages of</span> <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary font-bold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary ">
               Our Financial Expertise.
             </span>
           </motion.h2>
@@ -136,17 +136,17 @@ export default function Features() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-brand-accent/15 text-brand-accent-dark border border-brand-accent/25 tracking-wide">
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-brand-accent/15 text-brand-accent-dark border border-brand-accent/25 tracking-wide">
                       {feature.tag}
                     </span>
-                    <span className="text-sm font-bold text-text-light/50 font-heading">
+                    <span className="text-sm font-semibold text-text-light/50 font-heading">
                       {feature.number}
                     </span>
                   </div>
                 </div>
 
                 {/* Card Title */}
-                <h3 className="text-xl font-bold text-brand-dark mb-3 font-heading group-hover:text-brand-primary transition-colors">
+                <h3 className="text-xl font-medium text-brand-dark mb-3 font-heading group-hover:text-brand-primary transition-colors">
                   {feature.title}
                 </h3>
 

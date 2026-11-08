@@ -1,19 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, User, Mail, Phone, Lock, Eye, EyeOff, CheckCircle2, LogIn } from "lucide-react";
-import { loginUser } from "../services/api";
+import { createRegistration, loginUser } from "../services/api";
 import { useRegisterModal } from "../context/RegisterModalContext";
 import { useAuth } from "../context/AuthContext";
 
 export default function RegisterModal() {
-  const { isOpen, closeRegisterModal, modalStep, setModalStep } = useRegisterModal();
+  const { isOpen, closeRegisterModal, modalStep, setModalStep, initialMode } = useRegisterModal();
   const { login } = useAuth();
   const router = useRouter();
 
   const [authMode, setAuthMode] = useState("register"); // 'register' | 'login'
+
+  useEffect(() => {
+    if (initialMode) {
+      setAuthMode(initialMode);
+    }
+  }, [initialMode, isOpen]);
 
   // Registration state
   const [regFormData, setRegFormData] = useState({
@@ -75,7 +81,14 @@ export default function RegisterModal() {
       accountType: 'Business Portal'
     };
 
-    // Direct email notification to Info@ananyataxco.com
+    // 1. Save directly to backend Express API & MongoDB Atlas
+    try {
+      await createRegistration(payload);
+    } catch (err) {
+      console.error("Backend registration API error:", err);
+    }
+
+    // 2. Direct email notification to Info@ananyataxco.com
     try {
       await fetch(`https://formsubmit.co/ajax/Info@ananyataxco.com`, {
         method: "POST",
@@ -182,24 +195,38 @@ export default function RegisterModal() {
             className="relative w-full max-w-4xl max-h-[85vh] sm:max-h-[80vh] bg-white rounded-2xl sm:rounded-[2rem] shadow-2xl overflow-y-auto custom-scrollbar border border-white/20 flex flex-col md:flex-row my-auto z-10"
           >
             {/* Left Panel: Info & Branding */}
-            <div className="hidden md:flex md:w-5/12 bg-brand-purple p-5 sm:p-7 md:p-8 text-white relative overflow-hidden flex-col justify-between shrink-0">
+            <div className="hidden md:flex md:w-5/12 bg-gradient-to-br from-[#123262] via-[#0E274D] to-[#081830] p-6 sm:p-7 md:p-8 text-white relative overflow-hidden flex-col justify-between shrink-0 border-r border-amber-500/10">
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
               </div>
               <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-orange/20 rounded-full blur-[60px]" />
+              <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#1D4A88]/30 rounded-full blur-[50px]" />
 
               <div className="relative z-10">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-5 border border-white/10 overflow-hidden">
-                  <img src="/favicon.jpeg" alt="" className="w-full h-full object-cover" />
+                <div className="inline-flex items-center gap-3 mb-6">
+                  <img
+                    src="/latest-logo.jpeg"
+                    alt="Ananya Tax Co Logo"
+                    className="h-12 sm:h-14 w-auto object-contain rounded-xl shadow-md bg-white p-1 border border-amber-200/40"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-base sm:text-lg font-heading tracking-tight text-white leading-tight">
+                      ANANYA <span className="text-brand-orange">TAX CO</span>
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] font-semibold text-white/70 uppercase tracking-widest leading-none mt-0.5">
+                      Bookkeeping • Payroll • Taxes
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2 text-brand-orange font-heading">
+
+                <h3 className="text-lg sm:text-xl font-medium mb-1.5 sm:mb-2 text-brand-orange font-heading">
                   Exclusive Portal Access
                 </h3>
                 <p className="text-white/80 text-xs leading-relaxed mb-4 sm:mb-6 font-sans">
                   Join thousands of businesses and individuals who trust Ananya Tax Co for their financial compliance and growth.
                 </p>
 
-                <div className="space-y-2 sm:space-y-3">
+                <div className="space-y-2.5 sm:space-y-3">
                   {[
                     "Secure 256-bit SSL Data Encryption",
                     "Real-time Document Tracking",
@@ -207,7 +234,7 @@ export default function RegisterModal() {
                     "Historical Records Access"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-brand-orange/20 flex items-center justify-center shrink-0">
+                      <div className="w-4 h-4 rounded-full bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center shrink-0">
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
                       </div>
                       <span className="text-[11px] sm:text-xs font-semibold text-white/90 font-sans tracking-wide">{item}</span>
@@ -216,13 +243,9 @@ export default function RegisterModal() {
                 </div>
               </div>
 
-              <div className="relative z-10 pt-3 sm:pt-4 mt-4 sm:mt-5 border-t border-white/10 flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-7 h-7 rounded-full border-2 border-brand-purple bg-slate-200" />
-                  ))}
-                </div>
-                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-white/60">Trusted by 5k+ clients</span>
+              <div className="relative z-10 pt-3 sm:pt-4 mt-4 sm:mt-5 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-amber-200/80">Trusted by 5k+ clients</span>
+                <span className="text-[10px] font-semibold text-white/50">IRS Compliant</span>
               </div>
             </div>
 
@@ -236,6 +259,23 @@ export default function RegisterModal() {
                 <X className="w-5 h-5" />
               </button>
 
+              {/* Mobile Brand Header */}
+              <div className="flex md:hidden items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 pr-8">
+                <img
+                  src="/latest-logo.jpeg"
+                  alt="Ananya Tax Co Logo"
+                  className="h-10 w-auto object-contain rounded-xl shadow-xs bg-white p-0.5 border border-amber-200/60"
+                />
+                <div className="flex flex-col">
+                  <span className="font-semibold text-sm font-heading tracking-tight text-brand-purple leading-tight">
+                    ANANYA <span className="text-brand-orange">TAX CO</span>
+                  </span>
+                  <span className="text-[8px] font-semibold text-text-light uppercase tracking-wider leading-none mt-0.5">
+                    Client Portal
+                  </span>
+                </div>
+              </div>
+
               <AnimatePresence mode="wait">
                 {modalStep === 1 ? (
                   <motion.div
@@ -243,10 +283,10 @@ export default function RegisterModal() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="max-w-sm mx-auto w-full pt-2 md:pt-0"
+                    className="max-w-sm mx-auto w-full pt-1 md:pt-0"
                   >
-                    <span className="section-tag mb-2 sm:mb-3">Portal Access</span>
-                    <h2 className="text-2xl sm:text-3xl font-black text-brand-purple mb-2 sm:mb-3 font-heading leading-[1.15]">
+                    {/* <span className="section-tag mb-2 sm:mb-3">Portal Access</span> */}
+                    <h2 className="text-2xl sm:text-3xl font-medium text-brand-purple mb-2 sm:mb-3 font-heading leading-[1.15]">
                       Welcome to <br />
                       <span className="text-brand-orange">Ananya Tax Portal</span>
                     </h2>
@@ -258,7 +298,7 @@ export default function RegisterModal() {
                     <div className="flex flex-col gap-3">
                       <button
                         onClick={() => { setAuthMode('register'); setModalStep(2); }}
-                        className="w-full py-2.5 sm:py-3 bg-brand-orange text-white rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center group cursor-pointer"
+                        className="w-full py-2.5 sm:py-3 bg-brand-orange text-white rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base shadow-lg shadow-brand-orange/25 hover:bg-brand-orange-dark hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center group cursor-pointer"
                       >
                         Create New Account
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -266,9 +306,9 @@ export default function RegisterModal() {
 
                       <button
                         onClick={() => { setAuthMode('login'); setModalStep(2); }}
-                        className="w-full py-2.5 sm:py-3 bg-slate-100 text-brand-purple rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:bg-slate-200 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-2.5 sm:py-3 bg-brand-purple/5 text-brand-purple border border-brand-purple/15 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base hover:bg-brand-purple/10 hover:border-brand-purple/30 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
                       >
-                        <LogIn className="w-4 h-4" />
+                        <LogIn className="w-4 h-4 text-brand-orange" />
                         Log In to Existing Account
                       </button>
                     </div>
@@ -276,9 +316,9 @@ export default function RegisterModal() {
                     <div className="mt-6 sm:mt-8 flex items-center justify-between pt-4 sm:pt-6 border-t border-slate-100">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Portal Online</span>
+                        <span className="text-[9px] sm:text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Portal Online</span>
                       </div>
-                      <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">Secured 256-Bit SSL</span>
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Secured 256-Bit SSL</span>
                     </div>
                   </motion.div>
                 ) : (
@@ -292,19 +332,19 @@ export default function RegisterModal() {
                     <div className="flex items-center justify-between mb-3">
                       <button
                         onClick={() => setModalStep(1)}
-                        className="text-brand-purple text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 hover:text-brand-orange transition-colors cursor-pointer"
+                        className="text-brand-purple text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5 hover:text-brand-orange transition-colors cursor-pointer"
                       >
                         <ArrowRight className="w-3.5 h-3.5 rotate-180" /> Back
                       </button>
 
                       {/* Tab Selector */}
-                      <div className="flex bg-slate-100 p-1 rounded-xl">
+                      <div className="flex bg-slate-100/90 border border-slate-200/60 p-1 rounded-xl">
                         <button
                           type="button"
                           onClick={() => { setAuthMode('register'); setRegError(''); setLoginError(''); }}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${authMode === 'register'
-                              ? 'bg-white text-brand-purple shadow-sm'
-                              : 'text-slate-500 hover:text-slate-800'
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${authMode === 'register'
+                            ? 'bg-brand-purple text-white shadow-sm'
+                            : 'text-slate-600 hover:text-brand-purple'
                             }`}
                         >
                           Register
@@ -312,9 +352,9 @@ export default function RegisterModal() {
                         <button
                           type="button"
                           onClick={() => { setAuthMode('login'); setRegError(''); setLoginError(''); }}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${authMode === 'login'
-                              ? 'bg-white text-brand-purple shadow-sm'
-                              : 'text-slate-500 hover:text-slate-800'
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${authMode === 'login'
+                            ? 'bg-brand-purple text-white shadow-sm'
+                            : 'text-slate-600 hover:text-brand-purple'
                             }`}
                         >
                           Log In
@@ -324,7 +364,7 @@ export default function RegisterModal() {
 
                     {authMode === 'register' ? (
                       <>
-                        <h2 className="text-xl sm:text-2xl font-black text-brand-purple mb-1 font-heading">Create Account</h2>
+                        <h2 className="text-xl sm:text-2xl font-medium text-brand-purple mb-1 font-heading">Create Account</h2>
                         <p className="text-text-mid text-xs mb-4 sm:mb-5 font-sans">Fill in your details to create your secure portal access.</p>
 
                         {regSuccess ? (
@@ -332,7 +372,7 @@ export default function RegisterModal() {
                             <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-2.5 shadow-md shadow-emerald-500/10">
                               <CheckCircle2 className="w-6 h-6" />
                             </div>
-                            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1">Account Registered!</h3>
+                            <h3 className="text-base sm:text-lg font-medium text-slate-900 mb-1">Account Registered!</h3>
                             <p className="text-xs text-slate-500">Your portal access has been created. Redirecting...</p>
                           </div>
                         ) : (
@@ -344,7 +384,7 @@ export default function RegisterModal() {
                             )}
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Full Name *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Full Name *</label>
                               <div className="relative group">
                                 <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -353,13 +393,13 @@ export default function RegisterModal() {
                                   placeholder="John Doe"
                                   value={regFormData.fullName}
                                   onChange={(e) => setRegFormData({ ...regFormData, fullName: e.target.value })}
-                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                               </div>
                             </div>
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Email Address *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Email Address *</label>
                               <div className="relative group">
                                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -368,13 +408,13 @@ export default function RegisterModal() {
                                   placeholder="john@example.com"
                                   value={regFormData.email}
                                   onChange={(e) => setRegFormData({ ...regFormData, email: e.target.value })}
-                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                               </div>
                             </div>
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Phone Number *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Phone Number *</label>
                               <div className="relative group">
                                 <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -387,13 +427,13 @@ export default function RegisterModal() {
                                     const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10);
                                     setRegFormData({ ...regFormData, phone: digitsOnly });
                                   }}
-                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-3.5 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                               </div>
                             </div>
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Password *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Password *</label>
                               <div className="relative group">
                                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -403,7 +443,7 @@ export default function RegisterModal() {
                                   placeholder="At least 6 characters"
                                   value={regFormData.password}
                                   onChange={(e) => setRegFormData({ ...regFormData, password: e.target.value })}
-                                  className="w-full pl-10 pr-10 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-10 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                                 <button
                                   type="button"
@@ -419,7 +459,7 @@ export default function RegisterModal() {
                             <button
                               type="submit"
                               disabled={isSubmittingReg}
-                              className="w-full py-2.5 sm:py-3 bg-brand-purple text-white rounded-xl font-bold text-xs sm:text-sm shadow-lg shadow-brand-purple/20 hover:bg-brand-purple-light hover:scale-[1.01] active:scale-[0.99] transition-all mt-2 sm:mt-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                              className="w-full py-2.5 sm:py-3 bg-brand-orange text-white rounded-xl font-semibold text-xs sm:text-sm shadow-lg shadow-brand-orange/25 hover:bg-brand-orange-dark hover:scale-[1.01] active:scale-[0.99] transition-all mt-2 sm:mt-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                             >
                               {isSubmittingReg ? (
                                 <>
@@ -436,7 +476,7 @@ export default function RegisterModal() {
                               <button
                                 type="button"
                                 onClick={() => { setAuthMode('login'); setRegError(''); }}
-                                className="text-brand-purple font-bold hover:text-brand-orange hover:underline cursor-pointer"
+                                className="text-brand-orange font-semibold hover:text-brand-orange-dark hover:underline cursor-pointer"
                               >
                                 Log in here
                               </button>
@@ -446,7 +486,7 @@ export default function RegisterModal() {
                       </>
                     ) : (
                       <>
-                        <h2 className="text-xl sm:text-2xl font-black text-brand-purple mb-1 font-heading">Welcome Back</h2>
+                        <h2 className="text-xl sm:text-2xl font-medium text-brand-purple mb-1 font-heading">Welcome Back</h2>
                         <p className="text-text-mid text-xs mb-4 sm:mb-5 font-sans">Enter your credentials to log in to your portal.</p>
 
                         {loginSuccess ? (
@@ -454,7 +494,7 @@ export default function RegisterModal() {
                             <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-2.5 shadow-md shadow-emerald-500/10">
                               <CheckCircle2 className="w-6 h-6" />
                             </div>
-                            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1">Login Successful!</h3>
+                            <h3 className="text-base sm:text-lg font-medium text-slate-900 mb-1">Login Successful!</h3>
                             <p className="text-xs text-slate-500">Connecting to your Ananya Tax portal...</p>
                           </div>
                         ) : (
@@ -466,7 +506,7 @@ export default function RegisterModal() {
                             )}
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Email Address *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Email Address *</label>
                               <div className="relative group">
                                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -475,13 +515,13 @@ export default function RegisterModal() {
                                   placeholder="john@example.com"
                                   value={loginFormData.email}
                                   onChange={(e) => setLoginFormData({ ...loginFormData, email: e.target.value })}
-                                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                               </div>
                             </div>
 
                             <div className="space-y-1">
-                              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Password *</label>
+                              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest ml-1">Password *</label>
                               <div className="relative group">
                                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-brand-purple transition-colors" />
                                 <input
@@ -490,7 +530,7 @@ export default function RegisterModal() {
                                   placeholder="Enter your password"
                                   value={loginFormData.password}
                                   onChange={(e) => setLoginFormData({ ...loginFormData, password: e.target.value })}
-                                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:bg-white focus:outline-none transition-all"
+                                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 focus:bg-white focus:outline-none transition-all"
                                 />
                                 <button
                                   type="button"
@@ -506,7 +546,7 @@ export default function RegisterModal() {
                             <button
                               type="submit"
                               disabled={isSubmittingLogin}
-                              className="w-full py-2.5 sm:py-3 bg-brand-orange text-white rounded-xl font-bold text-xs sm:text-sm shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark hover:scale-[1.01] active:scale-[0.99] transition-all mt-2 sm:mt-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                              className="w-full py-2.5 sm:py-3 bg-brand-purple text-white rounded-xl font-semibold text-xs sm:text-sm shadow-lg shadow-brand-purple/20 hover:bg-brand-purple-light hover:scale-[1.01] active:scale-[0.99] transition-all mt-2 sm:mt-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                             >
                               {isSubmittingLogin ? (
                                 <>
@@ -515,7 +555,7 @@ export default function RegisterModal() {
                                 </>
                               ) : (
                                 <>
-                                  <LogIn className="w-4 h-4" />
+                                  <LogIn className="w-4 h-4 text-brand-orange" />
                                   <span>Sign In to Portal</span>
                                 </>
                               )}
@@ -526,7 +566,7 @@ export default function RegisterModal() {
                               <button
                                 type="button"
                                 onClick={() => { setAuthMode('register'); setLoginError(''); }}
-                                className="text-brand-purple font-bold hover:text-brand-orange hover:underline cursor-pointer"
+                                className="text-brand-orange font-semibold hover:text-brand-orange-dark hover:underline cursor-pointer"
                               >
                                 Create an account
                               </button>

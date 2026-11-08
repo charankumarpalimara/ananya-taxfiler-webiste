@@ -58,7 +58,7 @@ export default function Process() {
             <span>THE ANANYA PROCESS</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading leading-[1.15] mb-4">
+          <h2 className="text-4xl sm:text-5xl font-medium tracking-tight font-heading leading-[1.15] mb-4">
             <span className="text-brand-primary">Your Financial Success in</span> <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary">
               4 Simple Steps.
@@ -81,7 +81,7 @@ export default function Process() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-primary/0 to-transparent group-hover:via-brand-primary transition-all duration-500" />
 
               {/* Step number watermark */}
-              <div className="absolute top-4 right-5 text-5xl font-black font-heading text-text-light/10 select-none group-hover:text-brand-primary/10 transition-colors">
+              <div className="absolute top-4 right-5 text-5xl font-medium font-heading text-text-light/10 select-none group-hover:text-brand-primary/10 transition-colors">
                 {step.number}
               </div>
 
@@ -92,12 +92,12 @@ export default function Process() {
                 </div>
 
                 {/* Step Badge */}
-                <div className="text-[11px] font-bold uppercase tracking-wider text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-2.5 py-0.5 rounded-full inline-block mb-3 font-heading">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-2.5 py-0.5 rounded-full inline-block mb-3 font-heading">
                   {step.tag}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-brand-dark mb-2.5 font-heading group-hover:text-brand-primary transition-colors leading-snug">
+                <h3 className="text-xl font-medium text-brand-dark mb-2.5 font-heading group-hover:text-brand-primary transition-colors leading-snug">
                   {step.title}
                 </h3>
 

@@ -104,11 +104,11 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
             Client Reviews & Feedback
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-4 text-brand-purple">
+          <h2 className="text-4xl md:text-5xl font-medium font-heading tracking-tight mb-4 text-brand-purple">
             What Our Clients{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary">
               Say About Us
@@ -120,7 +120,7 @@ export default function Testimonials() {
 
           {/* Trust Summary Banner */}
           <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-6 px-6 py-2.5 bg-brand-light border border-[#DCE6F2] rounded-full text-xs sm:text-sm text-text-dark font-medium shadow-sm">
-            <div className="flex items-center gap-1 text-amber-500 font-bold">
+            <div className="flex items-center gap-1 text-amber-500 font-semibold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
@@ -213,11 +213,11 @@ function TestimonialCard({ testimonial }) {
         <div className="flex items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-3">
             {/* Avatar Circle with Initials */}
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary text-white font-bold text-sm font-heading flex items-center justify-center shadow-md shadow-brand-primary/20 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary text-white font-semibold text-sm font-heading flex items-center justify-center shadow-md shadow-brand-primary/20 shrink-0">
               {testimonial.initials}
             </div>
             <div>
-              <h4 className="font-bold text-brand-purple font-heading text-base leading-snug group-hover:text-brand-secondary transition-colors">
+              <h4 className="font-medium text-brand-purple font-heading text-base leading-snug group-hover:text-brand-secondary transition-colors">
                 {testimonial.name}
               </h4>
               <p className="text-xs text-text-light font-sans">

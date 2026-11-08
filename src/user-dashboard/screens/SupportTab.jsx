@@ -43,12 +43,12 @@ export default function SupportTab() {
     {
       header: "Ticket ID",
       accessor: "id",
-      cellClassName: "font-mono font-bold text-brand-purple",
+      cellClassName: "font-mono font-semibold text-brand-purple",
     },
     {
       header: "Subject",
       accessor: "subject",
-      cellClassName: "font-bold text-slate-900",
+      cellClassName: "font-semibold text-slate-900",
     },
     {
       header: "Category",
@@ -68,7 +68,7 @@ export default function SupportTab() {
     {
       header: "Status",
       cell: (t) => (
-        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${t.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
+        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold ${t.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
           }`}>
           {t.status}
         </span>
@@ -80,12 +80,12 @@ export default function SupportTab() {
     <div className="space-y-8 font-sans">
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-black text-slate-900 font-heading">Customer Support & Ticketing</h2>
+          <h2 className="text-xl font-medium text-slate-900 font-heading">Customer Support & Ticketing</h2>
           <p className="text-xs text-slate-500 mt-1">Submit support tickets directly to your assigned tax representative or reach our support hotline.</p>
         </div>
 
         {msg.text && (
-          <div className={`p-4 rounded-2xl text-xs font-bold flex items-center gap-2 ${msg.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-red-50 text-red-700 border border-red-200"
+          <div className={`p-4 rounded-2xl text-xs font-semibold flex items-center gap-2 ${msg.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-red-50 text-red-700 border border-red-200"
             }`}>
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>{msg.text}</span>
@@ -99,8 +99,8 @@ export default function SupportTab() {
               <PhoneCall className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900">Direct Support Hotline</div>
-              <div className="text-sm font-black text-brand-purple font-mono mt-0.5">+1 (800) 555-TAX-HELP</div>
+              <div className="text-xs font-semibold text-slate-900">Direct Support Hotline</div>
+              <div className="text-sm font-semibold text-brand-purple font-mono mt-0.5">+1 (800) 555-TAX-HELP</div>
             </div>
           </div>
 
@@ -109,22 +109,22 @@ export default function SupportTab() {
               <Mail className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900">Dedicated Email Representative</div>
-              <div className="text-xs font-bold text-slate-600 mt-0.5">info@ananyataxco.com</div>
+              <div className="text-xs font-semibold text-slate-900">Dedicated Email Representative</div>
+              <div className="text-xs font-semibold text-slate-600 mt-0.5">info@ananyataxco.com</div>
             </div>
           </div>
         </div>
 
         {/* Submit Ticket Form */}
         <form onSubmit={handleSubmitTicket} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <h3 className="text-sm font-medium text-slate-900 flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-brand-purple" />
             <span>Create New Support Ticket</span>
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="text-xs font-bold text-slate-700">Subject</label>
+              <label className="text-xs font-semibold text-slate-700">Subject</label>
               <input
                 type="text"
                 value={subject}
@@ -135,7 +135,7 @@ export default function SupportTab() {
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-700">Category</label>
+              <label className="text-xs font-semibold text-slate-700">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -149,7 +149,7 @@ export default function SupportTab() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-bold text-slate-700">Priority Level</label>
+              <label className="text-xs font-semibold text-slate-700">Priority Level</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
@@ -162,7 +162,7 @@ export default function SupportTab() {
               </select>
             </div>
             <div className="sm:col-span-3">
-              <label className="text-xs font-bold text-slate-700">Detailed Message</label>
+              <label className="text-xs font-semibold text-slate-700">Detailed Message</label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -178,7 +178,7 @@ export default function SupportTab() {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2.5 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-2.5 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-semibold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               <span>Submit Ticket</span>
@@ -188,7 +188,7 @@ export default function SupportTab() {
 
         {/* Tickets List */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 border-b pb-2">My Support Tickets ({tickets.length})</h3>
+          <h3 className="text-sm font-medium text-slate-900 border-b pb-2">My Support Tickets ({tickets.length})</h3>
           <GlobalTable
             columns={columns}
             data={tickets}

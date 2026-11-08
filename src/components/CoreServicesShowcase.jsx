@@ -126,12 +126,12 @@ export default function CoreServicesShowcase() {
   const [showFlyerModal, setShowFlyerModal] = useState(false);
 
   return (
-    <section id="services-showcase" className="py-20 bg-slate-900 text-white relative overflow-hidden font-sans">
+    <section id="services-showcase" className="py-20 bg-gradient-to-b from-[#FDFBF7] via-[#FFFDF9] to-[#F7F4EB] text-slate-800 relative overflow-hidden font-sans border-y border-amber-200/60">
       {/* Background Glows & Architectural Lines */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange rounded-full blur-[160px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-500 rounded-full blur-[160px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[160px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[160px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -142,7 +142,7 @@ export default function CoreServicesShowcase() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-widest mb-4 font-heading"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-brand-accent text-xs font-semibold uppercase tracking-widest mb-4 font-heading shadow-xs"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>OUR CORE SERVICES</span>
@@ -153,10 +153,10 @@ export default function CoreServicesShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 font-heading leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-medium text-brand-primary tracking-tight mb-4 font-heading leading-tight"
           >
             Your Trusted Partner For <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-400 to-brand-gold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-amber-600 to-brand-primary">
               US Tax & Business Solutions
             </span>
           </motion.h2>
@@ -166,7 +166,7 @@ export default function CoreServicesShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-sans"
+            className="text-base sm:text-lg text-text-mid leading-relaxed max-w-2xl mx-auto font-sans"
           >
             We handle the numbers, you focus on growing your business. Explore our 6 specialized practice areas.
           </motion.p>
@@ -183,42 +183,42 @@ export default function CoreServicesShowcase() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-orange/50 rounded-3xl p-7 transition-all duration-300 flex flex-col justify-between group shadow-xl hover:shadow-brand-orange/10 hover:-translate-y-1 relative"
+                className="bg-white hover:bg-white border border-[#EAE4D5] hover:border-brand-accent/50 rounded-3xl p-7 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-xl hover:shadow-brand-accent/10 hover:-translate-y-1 relative"
               >
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-600 flex items-center justify-center text-white shadow-lg shadow-brand-orange/30 group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-brand-accent to-brand-gold-dark flex items-center justify-center text-white shadow-md shadow-brand-accent/25 group-hover:scale-105 transition-transform duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 bg-amber-400/10 border border-amber-400/25 px-3 py-1 rounded-full">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-gold-dark bg-amber-500/10 border border-amber-500/25 px-3 py-1 rounded-full">
                       {service.badge}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
                   <div className="mb-3">
-                    <div className="text-xs font-bold text-brand-orange uppercase tracking-widest font-heading mb-1">
+                    <div className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading mb-1">
                       {service.number} • Service
                     </div>
-                    <h3 className="text-xl font-extrabold text-white font-heading group-hover:text-brand-orange transition-colors">
+                    <h3 className="text-xl font-medium text-brand-primary font-heading group-hover:text-brand-accent transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-xs font-semibold text-amber-400/90 font-heading mt-0.5">
+                    <p className="text-xs font-semibold text-brand-accent/90 font-heading mt-0.5">
                       {service.subtitle}
                     </p>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-300 leading-relaxed mb-5">
+                  <p className="text-xs text-text-mid leading-relaxed mb-5">
                     {service.desc}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <ul className="space-y-2 border-t border-slate-700/60 pt-4 mb-6">
+                  <ul className="space-y-2 border-t border-[#EAE4D5] pt-4 mb-6">
                     {service.points.map((pt, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2 text-xs text-text-mid">
+                        <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -229,7 +229,7 @@ export default function CoreServicesShowcase() {
                 <div className="pt-2">
                   <Link
                     href={service.route}
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-700/60 hover:bg-brand-orange text-white text-xs font-bold font-heading uppercase tracking-wider transition-all duration-200 group-hover:shadow-md"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-primary/5 hover:bg-gradient-to-r hover:from-brand-accent hover:to-brand-gold-dark text-brand-primary hover:text-white border border-brand-primary/10 hover:border-transparent text-xs font-semibold font-heading uppercase tracking-wider transition-all duration-200 group-hover:shadow-md"
                   >
                     <span>View Service Scope</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -260,7 +260,7 @@ export default function CoreServicesShowcase() {
                   alt="Ananya Tax Co - Official Services Overview"
                   className="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-bold font-heading">
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold font-heading">
                   <Maximize2 className="w-4 h-4 text-brand-orange" />
                   <span>Click to Expand Poster</span>
                 </div>
@@ -276,15 +276,15 @@ export default function CoreServicesShowcase() {
      
              <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3 font-heading">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-brand-orange text-xs font-semibold uppercase tracking-wider mb-3 font-heading">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>Direct Senior Advisor Access</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-heading mb-2">
+                <h3 className="text-2xl sm:text-3xl font-medium text-white font-heading mb-2">
                   Annachi Pradeep
                 </h3>
-                <p className="text-amber-400 font-bold text-sm font-heading mb-4">
+                <p className="text-amber-400 font-semibold text-sm font-heading mb-4">
                   Senior US Tax & Business Solutions Specialist • Ananya Tax Co
                 </p>
 
@@ -302,8 +302,8 @@ export default function CoreServicesShowcase() {
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Direct Phone</div>
-                      <div className="text-xs font-bold text-white group-hover:text-brand-orange transition-colors">
+                      <div className="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Direct Phone</div>
+                      <div className="text-xs font-semibold text-white group-hover:text-brand-orange transition-colors">
                         +1 (331) 840-4241
                       </div>
                     </div>
@@ -317,8 +317,8 @@ export default function CoreServicesShowcase() {
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Official Email</div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors truncate max-w-[170px] sm:max-w-none">
+                      <div className="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Official Email</div>
+                      <div className="text-xs font-semibold text-white group-hover:text-amber-400 transition-colors truncate max-w-[170px] sm:max-w-none">
                         info@ananyataxco.com
                       </div>
                     </div>
@@ -330,13 +330,13 @@ export default function CoreServicesShowcase() {
               <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-800">
                 <Link
                   href="/contact"
-                  className="btn-orange !py-3.5 !px-8 text-sm font-bold rounded-2xl shadow-xl shadow-brand-orange/20 cursor-pointer"
+                  className="btn-orange !py-3.5 !px-8 text-sm font-semibold rounded-2xl shadow-xl shadow-brand-orange/20 cursor-pointer"
                 >
                   Book Your Free Consultation Today
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-bold font-heading transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-semibold font-heading transition-colors"
                 >
                   <span>Schedule Online Appointment</span>
                   <ArrowRight className="w-4 h-4" />

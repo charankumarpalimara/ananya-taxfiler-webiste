@@ -22,7 +22,7 @@ export default function Packages() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="section-tag-orange">Our Plans</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-purple mb-6 font-heading">Ananya Tax Packages</h2>
+          <h2 className="text-4xl md:text-5xl font-medium text-brand-purple mb-6 font-heading">Ananya Tax Packages</h2>
           <p className="text-lg text-text-mid font-sans">
             Tailored tax solutions for every business structure. Choose the plan that fits your growth.
           </p>
@@ -78,7 +78,7 @@ export default function Packages() {
           <p className="text-text-light text-sm italic font-sans">
             * Detailed tables for Bookkeeping and Payroll are available during consultation.
           </p>
-          <button className="bg-brand-purple text-white px-8 py-3 rounded-full font-bold hover:bg-brand-purple-dark transition-all hover:scale-105 shadow-lg shadow-brand-purple/20 font-sans">
+          <button className="bg-brand-purple text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-purple-dark transition-all hover:scale-105 shadow-lg shadow-brand-purple/20 font-sans">
             Download Full Price List
           </button>
         </div>

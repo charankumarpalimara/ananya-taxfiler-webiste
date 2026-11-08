@@ -1,5 +1,6 @@
 "use client";
 
+import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 import {
@@ -203,7 +204,15 @@ export default function Contact() {
       type: "consultation",
     };
 
-    // Direct Frontend Email Notification to Info@ananyataxco.com
+    // 1. Save directly to Express Backend API & MongoDB Atlas
+    try {
+      const res = await createSubmission(bookingPayload);
+      console.log("MongoDB Atlas Submission Saved:", res);
+    } catch (apiErr) {
+      console.error("Express Backend API Error:", apiErr);
+    }
+
+    // 2. Direct Frontend Email Notification to Info@ananyataxco.com
     try {
       if (GOOGLE_SHEET_WEBHOOK_URL) {
         fetch(GOOGLE_SHEET_WEBHOOK_URL, {
@@ -323,7 +332,7 @@ export default function Contact() {
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
               1-on-1 CPA Consultation
@@ -332,7 +341,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-purple mb-3 font-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-medium text-brand-purple mb-3 font-heading"
             >
               Book Your Appointment With <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent">
@@ -390,7 +399,7 @@ export default function Contact() {
                           }`}
                       >
                         <div
-                          className={`w-8 h-8 rounded-xl flex items-center justify-center font-bold text-xs transition-all duration-300 shadow-xs shrink-0 ${isCompleted
+                          className={`w-8 h-8 rounded-xl flex items-center justify-center font-semibold text-xs transition-all duration-300 shadow-xs shrink-0 ${isCompleted
                             ? "bg-emerald-500 text-white"
                             : isActive
                               ? "bg-brand-primary text-white ring-4 ring-brand-primary/15"
@@ -404,11 +413,11 @@ export default function Contact() {
                           )}
                         </div>
                         <div>
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-text-light">
+                          <p className="text-[10px] font-semibold uppercase tracking-wider text-text-light">
                             Step 0{step.id}
                           </p>
                           <p
-                            className={`text-xs sm:text-sm font-bold font-heading line-clamp-1 ${isActive ? "text-brand-purple" : "text-slate-600"
+                            className={`text-xs sm:text-sm font-semibold font-heading line-clamp-1 ${isActive ? "text-brand-purple" : "text-slate-600"
                               }`}
                           >
                             {step.title}
@@ -448,11 +457,11 @@ export default function Contact() {
                         <CheckCircle2 className="w-8 h-8 stroke-[2.2]" />
                       </div>
 
-                      <span className="inline-block px-3 py-0.5 bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider rounded-full mb-2">
+                      <span className="inline-block px-3 py-0.5 bg-emerald-100 text-emerald-800 text-[11px] font-semibold uppercase tracking-wider rounded-full mb-2">
                         Appointment Confirmed
                       </span>
 
-                      <h2 className="text-2xl font-bold text-brand-purple mb-2 font-heading">
+                      <h2 className="text-2xl font-medium text-brand-purple mb-2 font-heading">
                         Thank You, {formData.firstName}!
                       </h2>
 
@@ -465,7 +474,7 @@ export default function Contact() {
                       <div className="bg-slate-50 border border-[#DCE6F2] rounded-2xl p-4 max-w-md mx-auto text-left mb-6 space-y-2.5 text-xs">
                         <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                           <span className="text-text-light font-semibold uppercase tracking-wider">Date</span>
-                          <span className="font-bold text-brand-purple">
+                          <span className="font-semibold text-brand-purple">
                             {selectedDate.toLocaleDateString("en-US", {
                               weekday: "short",
                               month: "short",
@@ -476,13 +485,13 @@ export default function Contact() {
                         </div>
                         <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                           <span className="text-text-light font-semibold uppercase tracking-wider">Time</span>
-                          <span className="font-bold text-brand-secondary bg-brand-secondary/10 px-2 py-0.5 rounded-md">
+                          <span className="font-semibold text-brand-secondary bg-brand-secondary/10 px-2 py-0.5 rounded-md">
                             {selectedTime} CST
                           </span>
                         </div>
                         <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                           <span className="text-text-light font-semibold uppercase tracking-wider">Client</span>
-                          <span className="font-bold text-slate-800">
+                          <span className="font-semibold text-slate-800">
                             {formData.firstName} {formData.lastName}
                           </span>
                         </div>
@@ -498,13 +507,13 @@ export default function Contact() {
                         <button
                           type="button"
                           onClick={handleReset}
-                          className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-primary text-white font-bold text-xs shadow-md hover:bg-brand-primary/90 transition-all cursor-pointer"
+                          className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-primary text-white font-semibold text-xs shadow-md hover:bg-brand-primary/90 transition-all cursor-pointer"
                         >
                           Book Another Appointment
                         </button>
                         <a
                           href="tel:+13318404241"
-                          className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition-all text-center"
+                          className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs hover:bg-slate-200 transition-all text-center"
                         >
                           Call Us Directly
                         </a>
@@ -522,7 +531,7 @@ export default function Contact() {
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <h2 className="text-lg sm:text-xl font-black text-brand-purple font-heading">
+                          <h2 className="text-lg sm:text-xl font-medium text-brand-purple font-heading">
                             {!isDateConfirmed ? "Select Date" : "Select Time Slot"}
                           </h2>
                           <p className="text-text-mid text-xs mt-0.5 font-sans">
@@ -549,7 +558,7 @@ export default function Contact() {
                             <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200">
                               <div className="flex items-center gap-2">
                                 <Calendar className="w-3.5 h-3.5 text-brand-primary" />
-                                <span className="text-xs sm:text-sm font-bold text-brand-purple">
+                                <span className="text-xs sm:text-sm font-semibold text-brand-purple">
                                   {monthNames[calendarDate.getMonth()]} {calendarDate.getFullYear()}
                                 </span>
                               </div>
@@ -578,7 +587,7 @@ export default function Contact() {
                               {dayNames.map((d) => (
                                 <div
                                   key={d}
-                                  className="text-[10px] font-bold uppercase tracking-wider text-slate-400 py-0.5"
+                                  className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 py-0.5"
                                 >
                                   {d}
                                 </div>
@@ -605,9 +614,9 @@ export default function Contact() {
                                     className={`w-8 h-8 sm:w-9 sm:h-9 mx-auto rounded-lg text-xs font-semibold transition-all duration-150 flex items-center justify-center cursor-pointer ${past
                                       ? "text-slate-300 opacity-30 cursor-not-allowed pointer-events-none"
                                       : isSelected
-                                        ? "bg-brand-primary text-white shadow-sm shadow-brand-primary/30 font-bold scale-105"
+                                        ? "bg-brand-primary text-white shadow-sm shadow-brand-primary/30 font-semibold scale-105"
                                         : isToday
-                                          ? "bg-brand-primary/10 text-brand-primary border border-brand-primary/30 font-bold"
+                                          ? "bg-brand-primary/10 text-brand-primary border border-brand-primary/30 font-semibold"
                                           : item.currentMonth
                                             ? "text-slate-700 hover:bg-white hover:shadow-xs"
                                             : "text-slate-300 pointer-events-none"
@@ -645,10 +654,10 @@ export default function Contact() {
                                 <Calendar className="w-5 h-5" />
                               </div>
                               <div>
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">
                                   Selected Date
                                 </span>
-                                <span className="text-sm font-bold text-brand-purple">
+                                <span className="text-sm font-semibold text-brand-purple">
                                   {selectedDate.toLocaleDateString("en-US", {
                                     weekday: "long",
                                     month: "short",
@@ -662,7 +671,7 @@ export default function Contact() {
                             <button
                               type="button"
                               onClick={() => setIsDateConfirmed(false)}
-                              className="text-xs font-bold text-brand-secondary hover:text-brand-primary hover:underline px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-brand-secondary/40 transition-all cursor-pointer"
+                              className="text-xs font-semibold text-brand-secondary hover:text-brand-primary hover:underline px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-brand-secondary/40 transition-all cursor-pointer"
                             >
                               Change Date
                             </button>
@@ -670,7 +679,7 @@ export default function Contact() {
 
                           {/* Exactly 3 Time Slots */}
                           <div className="bg-brand-primary/5 border border-brand-primary/15 rounded-2xl p-5 font-sans">
-                            <label className="block text-xs font-bold text-brand-purple uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <label className="block text-xs font-semibold text-brand-purple uppercase tracking-wider mb-3 flex items-center gap-2">
                               <Clock className="w-4 h-4 text-brand-primary" />
                               Select One Time Slot (Central Time)
                             </label>
@@ -686,12 +695,12 @@ export default function Contact() {
                                       setSelectedTime(time);
                                       if (errors.time) setErrors((prev) => ({ ...prev, time: "" }));
                                     }}
-                                    className={`py-3.5 px-2 rounded-xl text-xs font-bold transition-all border cursor-pointer text-center flex flex-col items-center justify-center gap-1 ${isSelected
+                                    className={`py-3.5 px-2 rounded-xl text-xs font-semibold transition-all border cursor-pointer text-center flex flex-col items-center justify-center gap-1 ${isSelected
                                       ? "bg-brand-secondary text-white border-brand-secondary shadow-md shadow-brand-secondary/20 scale-102"
                                       : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
                                       }`}
                                   >
-                                    <span className="text-xs sm:text-sm font-bold">{time}</span>
+                                    <span className="text-xs sm:text-sm font-semibold">{time}</span>
                                     <span
                                       className={`text-[10px] font-medium uppercase tracking-wider ${isSelected ? "text-white/85" : "text-slate-400"
                                         }`}
@@ -713,7 +722,7 @@ export default function Contact() {
                             <button
                               type="button"
                               onClick={handleContinueToForm}
-                              className="w-full py-3.5 px-6 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-bold text-sm rounded-xl shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                              className="w-full py-3.5 px-6 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold text-sm rounded-xl shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
                             >
                               <span>Continue to Your Information</span>
                               <ArrowRight className="w-4 h-4" />
@@ -734,7 +743,7 @@ export default function Contact() {
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <h2 className="text-lg sm:text-xl font-black text-brand-purple font-heading">
+                          <h2 className="text-lg sm:text-xl font-medium text-brand-purple font-heading">
                             Enter Your Information
                           </h2>
                           <p className="text-text-mid text-xs mt-0.5 font-sans">
@@ -762,7 +771,7 @@ export default function Contact() {
                         <button
                           type="button"
                           onClick={handleBackToCalendar}
-                          className="text-[11px] font-bold text-brand-secondary hover:underline cursor-pointer"
+                          className="text-[11px] font-semibold text-brand-secondary hover:underline cursor-pointer"
                         >
                           Change Slot
                         </button>
@@ -772,8 +781,8 @@ export default function Contact() {
                         {/* Name Fields */}
                         <div className="grid sm:grid-cols-2 gap-3.5">
                           <div>
-                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
-                              First Name <span className="text-brand-accent font-bold">*</span>
+                            <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                              First Name <span className="text-brand-accent font-semibold">*</span>
                             </label>
                             <div className="relative">
                               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
@@ -797,8 +806,8 @@ export default function Contact() {
                           </div>
 
                           <div>
-                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
-                              Last Name <span className="text-brand-accent font-bold">*</span>
+                            <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                              Last Name <span className="text-brand-accent font-semibold">*</span>
                             </label>
                             <div className="relative">
                               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
@@ -825,8 +834,8 @@ export default function Contact() {
                         {/* Email & Phone */}
                         <div className="grid sm:grid-cols-2 gap-3.5">
                           <div>
-                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
-                              Email Address <span className="text-brand-accent font-bold">*</span>
+                            <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                              Email Address <span className="text-brand-accent font-semibold">*</span>
                             </label>
                             <div className="relative">
                               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
@@ -850,8 +859,8 @@ export default function Contact() {
                           </div>
 
                           <div>
-                            <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
-                              Phone Number <span className="text-brand-accent font-bold">*</span>
+                            <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                              Phone Number <span className="text-brand-accent font-semibold">*</span>
                             </label>
                             <div className="relative">
                               <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
@@ -879,7 +888,7 @@ export default function Contact() {
 
                         {/* Preferred Language */}
                         {/* <div>
-                          <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                          <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <Globe className="w-3.5 h-3.5 text-brand-primary" />
                             Preferred Language
                           </label>
@@ -911,8 +920,8 @@ export default function Contact() {
 
                         {/* Services Grid */}
                         <div>
-                          <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">
-                            Services Needed: <span className="text-brand-accent font-bold">*</span>
+                          <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                            Services Needed: <span className="text-brand-accent font-semibold">*</span>
                           </label>
                           <div className="grid sm:grid-cols-2 gap-2">
                             {servicesList.map((service) => {
@@ -925,7 +934,7 @@ export default function Contact() {
                                     if (errors.services) setErrors({ ...errors, services: "" });
                                   }}
                                   className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-all select-none ${isChecked
-                                    ? "bg-brand-primary/5 border-brand-primary text-brand-primary font-bold shadow-xs"
+                                    ? "bg-brand-primary/5 border-brand-primary text-brand-primary font-semibold shadow-xs"
                                     : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
                                     }`}
                                 >
@@ -949,9 +958,9 @@ export default function Contact() {
 
                         {/* How did you find us */}
                         <div>
-                          <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                          <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                             <HelpCircle className="w-3.5 h-3.5 text-brand-secondary" />
-                            How did you find us? <span className="text-brand-accent font-bold">*</span>
+                            How did you find us? <span className="text-brand-accent font-semibold">*</span>
                           </label>
                           <div className="relative">
                             <select
@@ -978,7 +987,7 @@ export default function Contact() {
 
                         {/* Optional Notes */}
                         <div>
-                          <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                             Additional Notes (Optional)
                           </label>
                           <textarea
@@ -996,7 +1005,7 @@ export default function Contact() {
                             type="button"
                             onClick={handleBackToCalendar}
                             disabled={isSubmitting}
-                            className="px-4 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                            className="px-4 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-xs hover:bg-slate-50 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                           >
                             <ArrowLeft className="w-3.5 h-3.5" />
                             <span>Back</span>
@@ -1004,7 +1013,7 @@ export default function Contact() {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="flex-1 py-3 px-5 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
+                            className="flex-1 py-3 px-5 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent text-white font-semibold text-xs sm:text-sm rounded-xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
                           >
                             {isSubmitting ? (
                               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -1057,7 +1066,7 @@ export default function Contact() {
                     className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-xl border border-slate-200/80 shadow-md flex items-center gap-1.5"
                   >
                     <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    <span className="text-[11px] font-bold text-brand-purple">5.0 Star CPA Advisory</span>
+                    <span className="text-[11px] font-semibold text-brand-purple">5.0 Star CPA Advisory</span>
                   </motion.div>
 
                   {/* Floating Micro-Badge Bottom Right: Response time */}
@@ -1068,7 +1077,7 @@ export default function Contact() {
                     className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-xl border border-slate-200/80 shadow-md flex items-center gap-1.5"
                   >
                     <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-                    <span className="text-[11px] font-bold text-brand-purple">2-Hour Fast Reply</span>
+                    <span className="text-[11px] font-semibold text-brand-purple">2-Hour Fast Reply</span>
                   </motion.div>
                 </div>
 
@@ -1076,7 +1085,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-1">
                     <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                    <h3 className="text-base font-bold text-brand-purple font-heading">
+                    <h3 className="text-base font-medium text-brand-purple font-heading">
                       Certified &amp; Texas-Licensed CPAs
                     </h3>
                   </div>
@@ -1095,8 +1104,8 @@ export default function Contact() {
                       <Phone className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Direct Phone</p>
-                      <p className="text-xs font-bold text-brand-purple">+1 (331) 840-4241</p>
+                      <p className="text-[9px] font-semibold uppercase tracking-wider text-slate-400">Direct Phone</p>
+                      <p className="text-xs font-semibold text-brand-purple">+1 (331) 840-4241</p>
                     </div>
                   </a>
 
@@ -1108,8 +1117,8 @@ export default function Contact() {
                       <Mail className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Official Email</p>
-                      <p className="text-xs font-bold text-brand-purple truncate max-w-[160px] sm:max-w-none">
+                      <p className="text-[9px] font-semibold uppercase tracking-wider text-slate-400">Official Email</p>
+                      <p className="text-xs font-semibold text-brand-purple truncate max-w-[160px] sm:max-w-none">
                         info@ananyataxco.com
                       </p>
                     </div>
@@ -1130,7 +1139,7 @@ export default function Contact() {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-purple text-xs sm:text-sm font-heading">
+                  <h4 className="font-medium text-brand-purple text-xs sm:text-sm font-heading">
                     Montgomery Headquarters
                   </h4>
                   <p className="text-text-mid text-xs font-sans mt-0.5 leading-snug">
@@ -1143,20 +1152,20 @@ export default function Contact() {
               <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
                 <div className="flex items-center gap-1.5 mb-2">
                   <Clock className="w-3.5 h-3.5 text-brand-secondary" />
-                  <span className="text-xs font-bold text-brand-purple font-heading">Business Hours (CST)</span>
+                  <span className="text-xs font-semibold text-brand-purple font-heading">Business Hours (CST)</span>
                 </div>
                 <div className="space-y-1 text-xs text-text-mid font-sans">
                   <div className="flex justify-between">
                     <span>Monday – Friday</span>
-                    <span className="font-bold text-slate-800">9:00 AM – 6:00 PM</span>
+                    <span className="font-semibold text-slate-800">9:00 AM – 6:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Saturday</span>
-                    <span className="font-bold text-slate-800">By Appointment</span>
+                    <span className="font-semibold text-slate-800">By Appointment</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Sunday</span>
-                    <span className="text-rose-500 font-bold">Closed</span>
+                    <span className="text-rose-500 font-semibold">Closed</span>
                   </div>
                 </div>
               </div>
@@ -1170,7 +1179,7 @@ export default function Contact() {
       {/* ── Social Media Channels ────────────────────────────── */}
       <section className="mt-16 pt-10 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="text-base font-bold text-brand-purple mb-5 font-heading">
+          <h3 className="text-base font-medium text-brand-purple mb-5 font-heading">
             Connect With Us Online
           </h3>
           <div className="flex justify-center gap-3.5">

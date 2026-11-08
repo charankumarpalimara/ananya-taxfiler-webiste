@@ -19,10 +19,10 @@ export default function FilingStatusTab() {
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-black text-slate-900 font-heading">Filing Status Tracker</h2>
+            <h2 className="text-xl font-medium text-slate-900 font-heading">Filing Status Tracker</h2>
             <p className="text-xs text-slate-500 mt-1">Tax Year 2024 Return - Real-time progress timeline & stage verification.</p>
           </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-50 text-amber-800 border border-amber-200 font-bold text-xs">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-xs">
             <Clock className="w-4 h-4 animate-spin text-amber-600" />
             <span>Current Stage: Admin Contact Scheduled</span>
           </div>
@@ -30,7 +30,7 @@ export default function FilingStatusTab() {
 
         {/* Percentage Bar */}
         <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-          <div className="flex items-center justify-between text-xs font-bold">
+          <div className="flex items-center justify-between text-xs font-semibold">
             <span className="text-slate-700">Filing Completion Progress</span>
             <span className="text-brand-purple">{percentage}% Completed</span>
           </div>
@@ -53,7 +53,7 @@ export default function FilingStatusTab() {
             const isInProgress = s.status === 'in-progress';
             return (
               <div key={s.step} className="relative group">
-                <div className={`absolute -left-6 sm:-left-8 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs shadow-md transition-all ${
+                <div className={`absolute -left-6 sm:-left-8 top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-semibold text-xs shadow-md transition-all ${
                   isCompleted
                     ? "bg-emerald-500 text-white"
                     : isInProgress
@@ -71,7 +71,7 @@ export default function FilingStatusTab() {
                     : "bg-slate-50/50 border-slate-100 text-slate-400"
                 }`}>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <h3 className="font-bold text-sm text-slate-900">{s.title}</h3>
+                    <h3 className="font-medium text-sm text-slate-900">{s.title}</h3>
                     <span className="text-[11px] font-semibold text-slate-400">{s.date}</span>
                   </div>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">{s.desc}</p>

@@ -91,7 +91,7 @@ export default function SideBar() {
 
       {/* Floating CTA Text */}
       <div className="absolute right-full top-1/2 -translate-y-1/2 pr-4 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none translate-x-4 group-hover:translate-x-0">
-        <div className="bg-brand-purple text-white text-sm font-bold py-2 px-4 rounded-xl shadow-lg whitespace-nowrap font-sans">
+        <div className="bg-brand-purple text-white text-sm font-semibold py-2 px-4 rounded-xl shadow-lg whitespace-nowrap font-sans">
           Need Help?
         </div>
       </div>

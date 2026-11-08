@@ -47,8 +47,8 @@ export const metadata = {
   creator: "Ananya Tax Co",
   publisher: "Ananya Tax Co",
   icons: {
-    icon: "/new-logo.jpeg",
-    apple: "/new-logo.jpeg",
+    icon: "/latest-logo.jpeg",
+    apple: "/latest-logo.jpeg",
   },
   openGraph: {
     title: "Ananya Tax Co | Professional Bookkeeping, Payroll & Tax Services",
@@ -58,9 +58,9 @@ export const metadata = {
     siteName: "Ananya Tax Co",
     images: [
       {
-        url: "/new-logo.jpeg",
-        width: 1254,
-        height: 1254,
+        url: "/latest-logo.jpeg",
+        width: 1024,
+        height: 1024,
         alt: "Ananya Tax Co Logo",
       },
     ],
@@ -72,7 +72,7 @@ export const metadata = {
     title: "Ananya Tax Co | Professional Bookkeeping, Payroll & Tax Services",
     description:
       "Expert tax filing, bookkeeping, and payroll services backed by experienced CPAs and tax professionals.",
-    images: ["/new-logo.jpeg"],
+    images: ["/latest-logo.jpeg"],
   },
 };
 
@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
     "@type": "AccountingService",
     name: "Ananya Tax Co",
     url: "https://ananyataxco.com",
-    logo: "https://ananyataxco.com/new-logo.jpeg",
+    logo: "https://ananyataxco.com/latest-logo.jpeg",
     description:
       "Ananya Tax Co provides trusted CPA tax preparation, bookkeeping, payroll, and strategic consulting for businesses and individuals.",
     priceRange: "$$",

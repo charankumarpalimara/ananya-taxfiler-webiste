@@ -20,12 +20,12 @@ export default function FinalReportsTab() {
     {
       header: "Tax Year",
       accessor: "year",
-      cellClassName: "font-black text-brand-purple",
+      cellClassName: "font-semibold text-brand-purple",
     },
     {
       header: "Document / Return Type",
       cell: (r) => (
-        <div className="font-bold text-slate-900 flex items-center gap-2">
+        <div className="font-semibold text-slate-900 flex items-center gap-2">
           <FileText className="w-4 h-4 text-brand-orange shrink-0" />
           <span>{r.type}</span>
         </div>
@@ -39,7 +39,7 @@ export default function FinalReportsTab() {
     {
       header: "Status",
       cell: (r) => (
-        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold ${
           r.status === 'Filed & Accepted' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
         }`}>
           {r.status}
@@ -57,7 +57,7 @@ export default function FinalReportsTab() {
       cell: (r) => (
         <button
           onClick={() => handleDownloadReport(r.type, r.year)}
-          className="px-3.5 py-1.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 ml-auto cursor-pointer"
+          className="px-3.5 py-1.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold text-xs shadow-md transition-all flex items-center gap-1.5 ml-auto cursor-pointer"
         >
           <Download className="w-3.5 h-3.5" />
           <span>Download PDF</span>
@@ -70,7 +70,7 @@ export default function FinalReportsTab() {
     <div className="space-y-8 font-sans">
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-black text-slate-900 font-heading">Final Tax Reports & Filings</h2>
+          <h2 className="text-xl font-medium text-slate-900 font-heading">Final Tax Reports & Filings</h2>
           <p className="text-xs text-slate-500 mt-1">Access and download finalized IRS Form 1040s, State Returns, and Audit Protection copies.</p>
         </div>
 

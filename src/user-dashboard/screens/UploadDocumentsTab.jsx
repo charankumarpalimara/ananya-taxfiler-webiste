@@ -93,12 +93,12 @@ export default function UploadDocumentsTab() {
     <div className="space-y-8 font-sans">
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-black text-slate-900 font-heading">Upload Documents Center</h2>
+          <h2 className="text-xl font-medium text-slate-900 font-heading">Upload Documents Center</h2>
           <p className="text-xs text-slate-500 mt-1">Upload W-2s, 1099s, 1098s, and identification files securely for tax preparation.</p>
         </div>
 
         {msg.text && (
-          <div className={`p-4 rounded-2xl text-xs font-bold flex items-center gap-2 ${
+          <div className={`p-4 rounded-2xl text-xs font-semibold flex items-center gap-2 ${
             msg.type === "success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-red-50 text-red-700 border border-red-200"
           }`}>
             <CheckCircle2 className="w-4 h-4 shrink-0" />
@@ -110,7 +110,7 @@ export default function UploadDocumentsTab() {
         <form onSubmit={handleUpload} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-bold text-slate-700">Document Type Category</label>
+              <label className="text-xs font-semibold text-slate-700">Document Type Category</label>
               <select
                 value={docType}
                 onChange={(e) => setDocType(e.target.value)}
@@ -123,7 +123,7 @@ export default function UploadDocumentsTab() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700">Person Assignment</label>
+              <label className="text-xs font-semibold text-slate-700">Person Assignment</label>
               <select
                 value={person}
                 onChange={(e) => setPerson(e.target.value)}
@@ -137,7 +137,7 @@ export default function UploadDocumentsTab() {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700">Select File (PDF, PNG, JPG)</label>
+            <label className="text-xs font-semibold text-slate-700">Select File (PDF, PNG, JPG)</label>
             <div className="mt-1.5 flex items-center justify-center p-6 border-2 border-dashed border-slate-300 rounded-2xl bg-white hover:border-brand-orange transition-colors">
               <div className="text-center space-y-2">
                 <UploadCloud className="w-8 h-8 text-brand-orange mx-auto" />
@@ -145,10 +145,10 @@ export default function UploadDocumentsTab() {
                   type="file"
                   accept="application/pdf,image/*"
                   onChange={(e) => setFile(e.target.files[0])}
-                  className="text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-orange file:text-white cursor-pointer"
+                  className="text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-orange file:text-white cursor-pointer"
                 />
                 {file && (
-                  <p className="text-xs font-bold text-brand-purple mt-2">
+                  <p className="text-xs font-semibold text-brand-purple mt-2">
                     Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
                   </p>
                 )}
@@ -160,7 +160,7 @@ export default function UploadDocumentsTab() {
             <button
               type="submit"
               disabled={loading || !file}
-              className="px-6 py-3 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-bold text-xs shadow-lg shadow-brand-orange/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-6 py-3 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-semibold text-xs shadow-lg shadow-brand-orange/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
               <span>Upload Document</span>
@@ -170,7 +170,7 @@ export default function UploadDocumentsTab() {
 
         {/* Uploaded Documents List */}
         <div className="space-y-4">
-          <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 border-b pb-2">
+          <h3 className="text-sm font-medium text-slate-900 flex items-center gap-2 border-b pb-2">
             <FileCheck className="w-4 h-4 text-emerald-500" />
             <span>Uploaded Tax Files ({documentList.length})</span>
           </h3>
@@ -186,9 +186,9 @@ export default function UploadDocumentsTab() {
                       <FileText className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-slate-900 truncate max-w-[200px]">{doc.fileName}</div>
+                      <div className="text-xs font-semibold text-slate-900 truncate max-w-[200px]">{doc.fileName}</div>
                       <div className="text-[10px] text-slate-500 font-medium">
-                        {doc.documentType} • <span className="text-brand-purple font-bold">{doc.person}</span>
+                        {doc.documentType} • <span className="text-brand-purple font-semibold">{doc.person}</span>
                       </div>
                     </div>
                   </div>

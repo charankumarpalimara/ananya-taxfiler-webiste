@@ -29,13 +29,13 @@ export default function NotificationsTab() {
             <div className="relative">
               <Bell className="w-6 h-6 text-brand-orange" />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white font-bold text-[10px] flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white font-semibold text-[10px] flex items-center justify-center">
                   {unreadCount}
                 </span>
               )}
             </div>
             <div>
-              <h2 className="text-xl font-black text-slate-900 font-heading">Notifications & Activity Stream</h2>
+              <h2 className="text-xl font-medium text-slate-900 font-heading">Notifications & Activity Stream</h2>
               <p className="text-xs text-slate-500 mt-0.5">Stay updated on document verification, filing alerts, and reward notices.</p>
             </div>
           </div>
@@ -43,13 +43,13 @@ export default function NotificationsTab() {
           <div className="flex items-center gap-2">
             <button
               onClick={markAllRead}
-              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-all cursor-pointer"
             >
               Mark All Read
             </button>
             <button
               onClick={clearAll}
-              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-red-600 font-bold text-xs transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-red-50 text-red-600 font-semibold text-xs transition-all cursor-pointer"
             >
               Clear All
             </button>
@@ -79,7 +79,7 @@ export default function NotificationsTab() {
                   )}
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-slate-900">{n.title}</span>
+                      <span className="text-xs font-semibold text-slate-900">{n.title}</span>
                       {n.unread && (
                         <span className="w-2 h-2 rounded-full bg-brand-orange" />
                       )}

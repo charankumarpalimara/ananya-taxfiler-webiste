@@ -45,9 +45,9 @@ export default function GlobalPagination({
       {/* Items Range Summary & Page Size Selector */}
       <div className="flex items-center gap-4">
         <span>
-          Showing <b className="text-slate-900 font-bold">{startItem}</b> to{' '}
-          <b className="text-slate-900 font-bold">{endItem}</b> of{' '}
-          <b className="text-slate-900 font-bold">{totalItems}</b> records
+          Showing <span className="text-slate-900 font-semibold">{startItem}</span> to{' '}
+          <span className="text-slate-900 font-semibold">{endItem}</span> of{' '}
+          <span className="text-slate-900 font-semibold">{totalItems}</span> records
         </span>
 
         {onPageSizeChange && (
@@ -56,7 +56,7 @@ export default function GlobalPagination({
             <select
               value={pageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
-              className="px-2 py-1 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-purple/20 cursor-pointer"
+              className="px-2 py-1 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-purple/20 cursor-pointer"
             >
               {pageSizeOptions.map((size) => (
                 <option key={size} value={size}>
@@ -87,7 +87,7 @@ export default function GlobalPagination({
                 key={idx}
                 onClick={() => onPageChange && onPageChange(page)}
                 type="button"
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   currentPage === page
                     ? 'bg-brand-purple text-white shadow-xs'
                     : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
@@ -96,7 +96,7 @@ export default function GlobalPagination({
                 {page}
               </button>
             ) : (
-              <span key={idx} className="px-1.5 text-slate-400 font-bold">
+              <span key={idx} className="px-1.5 text-slate-400 font-semibold">
                 ...
               </span>
             )

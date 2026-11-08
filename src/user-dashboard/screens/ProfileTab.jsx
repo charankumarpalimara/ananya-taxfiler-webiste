@@ -58,12 +58,12 @@ export default function ProfileTab({ user, onProfileUpdated }) {
     <div className="max-w-4xl mx-auto space-y-8 font-sans">
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-black text-slate-900 font-heading">User Profile Settings</h2>
+          <h2 className="text-xl font-medium text-slate-900 font-heading">User Profile Settings</h2>
           <p className="text-xs text-slate-500 mt-1">Manage your personal identification, contact details, avatar, and referral code.</p>
         </div>
 
         {msg.text && (
-          <div className={`p-4 rounded-2xl text-xs font-bold flex items-center gap-2 ${
+          <div className={`p-4 rounded-2xl text-xs font-semibold flex items-center gap-2 ${
             msg.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-red-50 text-red-700 border border-red-200'
           }`}>
             <CheckCircle2 className="w-4 h-4 shrink-0" />
@@ -75,7 +75,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
           {/* Avatar Section */}
           <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
             <div className="relative group">
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-brand-purple text-white font-black text-2xl flex items-center justify-center font-heading border-4 border-white shadow-md">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-brand-purple text-white font-semibold text-2xl flex items-center justify-center font-heading border-4 border-white shadow-md">
                 {previewUrl ? (
                   <img src={previewUrl} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
@@ -89,12 +89,12 @@ export default function ProfileTab({ user, onProfileUpdated }) {
             </div>
 
             <div className="text-center sm:text-left space-y-1">
-              <h3 className="text-lg font-bold text-slate-900">{form.name || 'Taxpayer'}</h3>
+              <h3 className="text-lg font-medium text-slate-900">{form.name || 'Taxpayer'}</h3>
               <p className="text-xs text-slate-500 flex items-center justify-center sm:justify-start gap-1">
                 <Mail className="w-3.5 h-3.5 text-brand-purple" />
                 <span>{user?.email}</span>
               </p>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold mt-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-semibold mt-2">
                 <ShieldCheck className="w-3.5 h-3.5" /> Verified Client Account
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
           {/* Form Fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5 text-brand-orange" />
                 <span>Full Name</span>
               </label>
@@ -118,7 +118,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-brand-orange" />
                 <span>Mobile Phone</span>
               </label>
@@ -132,7 +132,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
             </div>
 
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-brand-orange" />
                 <span>Street Address</span>
               </label>
@@ -146,7 +146,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
             </div>
 
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                 <Share2 className="w-3.5 h-3.5 text-brand-orange" />
                 <span>Unique Referral ID Code</span>
               </label>
@@ -154,7 +154,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
                 type="text"
                 value={form.referralId}
                 readOnly
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-mono font-bold text-brand-purple cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-mono font-semibold text-brand-purple cursor-not-allowed"
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function ProfileTab({ user, onProfileUpdated }) {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-3 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-bold text-xs shadow-lg shadow-brand-orange/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-6 py-3 bg-brand-orange hover:bg-brand-orange-dark text-white rounded-xl font-semibold text-xs shadow-lg shadow-brand-orange/20 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               <span>{loading ? 'Saving Profile...' : 'Save Profile Settings'}</span>

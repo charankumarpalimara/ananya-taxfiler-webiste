@@ -48,7 +48,7 @@ export async function generateMetadata({ params }) {
       title: `${service.title} | Ananya Tax Co`,
       description: service.shortDesc,
       url: `https://ananyataxco.com/services/${service.id}`,
-      images: [service.image || "/new-logo.jpeg"],
+      images: [service.image || "/latest-logo.jpeg"],
     },
   };
 }

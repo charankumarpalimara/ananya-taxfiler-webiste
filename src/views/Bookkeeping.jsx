@@ -109,13 +109,13 @@ export default function Bookkeeping() {
               className="lg:col-span-7 text-center lg:text-left"
             >
               {/* Section Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-6 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-6 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
                 <span>Accurate & Real-Time Bookkeeping</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-purple tracking-tight mb-6 leading-[1.12] font-heading">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-brand-purple tracking-tight mb-6 leading-[1.12] font-heading">
                 Crystal-Clear Books,{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary">
                   Zero Tax Surprises
@@ -131,7 +131,7 @@ export default function Bookkeeping() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
                 >
                   Schedule Free Bookkeeping Review
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -175,18 +175,18 @@ export default function Bookkeeping() {
                 {/* Header of Command Center */}
                 <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#DCE6F2]">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-bold text-sm shadow-md shadow-brand-primary/20">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center text-white font-semibold text-sm shadow-md shadow-brand-primary/20">
                       <PieChart className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm text-brand-purple font-heading leading-tight">Financial Command Hub</h3>
+                      <h3 className="font-medium text-sm text-brand-purple font-heading leading-tight">Financial Command Hub</h3>
                       <p className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         Live Synchronized & Reconciled
                       </p>
                     </div>
                   </div>
-                  <span className="text-[11px] font-bold text-brand-primary bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">
+                  <span className="text-[11px] font-semibold text-brand-primary bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-1 rounded-full">
                     Q3 2024
                   </span>
                 </div>
@@ -194,22 +194,22 @@ export default function Bookkeeping() {
                 {/* KPI Metrics Cards */}
                 <div className="grid grid-cols-2 gap-3 mb-5">
                   <div className="p-3.5 bg-brand-light border border-[#DCE6F2] rounded-2xl">
-                    <span className="text-[10px] font-bold text-text-light uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-semibold text-text-light uppercase tracking-wider block mb-1">
                       Net Monthly Profit
                     </span>
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-xl font-extrabold text-brand-purple font-heading">$48,290</span>
-                      <span className="text-[11px] font-bold text-emerald-600 flex items-center">
+                      <span className="text-xl font-semibold text-brand-purple font-heading">$48,290</span>
+                      <span className="text-[11px] font-semibold text-emerald-600 flex items-center">
                         <ArrowUpRight className="w-3 h-3" /> +28.4%
                       </span>
                     </div>
                   </div>
                   <div className="p-3.5 bg-brand-light border border-[#DCE6F2] rounded-2xl">
-                    <span className="text-[10px] font-bold text-text-light uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] font-semibold text-text-light uppercase tracking-wider block mb-1">
                       Reconciliation
                     </span>
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-xl font-extrabold text-brand-accent font-heading">100%</span>
+                      <span className="text-xl font-semibold text-brand-accent font-heading">100%</span>
                       <span className="text-[11px] font-medium text-text-mid">Clean</span>
                     </div>
                   </div>
@@ -217,7 +217,7 @@ export default function Bookkeeping() {
 
                 {/* Live Transactions Feed */}
                 <div className="space-y-2.5 mb-5">
-                  <div className="flex items-center justify-between text-xs font-bold text-text-light uppercase tracking-wider mb-2 font-heading">
+                  <div className="flex items-center justify-between text-xs font-semibold text-text-light uppercase tracking-wider mb-2 font-heading">
                     <span>Recent Categorized Entries</span>
                     <span className="text-brand-secondary font-sans font-semibold text-[11px]">Auto-Synced</span>
                   </div>
@@ -227,7 +227,7 @@ export default function Bookkeeping() {
                       className="flex items-center justify-between p-2.5 bg-white border border-[#DCE6F2] hover:border-brand-secondary/40 rounded-xl transition-colors text-xs"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${tx.positive ? "bg-emerald-50 text-emerald-600 border border-emerald-200/60" : "bg-orange-50 text-brand-accent border border-orange-200/60"
+                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-semibold text-xs shrink-0 ${tx.positive ? "bg-emerald-50 text-emerald-600 border border-emerald-200/60" : "bg-orange-50 text-brand-accent border border-orange-200/60"
                           }`}>
                           {tx.positive ? <DollarSign className="w-3.5 h-3.5" /> : <CreditCard className="w-3.5 h-3.5" />}
                         </div>
@@ -236,7 +236,7 @@ export default function Bookkeeping() {
                           <span className="text-[10px] text-text-light">{tx.cat} • {tx.date}</span>
                         </div>
                       </div>
-                      <span className={`font-bold font-heading shrink-0 text-xs ${tx.positive ? "text-emerald-600" : "text-text-dark"
+                      <span className={`font-semibold font-heading shrink-0 text-xs ${tx.positive ? "text-emerald-600" : "text-text-dark"
                         }`}>
                         {tx.amount}
                       </span>
@@ -249,7 +249,7 @@ export default function Bookkeeping() {
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-brand-primary" />
                     <div>
-                      <p className="font-bold text-xs text-brand-purple font-heading">Monthly P&L Report Generated</p>
+                      <p className="font-semibold text-xs text-brand-purple font-heading">Monthly P&L Report Generated</p>
                       <p className="text-[10px] text-text-mid font-sans">Ready for CPA Tax Filing & Audit</p>
                     </div>
                   </div>
@@ -269,7 +269,7 @@ export default function Bookkeeping() {
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-brand-purple font-heading">Audit-Proof Guaranteed</p>
+                  <p className="text-[11px] font-semibold text-brand-purple font-heading">Audit-Proof Guaranteed</p>
                   <p className="text-[10px] text-text-light font-sans">CPA Verified Standard</p>
                 </div>
               </motion.div>
@@ -284,7 +284,7 @@ export default function Bookkeeping() {
                   <Layers className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold text-brand-purple font-heading">QuickBooks & Xero Synced</p>
+                  <p className="text-[11px] font-semibold text-brand-purple font-heading">QuickBooks & Xero Synced</p>
                   <p className="text-[10px] text-emerald-600 font-semibold font-sans">Real-time Bank Feeds</p>
                 </div>
               </motion.div>
@@ -307,8 +307,8 @@ export default function Bookkeeping() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white border border-[#DCE6F2] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="text-3xl sm:text-4xl font-black text-brand-primary font-heading mb-1">{s.value}</div>
-                <div className="text-brand-purple text-sm font-bold font-heading mb-0.5">{s.label}</div>
+                <div className="text-3xl sm:text-4xl font-medium text-brand-primary font-heading mb-1">{s.value}</div>
+                <div className="text-brand-purple text-sm font-semibold font-heading mb-0.5">{s.label}</div>
                 <div className="text-text-light text-xs font-sans">{s.desc}</div>
               </motion.div>
             ))}
@@ -325,11 +325,11 @@ export default function Bookkeeping() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
               Comprehensive Bookkeeping Capabilities
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-purple mb-4 font-heading">
+            <h2 className="text-4xl md:text-5xl font-medium text-brand-purple mb-4 font-heading">
               Everything Your Business Needs to{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary">
                 Scale Profitably
@@ -359,13 +359,13 @@ export default function Bookkeeping() {
                     <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-brand-primary/10 via-brand-secondary/5 to-brand-accent/10 border border-[#DCE6F2] flex items-center justify-center text-brand-primary group-hover:bg-gradient-to-br group-hover:from-brand-primary group-hover:to-brand-secondary group-hover:text-white group-hover:scale-105 group-hover:shadow-md transition-all duration-300 shadow-sm shrink-0">
                       {feature.icon}
                     </div>
-                    <span className="font-mono text-xs font-extrabold text-brand-primary/70 bg-brand-primary/5 border border-brand-primary/15 px-3 py-1 rounded-full shrink-0">
+                    <span className="font-mono text-xs font-semibold text-brand-primary/70 bg-brand-primary/5 border border-brand-primary/15 px-3 py-1 rounded-full shrink-0">
                       {feature.num}
                     </span>
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-brand-purple font-heading group-hover:text-brand-secondary transition-colors mb-3 leading-snug">
+                  <h3 className="text-xl font-medium text-brand-purple font-heading group-hover:text-brand-secondary transition-colors mb-3 leading-snug">
                     {feature.title}
                   </h3>
                   <p className="text-text-mid text-sm leading-relaxed font-sans mb-6">
@@ -388,7 +388,7 @@ export default function Bookkeeping() {
 
                 {/* Card Footer: Interactive Included Badge */}
                 <div className="flex items-center justify-between pt-4 border-t border-[#DCE6F2]/70 mt-auto">
-                  <span className="text-xs font-bold font-heading text-brand-primary group-hover:text-brand-accent transition-colors flex items-center gap-1">
+                  <span className="text-xs font-semibold font-heading text-brand-primary group-hover:text-brand-accent transition-colors flex items-center gap-1">
                     CPA Managed Standard
                   </span>
                   <div className="w-8 h-8 rounded-full bg-brand-light group-hover:bg-brand-primary group-hover:text-white flex items-center justify-center text-text-light transition-all shadow-sm">
@@ -418,13 +418,13 @@ export default function Bookkeeping() {
 
             <div className="relative z-10 max-w-4xl mx-auto text-center">
               {/* Badge Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white bg-white/10 border border-white/20 mb-6 backdrop-blur-md shadow-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-white bg-white/10 border border-white/20 mb-6 backdrop-blur-md shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
                 <span>Free 30-Minute Financial Assessment</span>
               </div>
 
               {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 font-heading tracking-tight leading-[1.15]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white mb-5 font-heading tracking-tight leading-[1.15]">
                 Ready to Simplify Your Bookkeeping &{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-white">
                   Maximize Profits?
@@ -456,7 +456,7 @@ export default function Bookkeeping() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
                   href="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/30 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent rounded-xl shadow-lg shadow-brand-accent/30 hover:shadow-xl transition-all duration-300 cursor-pointer group active:scale-95"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
                   Schedule Free Consultation

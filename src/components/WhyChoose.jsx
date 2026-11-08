@@ -101,14 +101,14 @@ export default function WhyChoose() {
             <span>Why Businesses Choose Ananya</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading leading-[1.15] mb-4">
+          <h2 className="text-4xl sm:text-5xl font-medium tracking-tight font-heading leading-[1.15] mb-4">
             <span className="text-brand-primary">Why Businesses Choose</span> <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary">
               Ananya Tax Co
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl font-bold text-brand-secondary tracking-wide font-heading mt-2">
+          <p className="text-lg sm:text-xl font-medium text-brand-secondary tracking-wide font-heading mt-2">
             Built on Trust. Driven by Results.
           </p>
         </motion.div>
@@ -134,17 +134,17 @@ export default function WhyChoose() {
                     {item.icon}
                   </div>
 
-                  <span className="text-xs font-bold font-heading text-text-light/50">
+                  <span className="text-xs font-semibold font-heading text-text-light/50">
                     {item.number}
                   </span>
                 </div>
 
-                <div className="text-[11px] font-bold uppercase tracking-wider text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-2.5 py-0.5 rounded-full inline-block mb-3 font-heading">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-2.5 py-0.5 rounded-full inline-block mb-3 font-heading">
                   {item.tag}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-brand-dark mb-2 font-heading group-hover:text-brand-primary transition-colors leading-snug">
+                <h3 className="text-lg font-medium text-brand-dark mb-2 font-heading group-hover:text-brand-primary transition-colors leading-snug">
                   {item.title}
                 </h3>
 

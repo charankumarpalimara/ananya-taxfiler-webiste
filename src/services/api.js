@@ -299,51 +299,32 @@ export const getReferrals = async () => {
   return await res.json();
 };
 
-// Direct Frontend Submissions & Registrations to Info@ananyataxco.com
+// Submissions & Registrations helpers (matching website API integration)
 export const createSubmission = async (payload) => {
-  try {
-    const res = await fetch('https://formsubmit.co/ajax/Info@ananyataxco.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        _subject: `New Ananya Tax Co Inquiry: ${payload.clientName || payload.firstName || 'Website Visitor'}`,
-        ...payload,
-        _replyto: payload.email,
-        _template: 'table',
-        _captcha: 'false',
-      }),
-    });
-    return await res.json();
-  } catch (err) {
-    console.warn('Frontend form dispatch error:', err);
-    return { success: true };
-  }
+  const normalized = {
+    ...payload,
+    serviceType: payload.serviceType || (Array.isArray(payload.services) ? payload.services[0] : payload.service) || 'General Consultation',
+    fullName: payload.fullName || payload.clientName || `${payload.firstName || ''} ${payload.lastName || ''}`.trim() || 'Website Visitor',
+  };
+  const res = await fetch(`${API_BASE_URL}/submissions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(normalized),
+  });
+  return await res.json();
 };
 
 export const createRegistration = async (payload) => {
-  try {
-    const res = await fetch('https://formsubmit.co/ajax/Info@ananyataxco.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        _subject: `New Client Portal Registration: ${payload.fullName || payload.clientName || 'New User'}`,
-        ...payload,
-        _replyto: payload.email,
-        _template: 'table',
-        _captcha: 'false',
-      }),
-    });
-    return await res.json();
-  } catch (err) {
-    console.warn('Frontend registration dispatch error:', err);
-    return { success: true };
-  }
+  const normalized = {
+    ...payload,
+    fullName: payload.fullName || `${payload.firstName || ''} ${payload.lastName || ''}`.trim() || 'Client',
+  };
+  const res = await fetch(`${API_BASE_URL}/registrations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(normalized),
+  });
+  return await res.json();
 };
 
 export const fetchUserSubmissions = async () => {

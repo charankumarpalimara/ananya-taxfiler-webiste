@@ -21,12 +21,12 @@ export default function TaxSummaryTab() {
     {
       header: "Tax Year",
       accessor: "year",
-      cellClassName: "font-black text-brand-purple",
+      cellClassName: "font-semibold text-brand-purple",
     },
     {
       header: "AGI (Gross Income)",
       accessor: "agi",
-      cellClassName: "text-slate-900 font-bold",
+      cellClassName: "text-slate-900 font-semibold",
     },
     {
       header: "Taxable Income",
@@ -41,17 +41,17 @@ export default function TaxSummaryTab() {
     {
       header: "Federal Tax",
       accessor: "federalTax",
-      cellClassName: "text-blue-700 font-bold",
+      cellClassName: "text-blue-700 font-semibold",
     },
     {
       header: "State Tax",
       accessor: "stateTax",
-      cellClassName: "text-emerald-700 font-bold",
+      cellClassName: "text-emerald-700 font-semibold",
     },
     {
       header: "Status",
       cell: (item) => (
-        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold ${
           item.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
         }`}>
           {item.status}
@@ -65,7 +65,7 @@ export default function TaxSummaryTab() {
         <a
           href={item.pdfUrl}
           onClick={(e) => { e.preventDefault(); alert(`Downloading Tax Return Summary PDF for ${item.year}`); }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-all cursor-pointer"
         >
           <Download className="w-3.5 h-3.5" />
           <span>PDF Summary</span>
@@ -79,7 +79,7 @@ export default function TaxSummaryTab() {
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-black text-slate-900 font-heading">Tax Summary & History</h2>
+            <h2 className="text-xl font-medium text-slate-900 font-heading">Tax Summary & History</h2>
             <p className="text-xs text-slate-500 mt-1">View AGI, Taxable Income, Standard/Itemized Deductions, and Federal & State Tax breakdowns.</p>
           </div>
 
@@ -89,7 +89,7 @@ export default function TaxSummaryTab() {
               <button
                 key={y}
                 onClick={() => setSelectedYear(y)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   selectedYear === y
                     ? "bg-brand-orange text-white shadow-sm"
                     : "text-slate-600 hover:text-slate-900"

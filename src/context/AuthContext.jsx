@@ -27,14 +27,14 @@ export const isJwtExpired = (token) => {
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => {
     if (typeof window !== "undefined") {
-      return sessionStorage.getItem("user_token");
+      return sessionStorage.getItem("user_token") || localStorage.getItem("user_token");
     }
     return null;
   });
 
   const [user, setUser] = useState(() => {
     if (typeof window !== "undefined") {
-      const storedUser = sessionStorage.getItem("user_data");
+      const storedUser = sessionStorage.getItem("user_data") || localStorage.getItem("user_data");
       if (!storedUser) return null;
       try {
         return JSON.parse(storedUser);
@@ -51,6 +51,8 @@ export function AuthProvider({ children }) {
     if (typeof window !== "undefined") {
       sessionStorage.removeItem("user_token");
       sessionStorage.removeItem("user_data");
+      localStorage.removeItem("user_token");
+      localStorage.removeItem("user_data");
     }
     setToken(null);
     setUser(null);
@@ -60,10 +62,31 @@ export function AuthProvider({ children }) {
     if (typeof window !== "undefined") {
       sessionStorage.setItem("user_token", newToken);
       sessionStorage.setItem("user_data", JSON.stringify(userData));
+      localStorage.setItem("user_token", newToken);
+      localStorage.setItem("user_data", JSON.stringify(userData));
     }
     setToken(newToken);
     setUser(userData);
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = sessionStorage.getItem("user_token") || localStorage.getItem("user_token");
+      const storedUser = sessionStorage.getItem("user_data") || localStorage.getItem("user_data");
+      if (storedToken && !isJwtExpired(storedToken)) {
+        setToken(storedToken);
+        if (storedUser) {
+          try {
+            setUser(JSON.parse(storedUser));
+          } catch {
+            // ignore
+          }
+        }
+      } else if (storedToken && isJwtExpired(storedToken)) {
+        logout();
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (token && isJwtExpired(token)) {

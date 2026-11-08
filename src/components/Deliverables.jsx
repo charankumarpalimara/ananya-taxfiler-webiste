@@ -76,9 +76,9 @@ export default function Deliverables() {
             <span>Forms & Deliverables</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight font-heading leading-[1.15] mb-4">
+          <h2 className="text-4xl sm:text-5xl font-medium tracking-tight font-heading leading-[1.15] mb-4">
             <span className="text-brand-primary">Comprehensive Tax & Accounting</span> <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary font-bold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary ">
               Deliverables & Filings.
             </span>
           </h2>
@@ -124,11 +124,11 @@ export default function Deliverables() {
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-brand-accent-dark mb-0.5 font-heading">
+                      <div className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-brand-accent-dark mb-0.5 font-heading">
                         {category.tag}
                       </div>
                       <h3
-                        className={`text-xs sm:text-sm lg:text-base font-bold font-heading truncate transition-colors ${isActive ? "text-brand-primary" : "text-brand-dark group-hover:text-brand-primary"
+                        className={`text-xs sm:text-sm lg:text-base font-medium font-heading truncate transition-colors ${isActive ? "text-brand-primary" : "text-brand-dark group-hover:text-brand-primary"
                           }`}
                       >
                         {category.title}
@@ -161,10 +161,10 @@ export default function Deliverables() {
                 </div>
 
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-3 py-0.5 rounded-full inline-block mb-2 font-heading">
+                  <div className="text-xs font-semibold uppercase tracking-widest text-brand-accent-dark bg-brand-accent/15 border border-brand-accent/25 px-3 py-0.5 rounded-full inline-block mb-2 font-heading">
                     {deliverables[activeTab].tag}
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-semibold text-brand-dark font-heading leading-tight mb-1">
+                  <h3 className="text-2xl sm:text-3xl font-medium text-brand-dark font-heading leading-tight mb-1">
                     {deliverables[activeTab].title}
                   </h3>
                   <p className="text-text-mid font-sans text-sm sm:text-base leading-relaxed">

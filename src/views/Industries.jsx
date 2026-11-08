@@ -129,7 +129,7 @@ export default function Industries() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-5 font-heading"
+            className="text-4xl sm:text-5xl font-medium text-white tracking-tight mb-5 font-heading"
           >
             Industries We Serve
           </motion.h1>
@@ -151,7 +151,7 @@ export default function Industries() {
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="section-tag !mb-3">Specialized Sector Expertise</span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-primary mb-3 font-heading tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-medium text-brand-primary mb-3 font-heading tracking-tight">
             Tailored CPA Financial Solutions
           </h2>
           <p className="text-slate-500 text-xs sm:text-sm font-sans font-normal">
@@ -185,7 +185,7 @@ export default function Industries() {
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/85 via-brand-primary/30 to-transparent" />
 
                     {/* Top Badge */}
-                    <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-brand-primary/80 border border-white/20 backdrop-blur-md shadow-md font-heading">
+                    <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider text-white bg-brand-primary/80 border border-white/20 backdrop-blur-md shadow-md font-heading">
                       {ind.badge}
                     </div>
 
@@ -200,7 +200,7 @@ export default function Industries() {
                     <div className="text-[11px] font-semibold text-brand-accent uppercase tracking-wider mb-1 font-heading">
                       {ind.subtitle}
                     </div>
-                    <h3 className="text-xl font-bold text-brand-primary mb-2 font-heading tracking-tight group-hover:text-brand-accent transition-colors">
+                    <h3 className="text-xl font-medium text-brand-primary mb-2 font-heading tracking-tight group-hover:text-brand-accent transition-colors">
                       {ind.title}
                     </h3>
                     <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans mb-4 font-normal line-clamp-2">
@@ -211,7 +211,7 @@ export default function Industries() {
                     <div className="space-y-1.5 pt-2 border-t border-slate-100 font-sans">
                       {ind.services.map((serv, i) => (
                         <div key={i} className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                          <span className="text-brand-accent font-bold shrink-0">✓</span>
+                          <span className="text-brand-accent font-semibold shrink-0">✓</span>
                           <span className="truncate">{serv}</span>
                         </div>
                       ))}
@@ -223,7 +223,7 @@ export default function Industries() {
                 <div className="px-6 py-4 bg-[#F8FAFC] border-t border-slate-200/60 flex items-center justify-between gap-3">
                   <Link
                     href="/contact"
-                    className="w-full btn-orange text-xs font-bold py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-2 font-heading shadow-xs tracking-wide"
+                    className="w-full btn-orange text-xs font-semibold py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-2 font-heading shadow-xs tracking-wide"
                   >
                     Consult Industry CPA
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -239,7 +239,7 @@ export default function Industries() {
       {/* ── COMPACT BOTTOM CTA BANNER ───────────────────────────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div className="bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary rounded-3xl p-8 text-white text-center relative overflow-hidden shadow-xl">
-          <h2 className="text-2xl text-white font-extrabold mb-2 font-heading tracking-tight relative z-10">
+          <h2 className="text-2xl text-white font-medium mb-2 font-heading tracking-tight relative z-10">
             Need Custom Industry Accounting Support?
           </h2>
           <p className="text-white/80 text-sm max-w-xl mx-auto mb-6 font-sans font-normal leading-relaxed relative z-10">
@@ -249,7 +249,7 @@ export default function Industries() {
           <div className="flex flex-wrap items-center justify-center gap-4 relative z-10">
             <Link
               href="/contact"
-              className="btn-orange text-xs font-bold !px-6 !py-3 rounded-xl shadow-lg flex items-center gap-2 font-heading cursor-pointer tracking-wide"
+              className="btn-orange text-xs font-semibold !px-6 !py-3 rounded-xl shadow-lg flex items-center gap-2 font-heading cursor-pointer tracking-wide"
             >
               Get Custom Consultation
               <ArrowRight className="w-4 h-4" />

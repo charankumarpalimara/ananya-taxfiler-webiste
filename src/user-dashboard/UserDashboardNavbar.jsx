@@ -30,12 +30,12 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2.5 group">
               <img
-                src="/new-logo.jpeg"
+                src="/latest-logo.jpeg"
                 alt="Ananya Tax Co Logo"
                 className="h-10 sm:h-11 w-auto object-contain rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
               />
               <div className="hidden xs:flex flex-col">
-                <span className="font-extrabold text-sm sm:text-base font-heading tracking-tight text-brand-primary leading-tight">
+                <span className="font-semibold text-sm sm:text-base font-heading tracking-tight text-brand-primary leading-tight">
                   ANANYA <span className="text-brand-orange">TAX CO</span>
                 </span>
                 <span className="text-[9px] font-semibold text-text-light uppercase tracking-widest leading-none">
@@ -44,7 +44,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
               </div>
             </Link>
             <div className="h-6 w-[1px] bg-slate-200 hidden sm:block" />
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-bold font-heading">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold font-heading">
               <ShieldCheck className="w-3.5 h-3.5 text-brand-orange" />
               <span>Client Portal</span>
             </div>
@@ -54,7 +54,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
           <nav className="hidden md:flex items-center gap-1 font-sans">
             <button
               onClick={() => setActiveTab("profile")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-2 ${
                 activeTab === "profile"
                   ? "bg-brand-purple text-white shadow-md shadow-brand-purple/20"
                   : "text-slate-600 hover:bg-slate-100"
@@ -66,7 +66,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
 
             <button
               onClick={() => setActiveTab("submissions")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-2 ${
                 activeTab === "submissions"
                   ? "bg-brand-purple text-white shadow-md shadow-brand-purple/20"
                   : "text-slate-600 hover:bg-slate-100"
@@ -78,7 +78,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
 
             <Link
               href="/contact"
-              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-100 transition-all flex items-center gap-2"
+              className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-all flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
               <span>Contact Representative</span>
@@ -92,11 +92,11 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
                 className="flex items-center gap-2.5 p-1.5 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200/80 transition-all cursor-pointer"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-purple text-white font-bold text-xs flex items-center justify-center font-heading">
+                <div className="w-8 h-8 rounded-lg bg-brand-purple text-white font-semibold text-xs flex items-center justify-center font-heading">
                   {displayName[0].toUpperCase()}
                 </div>
                 <div className="hidden sm:block text-left">
-                  <div className="text-xs font-bold text-slate-800 line-clamp-1">{displayName}</div>
+                  <div className="text-xs font-semibold text-slate-800 line-clamp-1">{displayName}</div>
                   <div className="text-[10px] text-slate-500 font-medium">Client Account</div>
                 </div>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
@@ -109,7 +109,7 @@ export default function UserDashboardNavbar({ activeTab, setActiveTab }) {
                   onMouseLeave={() => setShowProfileMenu(false)}
                 >
                   <div className="p-3 border-b border-slate-100">
-                    <div className="text-xs font-bold text-slate-900">{displayName}</div>
+                    <div className="text-xs font-semibold text-slate-900">{displayName}</div>
                     <div className="text-[11px] text-slate-500 truncate">{user?.email}</div>
                   </div>
 

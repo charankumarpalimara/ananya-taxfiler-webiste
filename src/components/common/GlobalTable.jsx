@@ -141,11 +141,11 @@ export default function GlobalTable({
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className={`border-b border-slate-200 text-slate-500 font-bold uppercase text-[10px] tracking-wider ${headerBg}`}>
+            <tr className={`border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider ${headerBg}`}>
               {columns.map((col, idx) => (
                 <th
                   key={col.key || idx}
-                  className={`py-3.5 px-4 font-bold ${getAlignClass(col.align)} ${col.headerClassName || ''}`}
+                  className={`py-3.5 px-4 font-semibold ${getAlignClass(col.align)} ${col.headerClassName || ''}`}
                 >
                   {col.header}
                 </th>

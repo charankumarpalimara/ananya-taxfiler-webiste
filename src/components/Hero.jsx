@@ -29,9 +29,9 @@ export default function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-brand-primary tracking-tight mb-8 leading-[1.1] font-heading">
-              Expert <span className="text-brand-accent font-bold">& Your Truster Partners</span> for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary font-semibold">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-brand-primary tracking-tight mb-8 leading-[1.1] font-heading">
+              Expert <span className="text-brand-accent">& Your Trusted Partners</span> for{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-green-light to-brand-secondary">
                 U.S Tax & Accounting Services
               </span>
             </h1>
@@ -94,7 +94,7 @@ export default function Hero() {
                   <CheckCircle2 className="w-5 h-5 text-brand-accent" />
                 </div>
                 <div>
-                  <div className="text-brand-primary font-bold text-sm font-heading">Tax Filed!</div>
+                  <div className="text-brand-primary font-semibold text-sm font-heading">Tax Filed!</div>
                   <div className="text-text-light text-xs font-sans">Saved $4,280 this year</div>
                 </div>
               </div>

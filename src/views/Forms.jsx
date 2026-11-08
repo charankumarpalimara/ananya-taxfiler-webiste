@@ -311,7 +311,7 @@ export default function Forms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
               Official Business & Tax Resource Hub
@@ -321,10 +321,10 @@ export default function Forms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-primary font-heading tracking-tight leading-[1.15]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-medium text-brand-primary font-heading tracking-tight leading-[1.15]"
             >
               Essential Tax & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary font-bold">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary ">
                 Business Formation Forms.
               </span>
             </motion.h1>
@@ -376,10 +376,10 @@ export default function Forms() {
 
                     {/* Form Badges Overlay */}
                     <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
-                      <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-sm backdrop-blur-md bg-white/95 ${item.badgeStyle}`}>
+                      <span className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-sm backdrop-blur-md bg-white/95 ${item.badgeStyle}`}>
                         {item.badge}
                       </span>
-                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-900/90 text-white shadow-sm">
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-slate-900/90 text-white shadow-sm">
                         {item.formCode}
                       </span>
                     </div>
@@ -389,7 +389,7 @@ export default function Forms() {
                       <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md`}>
                         <IconComponent className="w-5 h-5 shrink-0" />
                       </div>
-                      <span className="text-xs font-bold text-white shadow-sm font-heading">
+                      <span className="text-xs font-semibold text-white shadow-sm font-heading">
                         {item.fileType}
                       </span>
                     </div>
@@ -399,7 +399,7 @@ export default function Forms() {
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Title */}
-                      <h3 className="text-lg sm:text-xl font-extrabold text-brand-dark mb-2.5 font-heading leading-snug group-hover:text-brand-primary transition-colors">
+                      <h3 className="text-lg sm:text-xl font-medium text-brand-dark mb-2.5 font-heading leading-snug group-hover:text-brand-primary transition-colors">
                         {item.title}
                       </h3>
 
@@ -432,7 +432,7 @@ export default function Forms() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
             <div className="max-w-xl text-center md:text-left relative z-10">
-              <h2 className="text-2xl text-white sm:text-3xl font-extrabold mb-2 font-heading tracking-tight">
+              <h2 className="text-2xl text-white sm:text-3xl font-medium mb-2 font-heading tracking-tight">
                 Need Help Selecting or Filing Any of These Forms?
               </h2>
               <p className="text-white/90 text-sm sm:text-base font-sans leading-relaxed">
@@ -442,7 +442,7 @@ export default function Forms() {
             <div className="relative z-10 shrink-0">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-brand-dark bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:scale-105 active:scale-95 group text-sm font-heading"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-brand-dark bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:scale-105 active:scale-95 group text-sm font-heading"
               >
                 <span>Consult Our Specialists</span>
                 <ArrowRight className="w-4 h-4 ml-2 text-brand-accent group-hover:translate-x-1 transition-transform" />

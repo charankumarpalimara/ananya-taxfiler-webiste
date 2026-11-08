@@ -60,12 +60,12 @@ export default function Payroll() {
               transition={{ duration: 0.7 }}
               className="lg:col-span-6 space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-brand-primary bg-brand-primary/10 border border-brand-primary/20 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-brand-primary bg-brand-primary/10 border border-brand-primary/20 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
                 Payroll Services
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-bold text-brand-purple leading-[1.12] mb-4 font-heading tracking-tight">
+              <h1 className="text-5xl md:text-6xl font-medium text-brand-purple leading-[1.12] mb-4 font-heading tracking-tight">
                 Smart <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent">
                   Payroll Solutions.
@@ -79,14 +79,14 @@ export default function Payroll() {
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent hover:shadow-xl hover:shadow-brand-secondary/25 hover:scale-105 active:scale-95 transition-all group shadow-md"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent hover:shadow-xl hover:shadow-brand-secondary/25 hover:scale-105 active:scale-95 transition-all group shadow-md"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
                   href="#features"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-brand-purple bg-white border border-[#DCE6F2] hover:border-brand-primary/50 hover:bg-gradient-to-r hover:from-brand-primary/5 hover:to-brand-accent/5 hover:scale-105 active:scale-95 transition-all shadow-sm"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-brand-purple bg-white border border-[#DCE6F2] hover:border-brand-primary/50 hover:bg-gradient-to-r hover:from-brand-primary/5 hover:to-brand-accent/5 hover:scale-105 active:scale-95 transition-all shadow-sm"
                 >
                   See All Features
                 </a>
@@ -135,7 +135,7 @@ export default function Payroll() {
                     className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#DCE6F2] shadow-md flex items-center gap-2"
                   >
                     <span className="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse"></span>
-                    <span className="text-xs font-bold text-brand-purple">Next-Day Direct Deposit</span>
+                    <span className="text-xs font-semibold text-brand-purple">Next-Day Direct Deposit</span>
                   </motion.div>
 
                   {/* Floating Micro-Badge Bottom Left */}
@@ -149,8 +149,8 @@ export default function Payroll() {
                       <ShieldCheck className="w-4 h-4 text-brand-accent" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-bold text-text-light uppercase tracking-wider">Compliance Guarantee</div>
-                      <div className="text-xs font-bold text-brand-purple">Zero IRS Tax Penalties</div>
+                      <div className="text-[10px] font-semibold text-text-light uppercase tracking-wider">Compliance Guarantee</div>
+                      <div className="text-xs font-semibold text-brand-purple">Zero IRS Tax Penalties</div>
                     </div>
                   </motion.div>
 
@@ -175,7 +175,7 @@ export default function Payroll() {
                 transition={{ delay: i * 0.1 }}
                 className="py-4 md:py-2 px-4 text-center group"
               >
-                <div className="text-4xl md:text-5xl font-black text-brand-purple font-heading tracking-tight mb-1.5 group-hover:text-brand-primary transition-colors">
+                <div className="text-4xl md:text-5xl font-medium text-brand-purple font-heading tracking-tight mb-1.5 group-hover:text-brand-primary transition-colors">
                   {s.value}
                 </div>
                 <div className="text-sm font-semibold text-text-mid font-sans">
@@ -196,11 +196,11 @@ export default function Payroll() {
             viewport={{ once: true }}
             className="text-center mb-16 max-w-3xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
               Payroll Capabilities
             </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 font-heading tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-medium mb-4 font-heading tracking-tight">
               <span className="text-brand-purple">Complete </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent">
                 Payroll Automation
@@ -233,10 +233,10 @@ export default function Payroll() {
                 {/* Right Content */}
                 <div className="flex-1">
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h3 className="text-base sm:text-lg font-bold text-brand-purple font-heading tracking-tight group-hover:text-brand-primary transition-colors">
+                    <h3 className="text-base sm:text-lg font-medium text-brand-purple font-heading tracking-tight group-hover:text-brand-primary transition-colors">
                       {feature.title}
                     </h3>
-                    <span className="text-[11px] font-black text-text-light/50 font-heading tracking-widest shrink-0">
+                    <span className="text-[11px] font-semibold text-text-light/50 font-heading tracking-widest shrink-0">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -260,11 +260,11 @@ export default function Payroll() {
             className="relative bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl p-10 sm:p-14 overflow-hidden text-center shadow-2xl border border-white/20 text-white"
           >
             {/* Ambient Inner Lighting Overlay */}
-            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-brand-primary/10 pointer-events-none" />
             <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/15 rounded-full blur-[80px] pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-primary/30 rounded-full blur-[80px] pointer-events-none" />
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 font-heading relative z-10 tracking-tight max-w-2xl mx-auto drop-shadow-sm">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white mb-4 font-heading relative z-10 tracking-tight max-w-2xl mx-auto drop-shadow-sm">
               Ready to experience the future of payroll?
             </h2>
             <p className="text-white/90 text-base sm:text-lg mb-8 max-w-xl mx-auto font-sans relative z-10 leading-relaxed font-medium">
@@ -273,7 +273,7 @@ export default function Payroll() {
             <div className="relative z-10 flex items-center justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-brand-purple bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 group text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-brand-purple bg-white hover:bg-[#F7FAFC] transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 group text-sm sm:text-base"
               >
                 <span>Contact Us Today</span>
                 <ArrowRight className="w-4 h-4 ml-2 text-brand-accent group-hover:translate-x-1 transition-transform" />

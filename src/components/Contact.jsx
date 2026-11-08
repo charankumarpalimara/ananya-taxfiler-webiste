@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createSubmission } from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Send, Clock, ArrowRight, Sparkles, CheckCircle2, MessageSquare } from "lucide-react";
 import Link from "next/link";
@@ -84,28 +85,47 @@ export default function Contact() {
         clientName: `${inputs[0]?.value || ''} ${inputs[1]?.value || ''}`.trim() || 'Website Visitor',
         email: inputs[2]?.value || '',
         phone: inputs[3]?.value || '',
+        services: [serviceName],
         service: serviceName,
+        serviceType: serviceName,
+        notes: inputs[5]?.value || 'Submitted via homepage quick contact form',
         message: inputs[5]?.value || 'Submitted via homepage quick contact form',
+        scheduledDate: 'Not Scheduled',
+        scheduledTime: 'Direct Message',
+        leadSource: 'Homepage Contact Form',
+        type: 'quick_contact',
       };
 
-      await fetch('https://formsubmit.co/ajax/Info@ananyataxco.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          _subject: `Homepage Quick Inquiry: ${payload.clientName}`,
-          "Client Name": payload.clientName,
-          "Client Email": payload.email,
-          "Client Phone": payload.phone,
-          "Service Requested": payload.service,
-          "Message": payload.message,
-          _replyto: payload.email,
-          _template: 'table',
-          _captcha: 'false',
-        }),
-      });
+      // 1. Save directly to Express Backend API & MongoDB Atlas
+      try {
+        await createSubmission(payload);
+      } catch (apiErr) {
+        console.error("Backend quick contact API error:", apiErr);
+      }
+
+      // 2. Dual email notification to Info@ananyataxco.com
+      try {
+        await fetch('https://formsubmit.co/ajax/Info@ananyataxco.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            _subject: `Homepage Quick Inquiry: ${payload.clientName}`,
+            "Client Name": payload.clientName,
+            "Client Email": payload.email,
+            "Client Phone": payload.phone,
+            "Service Requested": payload.service,
+            "Message": payload.message,
+            _replyto: payload.email,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        });
+      } catch (fsErr) {
+        console.warn("FormSubmit email error:", fsErr);
+      }
     } catch (err) {
       console.error('Frontend contact submission error:', err);
     } finally {
@@ -130,13 +150,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-primary bg-brand-primary/10 border border-brand-primary/20 mb-4 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-brand-accent" />
             Get in Touch
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold font-heading tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-medium font-heading tracking-tight mb-4">
             <span className="text-brand-primary">Ready to grow </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary font-bold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-secondary to-brand-primary ">
               your business?
             </span>
           </h2>
@@ -170,7 +190,7 @@ export default function Contact() {
                   {item.icon}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-bold text-text-light uppercase tracking-wider mb-0.5 font-heading">
+                  <p className="text-[11px] font-semibold text-text-light uppercase tracking-wider mb-0.5 font-heading">
                     {item.label}
                   </p>
                   {item.href ? (
@@ -197,7 +217,7 @@ export default function Contact() {
               className="group flex items-center justify-between bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl p-4 sm:p-5 text-white hover:shadow-lg hover:scale-[1.01] transition-all duration-300 border border-white/10 shrink-0"
             >
               <div>
-                <p className="font-bold font-heading text-sm sm:text-base leading-tight">Visit full contact page</p>
+                <p className="font-semibold font-heading text-sm sm:text-base leading-tight">Visit full contact page</p>
                 <p className="text-white/80 text-xs mt-0.5 font-sans">Get in touch with our team</p>
               </div>
               <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-brand-primary transition-colors">
@@ -219,11 +239,11 @@ export default function Contact() {
                   <div className="flex items-center justify-between gap-2 mb-1.5">
                     <div className="flex items-center gap-2">
                       <span className="text-base">{guaranteeCards[activeCard].icon}</span>
-                      <h4 className="font-bold text-xs sm:text-sm text-brand-purple font-heading">
+                      <h4 className="font-medium text-xs sm:text-sm text-brand-purple font-heading">
                         {guaranteeCards[activeCard].title}
                       </h4>
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full shrink-0">
+                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full shrink-0">
                       {guaranteeCards[activeCard].badge}
                     </span>
                   </div>
@@ -262,7 +282,7 @@ export default function Contact() {
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-brand-purple font-heading">Send Us a Direct Message</h3>
+                  <h3 className="text-xl font-medium text-brand-purple font-heading">Send Us a Direct Message</h3>
                   <p className="text-xs text-text-light font-sans">Fill in your details for a quick expert consultation.</p>
                 </div>
               </div>
@@ -276,7 +296,7 @@ export default function Contact() {
                   <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h4 className="text-2xl font-bold text-brand-purple font-heading mb-2">Message Received!</h4>
+                  <h4 className="text-2xl font-medium text-brand-purple font-heading mb-2">Message Received!</h4>
                   <p className="text-text-mid text-sm font-sans max-w-md mx-auto mb-6">
                     Thank you for reaching out. A dedicated CPA tax advisor will review your message and contact you shortly.
                   </p>
@@ -372,7 +392,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3.5 px-8 bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent text-white font-bold font-heading rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group text-base active:scale-[0.99] disabled:opacity-70 mt-2"
+                    className="w-full py-3.5 px-8 bg-gradient-to-r from-brand-accent to-brand-green-dark hover:from-brand-green-light hover:to-brand-accent text-white font-semibold font-heading rounded-xl shadow-lg shadow-brand-accent/25 hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group text-base active:scale-[0.99] disabled:opacity-70 mt-2"
                   >
                     {loading ? (
                       <span>Sending Message...</span>

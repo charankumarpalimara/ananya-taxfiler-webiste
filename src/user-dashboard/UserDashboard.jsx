@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   User, Mail, Phone, ShieldCheck, Lock, ArrowRight, Menu, LogOut, Bell
@@ -25,11 +25,50 @@ import FinalReportsTab from "./screens/FinalReportsTab";
 import NotificationsTab from "./screens/NotificationsTab";
 import SupportTab from "./screens/SupportTab";
 
+const VALID_TABS = [
+  "dashboard-home",
+  "profile",
+  "account-info",
+  "upload",
+  "status",
+  "tax-summary",
+  "tax-refund",
+  "reports",
+  "scheduling",
+  "referrals",
+  "notifications",
+  "support"
+];
+
 export default function UserDashboard() {
   const { token, user, isAuthenticated, logout, isJwtExpired } = useAuth();
   const { openRegisterModal } = useRegisterModal();
 
-  const [activeTab, setActiveTab] = useState("dashboard-home");
+  const [mounted, setMounted] = useState(false);
+
+  // Initialize tab from URL ?tab= or sessionStorage so refresh preserves current view
+  const [activeTab, setActiveTabState] = useState(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlTab = params.get("tab");
+      if (urlTab && VALID_TABS.includes(urlTab)) return urlTab;
+      const stored = sessionStorage.getItem("dashboard_active_tab");
+      if (stored && VALID_TABS.includes(stored)) return stored;
+    }
+    return "dashboard-home";
+  });
+
+  const setActiveTab = useCallback((tabId) => {
+    if (!VALID_TABS.includes(tabId)) return;
+    setActiveTabState(tabId);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("dashboard_active_tab", tabId);
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", tabId);
+      window.history.replaceState(null, "", url.toString());
+    }
+  }, []);
+
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState(user);
@@ -37,7 +76,35 @@ export default function UserDashboard() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    const rawToken = sessionStorage.getItem("user_token");
+    setMounted(true);
+  }, []);
+
+  // Sync tab with URL and history navigation (back/forward)
+  useEffect(() => {
+    if (!mounted || typeof window === "undefined") return;
+    const syncTab = () => {
+      const params = new URLSearchParams(window.location.search);
+      const urlTab = params.get("tab");
+      if (urlTab && VALID_TABS.includes(urlTab)) {
+        setActiveTabState(urlTab);
+      } else {
+        const stored = sessionStorage.getItem("dashboard_active_tab");
+        if (stored && VALID_TABS.includes(stored)) {
+          setActiveTabState(stored);
+        }
+      }
+    };
+    syncTab();
+    window.addEventListener("popstate", syncTab);
+    return () => window.removeEventListener("popstate", syncTab);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const rawToken = typeof window !== 'undefined'
+      ? (sessionStorage.getItem("user_token") || localStorage.getItem("user_token"))
+      : null;
+
     if (!rawToken || isJwtExpired(rawToken)) {
       logout();
       setErrorMsg("Your session has expired or is invalid. Please log in to view your portal.");
@@ -76,9 +143,21 @@ export default function UserDashboard() {
     };
 
     loadData();
-  }, [token]);
+  }, [mounted, token]);
 
-  if (!isAuthenticated || !token || isJwtExpired(sessionStorage.getItem("user_token"))) {
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
+        <div className="w-8 h-8 border-3 border-brand-orange border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  const rawSessionToken = typeof window !== 'undefined'
+    ? (sessionStorage.getItem("user_token") || localStorage.getItem("user_token"))
+    : null;
+
+  if (!isAuthenticated && (!rawSessionToken || isJwtExpired(rawSessionToken))) {
     return (
       <div className="min-h-screen bg-slate-100 flex flex-col justify-between font-sans">
         <div className="flex-1 flex items-center justify-center p-4 pt-16 pb-16">
@@ -90,7 +169,7 @@ export default function UserDashboard() {
             <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-4">
               <Lock className="w-7 h-7" />
             </div>
-            <h2 className="text-2xl font-black text-brand-purple mb-2 font-heading">
+            <h2 className="text-2xl font-medium text-brand-purple mb-2 font-heading">
               Access Restricted
             </h2>
             <p className="text-slate-600 text-sm mb-6 leading-relaxed">
@@ -99,7 +178,7 @@ export default function UserDashboard() {
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => openRegisterModal(2)}
-                className="w-full py-3 bg-brand-orange text-white rounded-xl font-bold text-sm shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 bg-brand-orange text-white rounded-xl font-semibold text-sm shadow-lg shadow-brand-orange/20 hover:bg-brand-orange-dark transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Log In to Portal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -137,7 +216,7 @@ export default function UserDashboard() {
               <Menu className="w-6 h-6" />
             </button>
             <div>
-              <h1 className="text-lg font-black text-slate-900 font-heading capitalize">
+              <h1 className="text-lg font-medium text-slate-900 font-heading capitalize">
                 {activeTab.replace("-", " ")}
               </h1>
               <p className="text-[11px] text-slate-500 font-medium hidden sm:block">
@@ -157,11 +236,11 @@ export default function UserDashboard() {
             </button>
 
             <div className="flex items-center gap-2.5 pl-3 border-l border-slate-200">
-              <div className="w-8 h-8 rounded-xl bg-brand-purple text-white font-bold text-xs flex items-center justify-center font-heading">
+              <div className="w-8 h-8 rounded-xl bg-brand-purple text-white font-semibold text-xs flex items-center justify-center font-heading">
                 {displayName[0]?.toUpperCase() || 'U'}
               </div>
               <div className="hidden sm:block text-left">
-                <div className="text-xs font-bold text-slate-900 leading-tight">{displayName}</div>
+                <div className="text-xs font-semibold text-slate-900 leading-tight">{displayName}</div>
                 <div className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3" /> E-Filer Verified
                 </div>
@@ -173,7 +252,7 @@ export default function UserDashboard() {
         {/* Dynamic Screen View */}
         <main className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
           {loading ? (
-            <div className="flex items-center justify-center py-20 text-slate-400 font-bold text-sm">
+            <div className="flex items-center justify-center py-20 text-slate-400 font-semibold text-sm">
               Loading Taxpayer Dashboard...
             </div>
           ) : (

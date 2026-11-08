@@ -3,13 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Mail, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
+import { Menu, X, ArrowRight, Mail, Phone, ChevronDown, ChevronRight, ChevronLeft, User, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRegisterModal } from "../context/RegisterModalContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const { openRegisterModal } = useRegisterModal();
+  const { isAuthenticated, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -128,12 +132,12 @@ export default function Navbar() {
             {/* Logo */}
             <a href="/" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
               <img
-                src="/new-logo.jpeg"
+                src="/logo.webp"
                 alt="Ananya Tax Co Logo"
-                className="h-10 sm:h-12 w-auto object-contain rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
+                className="h-11 sm:h-13 w-auto object-contain rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-300"
               />
               {/* <div className="flex flex-col">
-                <span className="font-extrabold text-base sm:text-lg font-heading tracking-tight text-brand-primary leading-tight">
+                <span className="font-semibold text-base sm:text-lg font-heading tracking-tight text-brand-primary leading-tight">
                   ANANYA <span className="text-brand-orange">TAX CO</span>
                 </span>
                 <span className="text-[9px] sm:text-[10px] font-semibold text-text-light uppercase tracking-wider leading-none">
@@ -194,15 +198,37 @@ export default function Navbar() {
               )}
             </nav>
 
-            {/* CTA Consultation Button */}
-            <div className="hidden lg:flex items-center font-sans shrink-0">
-              <Link
-                href="/contact"
-                className="btn-orange text-xs xl:text-sm !px-5 xl:!px-6 !py-2.5 cursor-pointer shrink-0 select-none relative z-10 flex items-center gap-1.5 font-heading"
-              >
-                <span>Book Consultation</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
+            {/* CTA Button */}
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 font-sans shrink-0">
+              {isAuthenticated ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => router.push("/dashboard")}
+                    className="px-4 py-2 bg-brand-purple text-white font-semibold rounded-xl text-xs sm:text-sm shadow-md hover:bg-brand-purple-light transition-all flex items-center gap-2 cursor-pointer"
+                  >
+                    <User className="w-4 h-4 text-brand-orange" />
+                    <span>My Dashboard</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => logout()}
+                    className="p-2.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all cursor-pointer"
+                    title="Sign Out"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => openRegisterModal(1)}
+                  className="btn-orange text-xs xl:text-sm !px-5 xl:!px-6 !py-2.5 cursor-pointer shrink-0 select-none relative z-10 flex items-center gap-1.5 font-heading"
+                >
+                  <span>Register</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
             </div>
 
             {/* Mobile Toggle */}
@@ -238,7 +264,7 @@ export default function Navbar() {
                 >
                   {link.dropdown ? (
                     <div className="space-y-3">
-                      <p className="text-[9px] font-black text-brand-orange/60 uppercase tracking-[0.2em] font-heading flex items-center gap-2">
+                      <p className="text-[9px] font-semibold text-brand-orange/60 uppercase tracking-[0.2em] font-heading flex items-center gap-2">
                         <span className="w-4 h-[1px] bg-brand-orange/20"></span>
                         {link.name}
                       </p>
@@ -248,7 +274,7 @@ export default function Navbar() {
                             key={item.name}
                             href={item.path}
                             onClick={(e) => handleNavClick(e, item.path)}
-                            className="text-text-dark font-bold text-md py-1 hover:text-brand-purple transition-all font-heading flex items-center justify-between group"
+                            className="text-text-dark font-semibold text-md py-1 hover:text-brand-purple transition-all font-heading flex items-center justify-between group"
                           >
                             {item.name}
                             <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-brand-orange" />
@@ -260,7 +286,7 @@ export default function Navbar() {
                     <a
                       href={link.path}
                       onClick={(e) => handleNavClick(e, link.path)}
-                      className="block text-brand-purple font-bold text-lg hover:text-brand-orange transition-all font-heading"
+                      className="block text-brand-purple font-semibold text-lg hover:text-brand-orange transition-all font-heading"
                     >
                       {link.name}
                     </a>
@@ -269,14 +295,44 @@ export default function Navbar() {
               ))}
 
               <div className="pt-6 border-t border-black/10 flex flex-col gap-4">
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full btn-orange font-bold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-base cursor-pointer"
-                >
-                  <span>Book Free Consultation</span>
-                  <ChevronRight className="w-5 h-5" />
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        router.push("/dashboard");
+                      }}
+                      className="w-full bg-brand-purple text-white font-semibold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-md cursor-pointer"
+                    >
+                      <User className="w-4 h-4 text-brand-orange" />
+                      <span>My Client Dashboard</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        logout();
+                      }}
+                      className="w-full bg-slate-100 text-slate-700 font-semibold py-3 rounded-2xl flex items-center justify-center gap-2 text-sm cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      openRegisterModal(1);
+                    }}
+                    className="w-full btn-orange font-semibold py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 font-heading text-base cursor-pointer"
+                  >
+                    <span>Register</span>
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>

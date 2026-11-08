@@ -84,11 +84,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-[#061524] via-[#0B2238] to-[#14385C] relative overflow-hidden text-white pt-20 pb-8 border-t border-white/10">
+    <footer className="bg-gradient-to-b from-[#FDFBF7] via-[#FFFDF9] to-[#F7F4EB] relative overflow-hidden text-slate-800 pt-20 pb-8 border-t border-amber-200/80">
       {/* Ambient Glow Effects */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-secondary/20 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-primary/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-primary/5 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -99,25 +99,25 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3 mb-5 group">
               <img
-                src="/new-logo.jpeg"
+                src="/logo.webp"
                 alt="Ananya Tax Co Logo"
-                className="h-14 w-auto object-contain rounded-2xl shadow-lg border border-white/10 group-hover:scale-105 transition-all duration-300"
+                className="h-14 w-auto object-contain rounded-2xl shadow-sm border border-amber-200/80 group-hover:scale-105 transition-all duration-300 bg-white"
               />
               <div className="flex flex-col">
-                <span className="font-extrabold text-xl font-heading tracking-tight text-white leading-tight">
-                  ANANYA <span className="text-brand-orange">TAX CO</span>
+                <span className="font-semibold text-xl font-heading tracking-tight text-brand-primary leading-tight">
+                  ANANYA <span className="text-brand-accent">TAX CO</span>
                 </span>
-                <span className="text-[11px] font-medium text-white/70 uppercase tracking-widest leading-none mt-1">
+                <span className="text-[11px] font-medium text-text-light uppercase tracking-widest leading-none mt-1">
                   Bookkeeping • Payroll • Taxes
                 </span>
               </div>
             </Link>
-            <p className="text-white/75 text-sm leading-relaxed mb-6 font-sans max-w-sm">
+            <p className="text-text-mid text-sm leading-relaxed mb-6 font-sans max-w-sm">
               Professional accounting, payroll, and tax services designed to simplify your finances and help your business grow with confidence.
             </p>
 
             {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white/90 text-xs font-semibold mb-6 backdrop-blur-sm shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-brand-primary text-xs font-semibold mb-6 shadow-xs">
               <ShieldCheck className="w-4 h-4 text-brand-accent" />
               <span>100% Secure & IRS Compliant</span>
             </div>
@@ -130,7 +130,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white/80 ${social.hoverBg} hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                  className={`w-10 h-10 rounded-xl bg-white border border-amber-200/80 flex items-center justify-center text-brand-primary ${social.hoverBg} hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-xs hover:shadow-md`}
                   aria-label={social.name}
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -143,7 +143,7 @@ export default function Footer() {
 
           {/* Services Links (2 cols on lg) */}
           <div className="lg:col-span-2">
-            <h3 className="text-base font-bold text-white mb-6 font-heading flex items-center gap-2">
+            <h3 className="text-base font-medium text-brand-primary mb-6 font-heading flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brand-accent" />
               Services
             </h3>
@@ -154,9 +154,9 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-white/10 transition-all text-white/75 hover:text-white text-sm font-sans"
+                      className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-amber-500/10 transition-all text-text-mid hover:text-brand-primary text-sm font-sans"
                     >
-                      <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
                         <Icon className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-medium group-hover:translate-x-0.5 transition-transform">{link.name}</span>
@@ -169,7 +169,7 @@ export default function Footer() {
 
           {/* Company Links (2 cols on lg) */}
           <div className="lg:col-span-2">
-            <h3 className="text-base font-bold text-white mb-6 font-heading flex items-center gap-2">
+            <h3 className="text-base font-medium text-brand-primary mb-6 font-heading flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brand-accent" />
               Company
             </h3>
@@ -183,9 +183,9 @@ export default function Footer() {
                       <a
                         href={link.path}
                         onClick={(e) => handleNavClick(e, link.path)}
-                        className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-white/10 transition-all text-white/75 hover:text-white text-sm font-sans"
+                        className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-amber-500/10 transition-all text-text-mid hover:text-brand-primary text-sm font-sans"
                       >
-                        <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
+                        <div className="w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
                           <Icon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-medium group-hover:translate-x-0.5 transition-transform">{link.name}</span>
@@ -193,9 +193,9 @@ export default function Footer() {
                     ) : (
                       <Link
                         href={link.path}
-                        className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-white/10 transition-all text-white/75 hover:text-white text-sm font-sans"
+                        className="group flex items-center gap-3 p-2 -ml-2 rounded-xl hover:bg-amber-500/10 transition-all text-text-mid hover:text-brand-primary text-sm font-sans"
                       >
-                        <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
+                        <div className="w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-200 shrink-0">
                           <Icon className="w-3.5 h-3.5" />
                         </div>
                         <span className="font-medium group-hover:translate-x-0.5 transition-transform">{link.name}</span>
@@ -209,7 +209,7 @@ export default function Footer() {
 
           {/* Contact Col (4 cols on lg) */}
           <div className="lg:col-span-4">
-            <h3 className="text-base font-bold text-white mb-6 font-heading flex items-center gap-2">
+            <h3 className="text-base font-medium text-brand-primary mb-6 font-heading flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brand-accent" />
               Get In Touch
             </h3>
@@ -219,14 +219,14 @@ export default function Footer() {
                   href="https://www.google.com/maps/place/6609+Firefly+Ln,+Montgomery,+AL+36116"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
+                  className="group flex items-start gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white border border-transparent hover:border-amber-200/80 transition-all text-text-mid hover:text-brand-primary"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 mt-0.5 shadow-sm">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 mt-0.5 shadow-xs">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div className="text-sm font-sans leading-relaxed">
-                    <span className="block text-white font-semibold mb-0.5">Montgomery Office</span>
-                    <span className="text-white/75 group-hover:text-white/95">
+                    <span className="block text-brand-primary font-semibold mb-0.5">Montgomery Office</span>
+                    <span className="text-text-mid group-hover:text-text-dark">
                       6609 Firefly Lane<br />
                       Taylor Lakes Community<br />
                       Montgomery, AL 36116
@@ -238,14 +238,14 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+13318404241"
-                  className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
+                  className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white border border-transparent hover:border-amber-200/80 transition-all text-text-mid hover:text-brand-primary"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-sm">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-xs">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="text-sm font-sans">
-                    <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Call Us Directly</span>
-                    <span className="text-white font-medium">+1 (331) 840-4241</span>
+                    <span className="block text-[11px] uppercase tracking-wider font-semibold text-brand-accent">Call Us Directly</span>
+                    <span className="text-brand-primary font-semibold">+1 (331) 840-4241</span>
                   </div>
                 </a>
               </li>
@@ -253,14 +253,14 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@ananyataxco.com"
-                  className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/15 transition-all text-white/75 hover:text-white"
+                  className="group flex items-center gap-3 p-2.5 -ml-2.5 rounded-2xl hover:bg-white border border-transparent hover:border-amber-200/80 transition-all text-text-mid hover:text-brand-primary"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-sm">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all shrink-0 shadow-xs">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="text-sm font-sans">
-                    <span className="block text-[11px] uppercase tracking-wider font-bold text-brand-accent">Email Us</span>
-                    <span className="text-white font-medium">info@ananyataxco.com</span>
+                    <span className="block text-[11px] uppercase tracking-wider font-semibold text-brand-accent">Email Us</span>
+                    <span className="text-brand-primary font-semibold">info@ananyataxco.com</span>
                   </div>
                 </a>
               </li>
@@ -270,15 +270,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/60 text-xs font-sans text-center md:text-left">
-            © {currentYear} <span className="text-white font-semibold">Ananya Tax Co</span>. All rights reserved.
+        <div className="pt-8 border-t border-amber-200/80 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-text-light text-xs font-sans text-center md:text-left">
+            © {currentYear} <span className="text-brand-primary font-semibold">Ananya Tax Co</span>. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/60 font-sans">
+          <div className="flex items-center gap-6 text-xs text-text-light font-sans">
             <a href="#" className="hover:text-brand-accent transition-colors">Privacy Policy</a>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span className="w-1 h-1 rounded-full bg-amber-300" />
             <a href="#" className="hover:text-brand-accent transition-colors">Terms of Service</a>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span className="w-1 h-1 rounded-full bg-amber-300" />
             <a href="#" className="hover:text-brand-accent transition-colors">Security</a>
           </div>
         </div>
